@@ -1,0 +1,124 @@
+/* =========================================================================
+   World Changers — design tokens
+   Primitive → Semantic → Component. See design-system/MASTER.md.
+   Components must use semantic or component tokens, never primitives/raw hex.
+   ========================================================================= */
+
+/* ---------- 1. Primitive ---------- */
+:root {
+  --paper-0: #ffffff;
+  --paper-100: #f5f2ec;
+  --paper-200: #ece7de;
+  --paper-300: #ddd6c9;
+  --line-200: #d6cfc2;
+
+  --ink-950: #0e0e0d;
+  --ink-900: #111111;
+  --ink-875: #26251f;
+  --ink-850: #2a2926;
+  --ink-800: #3a3935;
+  --ink-700: #34322e;
+  --ink-600: #5c5850;
+  --ink-400: #a8a296;
+
+  --green-100: #dce6de;
+  --green-300: #8fb29c;
+  --green-700: #1f5a3d;
+  --green-800: #174730;
+
+  --gold-600: #a9822f; /* reserved for the WCS logo context only */
+  --red-700: #a3321f;
+
+  --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* 4px base, spacious density */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --size-12: 12px;
+  --size-13: 13px;
+  --size-15: 15px;
+  --size-17: 17px;
+  --size-20: 20px;
+  --size-24: clamp(21px, 1.9vw, 24px);
+  --size-32: clamp(26px, 2.6vw, 32px);
+  --size-44: clamp(32px, 3.6vw, 44px);
+  --size-60: clamp(38px, 5vw, 60px);
+  --size-84: clamp(44px, 6.6vw, 84px);
+  --size-120: clamp(52px, 9.2vw, 132px);
+
+  --dur-fast: 150ms;
+  --dur: 240ms;
+  --dur-slow: 520ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- 2. Semantic ---------- */
+:root {
+  --color-bg: var(--paper-100);
+  --color-bg-alt: var(--paper-200);
+  --color-surface: var(--paper-0);
+  --color-fg: var(--ink-900);
+  --color-fg-soft: var(--ink-700);
+  --color-fg-muted: var(--ink-600);
+  --color-line: var(--line-200);
+  --color-line-strong: var(--ink-900);
+  --color-accent: var(--green-700);
+  --color-accent-hover: var(--green-800);
+  --color-accent-tint: var(--green-100);
+  --color-inverse-bg: var(--ink-950);
+  --color-inverse-fg: var(--paper-100);
+  --color-inverse-muted: var(--ink-400);
+  --color-inverse-line: var(--ink-850);
+  --color-inverse-line-strong: var(--ink-800);
+  --color-inverse-hover: var(--ink-875);
+  --color-live: var(--red-700);
+
+  --font-display: var(--font-serif);
+  --font-text: var(--font-sans);
+  --font-meta: var(--font-mono);
+
+  --wrap: 1320px;
+  --gutter: clamp(16px, 3.4vw, 40px);
+  --header-h: 68px;
+  --section-y: clamp(64px, 9vw, 128px);
+}
+
+/* ---------- 3. Component ---------- */
+:root {
+  --btn-h: 48px;
+  --btn-px: 22px;
+  --btn-primary-bg: var(--color-fg);
+  --btn-primary-fg: var(--color-bg);
+  --btn-primary-bg-hover: var(--color-accent);
+  --btn-secondary-border: var(--color-fg);
+  --btn-secondary-fg: var(--color-fg);
+
+  --tag-border: var(--color-line);
+  --tag-fg: var(--color-fg-soft);
+  --tag-active-bg: var(--color-fg);
+  --tag-active-fg: var(--color-bg);
+
+  --card-gap: var(--space-4);
+  --media-bg: var(--paper-300);
+
+  --header-bg: var(--color-bg);
+  --header-line: var(--color-line);
+
+  --globe-stage: var(--color-bg-alt);
+  --globe-sphere: #f8f6f1;
+  --globe-sphere-edge: #e9e3d8;
+  --globe-ink: 17, 17, 17;          /* rgb triplets for canvas alpha */
+  --globe-accent: 31, 90, 61;
+  --globe-tint: 220, 230, 222;
+}

@@ -23,7 +23,7 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
       case 'heading':
         return (
           <div class:list={['blk-heading', { 'blk-section': anchor }]} id={anchor}>
-            {b.sub && <p class="kicker">{titleCase(b.sub)}</p>}
+            {b.sub && <p class="eyebrow">{titleCase(b.sub)}</p>}
             {b.text && <h2 class="h2">{titleCase(b.text)}</h2>}
             {b.body && <div class="prose" style="margin-top:20px" set:html={rewriteHtml(b.body)} />}
           </div>
@@ -52,7 +52,7 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
             <div class="strip">
               {shown.map((im: any) => <a href={media(im.src)} data-lb={`${group}-${i}`}><img src={media(im.src, 's')} alt={im.alt || ''} loading="lazy" /></a>)}
             </div>
-            {galleryHref && <p style="margin-top:16px"><a class="btn btn-ghost btn-sm" href={galleryHref}>Open full gallery <span class="arr">→</span></a></p>}
+            {galleryHref && <p style="margin-top:16px"><a class="btn btn-secondary btn-sm" href={galleryHref}>Open full gallery <span class="arr">→</span></a></p>}
           </div>
         );
       }
@@ -68,7 +68,7 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
         if (!href) return null;
         const ext = /^https?:/.test(href) || href.endsWith('.pdf');
         const isPdf = /\.pdf$/i.test(href);
-        return <p id={anchor}><a class="btn btn-ghost btn-sm" href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{isPdf ? '↓ ' : ''}{titleCase(b.text)} <span class="arr">→</span></a></p>;
+        return <p id={anchor}><a class="btn btn-secondary btn-sm" href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{isPdf ? '↓ ' : ''}{titleCase(b.text)} <span class="arr">→</span></a></p>;
       }
       case 'people':
         return (
@@ -105,15 +105,16 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
         );
       case 'info':
         return (
-          <a class="card hover card-body" href={link(b.href) || '#'} id={anchor} style="display:block">
-            <b class="h3">{titleCase(b.title)}</b>
-            {b.text && <p class="muted" style="margin:8px 0 0">{b.text}</p>}
+          <a class="row" href={link(b.href) || '#'} id={anchor}>
+            <span class="meta">Link</span>
+            <span class="row-title">{titleCase(b.title)}</span>
+            <span class="row-aside">{b.text}</span>
           </a>
         );
       case 'testimonials':
         return (
           <div class="grid grid-3" id={anchor}>
-            {b.items.map((q: any) => <figure class="card quote-card" style="margin:0"><span class="q" aria-hidden="true">“</span><blockquote>{q.quote}</blockquote><footer>{q.author}</footer></figure>)}
+            {b.items.map((q: any) => <figure class="quote"><blockquote>“{q.quote}”</blockquote><figcaption>{q.author}</figcaption></figure>)}
           </div>
         );
       case 'list':

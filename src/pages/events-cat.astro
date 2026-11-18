@@ -5,8 +5,8 @@ import EventsIndex from '../components/EventsIndex.astro';
 import { stats } from '../lib/data';
 ---
 <Layout title="Events" description={`All ${stats.events} World Changers summits, forums and cultural gatherings since ${stats.firstYear}.`}>
-  <PageHero title="Events" kicker={`${stats.events} gatherings · ${stats.countries} countries`} lead="Summits at the Pontifical Academy of Sciences, forums in Davos and St. Moritz, quantum education in Riyadh, music on the Albanian Riviera — every World Changers gathering in one place." crumbs={[{ href: '/events-cat/', label: 'Events' }]}>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a href="/world-map/" class="btn btn-gold">View on the world map <span class="arr">→</span></a><a href="/locations/" class="btn btn-ghost">Venues</a></div>
+  <PageHero title="Events" eyebrow={`${stats.events} gatherings · ${stats.countries} countries`} lead="Summits at the Pontifical Academy of Sciences, forums in Davos and St. Moritz, quantum education in Riyadh, music on the Albanian Riviera — every World Changers gathering in one place." crumbs={[{ href: '/events-cat/', label: 'Events' }]}>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a href="/world-map/" class="btn btn-primary">View on the world map <span class="arr">→</span></a><a href="/locations/" class="btn btn-secondary">Venues</a></div>
   </PageHero>
   <section class="section" style="padding-top:0"><div class="wrap"><EventsIndex /></div></section>
 </Layout>

@@ -18,26 +18,26 @@ const placeKeys = [...new Set(list.map((e) => e.place).filter(Boolean))].sort((a
     {!status && (
       <div class="filters" role="group" aria-label="Status">
         <span class="flabel">Status</span>
-        <button class="chip" data-filter="status:" aria-pressed="true">All</button>
-        <button class="chip" data-filter="status:upcoming" aria-pressed="false">Upcoming</button>
-        <button class="chip" data-filter="status:completed" aria-pressed="false">Completed</button>
+        <button class="tag" data-filter="status:" aria-pressed="true">All</button>
+        <button class="tag" data-filter="status:upcoming" aria-pressed="false">Upcoming</button>
+        <button class="tag" data-filter="status:completed" aria-pressed="false">Completed</button>
       </div>
     )}
     <div class="filters" role="group" aria-label="Theme">
       <span class="flabel">Theme</span>
-      <button class="chip" data-filter="theme:" aria-pressed="true">All</button>
-      {themes.map(([k, t]) => <button class="chip" data-filter={`theme:${k}`} aria-pressed="false">{t.icon} {t.label}</button>)}
+      <button class="tag" data-filter="theme:" aria-pressed="true">All</button>
+      {themes.map(([k, t]) => <button class="tag" data-filter={`theme:${k}`} aria-pressed="false">{t.label}</button>)}
     </div>
     <div class="filters" role="group" aria-label="Place">
       <span class="flabel">Place</span>
-      <button class="chip" data-filter="place:" aria-pressed="true">All</button>
-      {placeKeys.map((k) => <button class="chip" data-filter={`place:${k}`} aria-pressed="false">{places[k].flag} {places[k].name}</button>)}
+      <button class="tag" data-filter="place:" aria-pressed="true">All</button>
+      {placeKeys.map((k) => <button class="tag" data-filter={`place:${k}`} aria-pressed="false">{places[k].name}</button>)}
     </div>
   </div>
   <div class="timeline">
     {byYear.map(({ y, items }) => (
       <div class="tl-year" data-group-for={y}>
-        <h3 class="gold">{y}</h3>
+        <h3>{y}</h3>
         <div class="grid grid-3 stack-sm">{items.map((e) => <EventCard e={e} />)}</div>
       </div>
     ))}
@@ -46,5 +46,5 @@ const placeKeys = [...new Set(list.map((e) => e.place).filter(Boolean))].sort((a
 </div>
 <style>
   .filter-rows { display: grid; gap: 12px; margin-bottom: 40px; }
-  .flabel { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); min-width: 70px; }
+  .flabel { font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); min-width: 70px; }
 </style>

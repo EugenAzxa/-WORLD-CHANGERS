@@ -8,7 +8,7 @@ const bySlug = Object.fromEntries(people.map((p) => [p.slug, p]));
 const board = (block?.people || []).map((x: any) => ({ p: bySlug[x.slug], role: x.role })).filter((x: any) => x.p);
 ---
 <Layout title="Board of Directors" description="The Board of Directors of World Changers Summits.">
-  <PageHero title="Board of Directors" kicker="Leadership" lead="The people who guide the World Changers vision." crumbs={[{ href: '/our-mission/', label: 'About' }, { href: '/board-of-directors/', label: 'Board of Directors' }]} />
+  <PageHero title="Board of Directors" eyebrow="Leadership" lead="The people who guide the World Changers vision." crumbs={[{ href: '/our-mission/', label: 'About' }, { href: '/board-of-directors/', label: 'Board of Directors' }]} />
   <section class="section" style="padding-top:0"><div class="wrap"><div class="grid grid-3 stack-sm board">{board.map((x: any) => <PersonCard p={x.p} role={x.role} />)}</div></div></section>
 </Layout>
 <style>.board { max-width: 1000px; }</style>

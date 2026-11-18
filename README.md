@@ -22,6 +22,11 @@
 
 **Все старые URL сохранены** — ссылки из Google и соцсетей продолжат работать.
 
+## Дизайн
+
+Редакционный стиль Swiss Modernism: светлая «бумага», чернильный текст, один акцент (зелёный IASC), тонкие линейки вместо карточек, нумерованные разделы, шрифты Newsreader / Public Sans / IBM Plex Mono. Глобус оформлен как атлас.
+Правила и токены: [design-system/MASTER.md](design-system/MASTER.md), реализация — `src/styles/tokens.css` (primitive → semantic → component) и `src/styles/global.css`.
+
 ## Технологии
 
 - [Astro](https://astro.build) 7 — статическая генерация (414 страниц, сборка ~10 сек).

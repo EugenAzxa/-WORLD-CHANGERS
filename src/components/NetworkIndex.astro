@@ -12,8 +12,8 @@ const ROLES = [['speaker', 'Speakers'], ['guest', 'Guests'], ['board', 'Board'],
   <div class="toolbar">
     <input class="field" type="search" placeholder="Search by name or role…" data-filter-q aria-label="Search people" />
     <div class="filters" role="group" aria-label="Role">
-      <button class="chip" data-filter="role:" aria-pressed="true">All · {list.length}</button>
-      {ROLES.map(([r, label]) => <button class="chip" data-filter={`role:${r}`} aria-pressed="false">{label} · {count(r)}</button>)}
+      <button class="tag" data-filter="role:" aria-pressed="true">All · {list.length}</button>
+      {ROLES.map(([r, label]) => <button class="tag" data-filter={`role:${r}`} aria-pressed="false">{label} · {count(r)}</button>)}
     </div>
   </div>
   <p class="muted" style="margin:-12px 0 24px"><b data-filter-count>{list.length}</b> people</p>

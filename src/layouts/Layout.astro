@@ -6,11 +6,10 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
-  solidHeader?: boolean;
   noindex?: boolean;
 }
-const { title, description = SITE.tagline, image, solidHeader = false, noindex = false } = Astro.props;
-const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const { title, description = SITE.tagline, image, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : new URL('/brand/wcsnewlogoPc.png', Astro.site).href;
 const path = Astro.url.pathname;
@@ -18,21 +17,21 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
 
 const NAV = [
   { label: 'About', items: [
-    { href: '/our-mission/', label: 'Our Mission', sub: 'Why World Changers exists' },
-    { href: '/history/', label: 'History', sub: 'From the Vatican to the world' },
+    { href: '/our-mission/', label: 'Our Mission', sub: 'Why we exist' },
+    { href: '/history/', label: 'History', sub: 'Since 2023' },
     { href: '/board-of-directors/', label: 'Board of Directors' },
     { href: '/our-team/', label: 'Our Team' },
-    { href: '/about-us/', label: 'About the Summits', sub: 'Partners, courage & film' },
+    { href: '/about-us/', label: 'About the Summits' },
   ] },
   { label: 'Events', items: [
-    { href: '/events-cat/', label: 'All Events', sub: `${stats.events} gatherings since ${stats.firstYear}` },
+    { href: '/events-cat/', label: 'All Events', sub: `${stats.events} gatherings` },
     { href: '/upcoming-events/', label: 'Upcoming' },
     { href: '/completed-events/', label: 'Completed' },
     { href: '/locations/', label: 'Venues' },
     { href: '/spirit-of-quantum/', label: 'Spirit of Quantum 2027', sub: 'Patron programme' },
   ] },
   { label: 'Network', items: [
-    { href: '/network-list/', label: 'The Network', sub: `${stats.people} leaders & experts` },
+    { href: '/network-list/', label: 'The Network', sub: `${stats.people} members` },
     { href: '/speakers/', label: 'Speakers' },
     { href: '/guests/', label: 'Guests' },
     { href: '/awards/', label: 'Awards' },
@@ -40,13 +39,13 @@ const NAV = [
   { label: 'Media', items: [
     { href: '/category/press-release/', label: 'Press Releases' },
     { href: '/blog/', label: 'All Articles' },
-    { href: '/gallery/', label: 'Gallery', sub: `${stats.photos.toLocaleString('en')} photos` },
+    { href: '/gallery/', label: 'Gallery', sub: `${stats.photos.toLocaleString('en')} photographs` },
     { href: '/emotions-revealed/', label: 'Emotions Revealed' },
     { href: SITE.magazine, label: 'IASC Magazine ↗', ext: true },
     { href: SITE.catalogue, label: 'Catalogue ↗', ext: true },
   ] },
 ];
-const chevron = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>';
+const ext = (it: any) => (it.ext ? { target: '_blank', rel: 'noopener' } : {});
 ---
 <!doctype html>
 <html lang="en" class="no-js">
@@ -64,32 +63,30 @@ const chevron = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#05060b" />
+    <meta name="theme-color" content="#f5f2ec" />
     <link rel="icon" type="image/png" href="/brand/wcsnewlogo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <script is:inline>document.documentElement.classList.remove('no-js');</script>
-    <slot name="head" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class:list={['site-header', { solid: solidHeader }]} data-header>
+    <header class="site-header" data-header>
       <div class="wrap">
         <a href="/" class="brand" aria-label="World Changers Summits — home">
-          <img src="/brand/wcsnewlogoPc.png" alt="" width="60" height="46" />
-          <span>World Changers<small>by IASC</small></span>
+          <img src="/brand/wcsnewlogoPc.png" alt="" width="55" height="42" />
+          <span class="brand-name">World Changers<small>Summits · IASC</small></span>
         </a>
         <ul class="nav" role="list">
           {NAV.map((g, i) => (
             <li>
               <button class:list={['nav-link', { active: g.items.some((it) => !it.ext && is(it.href)) }]} aria-expanded="false" aria-controls={`dd-${i}`} data-dd>
-                {g.label}<Fragment set:html={chevron} />
+                {g.label}
+                <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" stroke="currentColor" stroke-width="1.4" fill="none" /></svg>
               </button>
               <div class="dropdown" id={`dd-${i}`}>
-                {g.items.map((it) => (
-                  <a href={it.href} {...(it.ext ? { target: '_blank', rel: 'noopener' } : {})}>{it.label}{it.sub && <small>{it.sub}</small>}</a>
-                ))}
+                {g.items.map((it) => <a href={it.href} {...ext(it)}>{it.label}{it.sub && <small>{it.sub}</small>}</a>)}
               </div>
             </li>
           ))}
@@ -97,12 +94,12 @@ const chevron = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4
           <li><a href="/contacts/" class:list={['nav-link', { active: is('/contacts/') }]}>Contact</a></li>
         </ul>
         <div class="header-actions">
-          <button class="icon-btn" data-search-open aria-label="Search (⌘K)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <button class="icon-btn" data-search-open aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           </button>
-          <a href="/donate/" class="btn btn-gold btn-sm">Donate</a>
+          <a href="/donate/" class="btn btn-primary btn-sm">Support</a>
           <button class="icon-btn menu-btn" data-menu-open aria-label="Open menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" /></svg>
           </button>
         </div>
       </div>
@@ -110,20 +107,20 @@ const chevron = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4
 
     <div class="mobile-nav" data-menu aria-hidden="true">
       <div class="top">
-        <a href="/" class="brand"><img src="/brand/wcsnewlogoPc.png" alt="World Changers" width="60" height="46" /></a>
-        <button class="icon-btn" data-menu-close aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        <a href="/" class="brand"><img src="/brand/wcsnewlogoPc.png" alt="World Changers" width="55" height="42" /><span class="brand-name">World Changers<small>Summits · IASC</small></span></a>
+        <button class="icon-btn" data-menu-close aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
       </div>
       <nav>
-        <a href="/world-map/" class="gold">World Map <span aria-hidden="true">→</span></a>
+        <a href="/world-map/">World Map <span class="arr" aria-hidden="true">→</span></a>
         {NAV.map((g) => (
           <details>
             <summary>{g.label}</summary>
-            <div>{g.items.map((it) => <a href={it.href} {...(it.ext ? { target: '_blank', rel: 'noopener' } : {})}>{it.label}</a>)}</div>
+            <div>{g.items.map((it) => <a href={it.href} {...ext(it)}>{it.label}</a>)}</div>
           </details>
         ))}
-        <a href="/contacts/">Contact</a>
+        <a href="/contacts/">Contact <span class="arr" aria-hidden="true">→</span></a>
       </nav>
-      <a href="/donate/" class="btn btn-gold">Donate</a>
+      <a href="/donate/" class="btn btn-primary">Support the mission</a>
     </div>
 
     <main id="main">
@@ -132,74 +129,70 @@ const chevron = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4
 
     <footer class="site-footer">
       <div class="wrap">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <img src="/brand/wcsnewlogoPc.png" alt="World Changers Summit" width="120" height="92" loading="lazy" />
-            <p>{SITE.tagline} Founded at the Pontifical Academy of Sciences in Vatican City.</p>
-            <a class="footer-iasc" href={SITE.orgUrl} target="_blank" rel="noopener">
-              <img src="/brand/logofullwhite.png" alt="Institute for Advance Studies and Cooperation" width="136" height="26" loading="lazy" />
-            </a>
-          </div>
-          <div>
-            <h4>Explore</h4>
-            <ul role="list">
-              <li><a href="/world-map/">World Map</a></li>
-              <li><a href="/events-cat/">Events</a></li>
-              <li><a href="/network-list/">Network</a></li>
-              <li><a href="/awards/">Awards</a></li>
-              <li><a href="/gallery/">Gallery</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>About</h4>
-            <ul role="list">
-              <li><a href="/our-mission/">Our Mission</a></li>
-              <li><a href="/history/">History</a></li>
-              <li><a href="/board-of-directors/">Board of Directors</a></li>
-              <li><a href="/our-team/">Our Team</a></li>
-              <li><a href="/yougiveuscourage/">You Give Us Courage</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Media</h4>
-            <ul role="list">
-              <li><a href="/category/press-release/">Press Releases</a></li>
-              <li><a href="/blog/">Articles</a></li>
-              <li><a href={SITE.magazine} target="_blank" rel="noopener">IASC Magazine ↗</a></li>
-              <li><a href={SITE.catalogue} target="_blank" rel="noopener">Catalogue ↗</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <ul role="list">
-              <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-              <li><a href={SITE.orgUrl} target="_blank" rel="noopener">www.iascoop.org ↗</a></li>
-              <li><a href="/contacts/">Get in touch</a></li>
-              <li><a href="/donate/">Donate</a></li>
-              <li><a href="/terms-conditions/">Terms &amp; Conditions</a></li>
-            </ul>
+        <div class="footer-top">
+          <p class="footer-statement">Faith, science and art,<br /><em>in the service of humanity.</em></p>
+          <div class="footer-grid">
+            <div>
+              <h4>Explore</h4>
+              <ul role="list">
+                <li><a href="/world-map/">World Map</a></li>
+                <li><a href="/events-cat/">Events</a></li>
+                <li><a href="/locations/">Venues</a></li>
+                <li><a href="/gallery/">Gallery</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Network</h4>
+              <ul role="list">
+                <li><a href="/network-list/">Members</a></li>
+                <li><a href="/speakers/">Speakers</a></li>
+                <li><a href="/awards/">Awards</a></li>
+                <li><a href="/board-of-directors/">Board</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Institute</h4>
+              <ul role="list">
+                <li><a href="/our-mission/">Mission</a></li>
+                <li><a href="/history/">History</a></li>
+                <li><a href="/yougiveuscourage/">You Give Us Courage</a></li>
+                <li><a href="/category/press-release/">Press</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Contact</h4>
+              <ul role="list">
+                <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+                <li><a href={SITE.orgUrl} target="_blank" rel="noopener">iascoop.org ↗</a></li>
+                <li><a href={SITE.magazine} target="_blank" rel="noopener">IASC Magazine ↗</a></li>
+                <li><a href="/donate/">Donate</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© {new Date().getFullYear()} World Changers Summits · Institute for Advance Studies and Cooperation (IASC)</span>
-          <span>Participation is by invitation — <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+          <div class="footer-logos">
+            <img src="/brand/wcsnewlogoPc.png" alt="World Changers Summit" width="44" height="34" loading="lazy" />
+            <a href={SITE.orgUrl} target="_blank" rel="noopener"><img src="/brand/logofullwhite.png" alt="Institute for Advance Studies and Cooperation" width="178" height="34" loading="lazy" /></a>
+          </div>
+          <span>© {new Date().getFullYear()} World Changers Summits · IASC · <a href="/terms-conditions/">Terms</a></span>
         </div>
       </div>
     </footer>
 
     <div class="search-modal" data-search role="dialog" aria-modal="true" aria-label="Search the site">
       <div class="search-box">
-        <input class="field" type="search" placeholder="Search events, people, places, articles…" data-search-input autocomplete="off" />
+        <input class="field" type="search" placeholder="Search events, people, places…" data-search-input autocomplete="off" aria-label="Search" />
         <div class="search-results" data-search-results></div>
-        <div class="search-hint"><span><kbd>↑</kbd> <kbd>↓</kbd> to move</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></div>
+        <div class="search-hint"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
       </div>
     </div>
 
     <div class="lightbox" data-lightbox-modal role="dialog" aria-modal="true" aria-label="Photo viewer">
       <img alt="" data-lb-img />
-      <button class="lb-btn lb-close" data-lb-close aria-label="Close">✕</button>
-      <button class="lb-btn lb-prev" data-lb-prev aria-label="Previous photo">‹</button>
-      <button class="lb-btn lb-next" data-lb-next aria-label="Next photo">›</button>
+      <button class="lb-btn lb-close" data-lb-close aria-label="Close">×</button>
+      <button class="lb-btn lb-prev" data-lb-prev aria-label="Previous photo">←</button>
+      <button class="lb-btn lb-next" data-lb-next aria-label="Next photo">→</button>
       <div class="lb-count" data-lb-count></div>
     </div>
 

@@ -69,14 +69,14 @@ export function fmtRange(start?: string | null, end?: string | null) {
 }
 
 // ---------------------------------------------------------------- themes
-export const THEMES: Record<string, { label: string; re: RegExp; icon: string }> = {
-  quantum: { label: 'Quantum', re: /quantum/i, icon: '⚛' },
-  ai: { label: 'AI & Technology', re: /artificial intelligence|\bAI\b|neuro-ai|technolog|digital|blockchain|metaverse|cyber|innovation/i, icon: '◈' },
-  peace: { label: 'Peace & Faith', re: /peace|faith|holy|pope|\bmass\b|fraternity|interreligious|spiritual|church|basilica|vatican|ethic/i, icon: '✦' },
-  health: { label: 'Health & Longevity', re: /biohack|longevity|health|medicine|regenerat/i, icon: '✚' },
-  women: { label: 'Women Leadership', re: /women/i, icon: '♀' },
-  culture: { label: 'Art & Culture', re: /\bart\b|music|culture|book|literature|perform|gala|festival|reart|polo/i, icon: '♫' },
-  economy: { label: 'Economy & Rebuilding', re: /econom|finance|reconstruction|invest|entrepreneur|sustainab/i, icon: '◎' },
+export const THEMES: Record<string, { label: string; re: RegExp }> = {
+  quantum: { label: 'Quantum', re: /quantum/i },
+  ai: { label: 'AI & Technology', re: /artificial intelligence|\bAI\b|neuro-ai|technolog|blockchain|metaverse|cyber/i },
+  peace: { label: 'Peace & Faith', re: /peace|faith|holy father|pope|\bmass\b|fraternity|interreligious|spiritual|church|basilica/i },
+  health: { label: 'Health & Longevity', re: /biohack|longevity|health|medicine|regenerat/i },
+  women: { label: 'Women Leadership', re: /women/i },
+  culture: { label: 'Art & Culture', re: /\bart\b|music|culture|book|literature|perform|gala|festival|reart|polo/i },
+  economy: { label: 'Economy & Rebuilding', re: /econom|finance|reconstruction|invest|entrepreneur|sustainab/i },
 };
 
 // ---------------------------------------------------------------- html rewriting
@@ -125,7 +125,7 @@ export function niceTitle(t: string) {
 }
 
 // ---------------------------------------------------------------- places
-export type Place = { key: string; name: string; country: string; flag: string; lat: number; lng: number; blurb: string; events: Any[] };
+export type Place = { key: string; name: string; country: string; code: string; lat: number; lng: number; blurb: string; events: Any[] };
 const G = geo as Any;
 export const places: Record<string, Place> = {};
 for (const [key, p] of Object.entries<Any>(G.places)) places[key] = { key, ...p, events: [] };

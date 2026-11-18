@@ -5,6 +5,6 @@ import EventsIndex from '../components/EventsIndex.astro';
 import { completed } from '../lib/data';
 ---
 <Layout title="Completed Events" description="Every World Changers gathering that has already taken place.">
-  <PageHero title="Completed events" kicker={`${completed.length} gatherings`} lead="Reports, galleries, speakers and awards from every World Changers gathering." crumbs={[{ href: '/events-cat/', label: 'Events' }, { href: '/completed-events/', label: 'Completed' }]} />
+  <PageHero title="Completed events" eyebrow={`${completed.length} gatherings`} lead="Reports, galleries, speakers and awards from every World Changers gathering." crumbs={[{ href: '/events-cat/', label: 'Events' }, { href: '/completed-events/', label: 'Completed' }]} />
   <section class="section" style="padding-top:0"><div class="wrap"><EventsIndex status="completed" /></div></section>
 </Layout>

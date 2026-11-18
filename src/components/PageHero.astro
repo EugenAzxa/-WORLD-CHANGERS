@@ -1,17 +1,23 @@
 ---
-interface Props { title: string; kicker?: string; lead?: string; crumbs?: { href: string; label: string }[]; image?: string }
-const { title, kicker, lead, crumbs = [], image } = Astro.props;
+interface Props { title: string; eyebrow?: string; lead?: string; crumbs?: { href: string; label: string }[]; image?: string }
+const { title, eyebrow, lead, crumbs = [], image } = Astro.props;
 ---
 <section class="page-hero">
-  {image && <><img class="bg-img" src={image} alt="" /><div class="shade"></div></>}
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      {crumbs.map((c) => <><span aria-hidden="true">/</span><a href={c.href}>{c.label}</a></>)}
-    </nav>
-    {kicker && <p class="kicker">{kicker}</p>}
-    <h1 class="h1">{title}</h1>
-    {lead && <p class="lead">{lead}</p>}
-    <slot />
+    <div class="ph-grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          {crumbs.map((c) => <><span aria-hidden="true">/</span><a href={c.href}>{c.label}</a></>)}
+        </nav>
+        {eyebrow && <p class="eyebrow" style="margin-top:12px;color:var(--color-fg)">{eyebrow}</p>}
+      </div>
+      <div>
+        <h1 class="h1">{title}</h1>
+        {lead && <p class="lead">{lead}</p>}
+        <slot />
+      </div>
+    </div>
+    {image && <div class="ph-media"><img src={image} alt="" /></div>}
   </div>
 </section>

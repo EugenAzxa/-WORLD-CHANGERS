@@ -7,17 +7,17 @@ const years = [...new Set(events.map((e) => e.year))].sort();
 const byYear = years.map((y) => ({ y, items: events.filter((e) => e.year === y).sort((a, b) => a.start.localeCompare(b.start)) }));
 ---
 <Layout title="History" description="The World Changer Summit, founded by Sir Professor Gabriele Pao-Pei Andreoli, began with a vision to unite brilliant minds in a quest for transformative change.">
-  <PageHero title="From the Vatican to the world" kicker="Our history" lead="Founded by Sir Professor Gabriele Pao-Pei Andreoli, World Changers began at the Pontifical Academy of Sciences — and became a global network." crumbs={[{ href: '/history/', label: 'History' }]} />
+  <PageHero title="From the Vatican to the world" eyebrow="Our history" lead="Founded by Sir Professor Gabriele Pao-Pei Andreoli, World Changers began at the Pontifical Academy of Sciences — and became a global network." crumbs={[{ href: '/history/', label: 'History' }]} />
   <section class="section" style="padding-top:0"><div class="wrap"><div class="prose dropcap" set:html={rewriteHtml(html)} /></div></section>
   <section class="section bg-2"><div class="wrap">
-    <div class="section-head"><div><p class="kicker">Timeline</p><h2 class="h2">Year by year</h2></div><a class="btn btn-ghost" href="/world-map/">Play it on the globe <span class="arr">→</span></a></div>
+    <div class="section-head"><p class="idx"><b>Timeline</b></p><div><h2 class="h2">Year by year</h2><div class="head-actions"><a class="text-link" href="/world-map/">Play it on the atlas <span class="arr">→</span></a></div></div></div>
     <div class="timeline">
       {byYear.map(({ y, items }) => (
         <div class="tl-year">
-          <h3 class="gold">{y}</h3>
+          <h3 class="accent">{y}</h3>
           <ol class="tl-list">
             {items.map((e) => (
-              <li><a href={e.url}><span class="meta">{e.dateRange}</span><b>{e.title}</b><span class="muted">{e.place ? `${places[e.place].flag} ${places[e.place].name}` : e.venue}</span></a></li>
+              <li><a href={e.url}><span class="meta">{e.dateRange}</span><b>{e.title}</b><span class="muted">{e.place ? `${places[e.place].name} · ${places[e.place].code}` : e.venue}</span></a></li>
             ))}
           </ol>
         </div>
@@ -26,11 +26,11 @@ const byYear = years.map((y) => ({ y, items: events.filter((e) => e.year === y).
   </div></section>
 </Layout>
 <style>
-  .tl-list { list-style: none; margin: 0; padding: 0 0 0 24px; border-left: 1px solid rgba(216, 180, 106, 0.35); display: grid; gap: 22px; }
-  .tl-list li { position: relative; }
-  .tl-list li::before { content: ''; position: absolute; left: -30px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--gold-grad); box-shadow: 0 0 0 4px rgba(216, 180, 106, 0.15); }
-  .tl-list a { display: grid; gap: 4px; }
-  .tl-list b { font: 600 22px/1.25 var(--serif); transition: color 0.2s; }
-  .tl-list a:hover b { color: var(--gold-hi); }
-  .tl-list .muted { font-size: 14px; }
+  .tl-list { list-style: none; margin: 0; padding: 0; }
+  .tl-list li + li { border-top: 1px solid var(--color-line); }
+  .tl-list a { display: grid; grid-template-columns: 180px 1fr auto; gap: var(--space-4); align-items: baseline; padding: var(--space-4) 0; }
+  .tl-list b { font: 400 var(--size-24)/1.2 var(--font-display); font-weight: 400; transition: color var(--dur-fast); }
+  .tl-list a:hover b { color: var(--color-accent); }
+  .tl-list .muted { font-size: var(--size-13); }
+  @media (max-width: 700px) { .tl-list a { grid-template-columns: 1fr; gap: 4px; } }
 </style>

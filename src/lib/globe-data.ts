@@ -42,7 +42,7 @@ export function globeData() {
   };
   const target = (k: string) => MERGE[k] || k;
   const placeOut = placeList.filter((p) => !MERGE[p.key]).map((p) => ({
-    key: p.key, name: p.name, country: p.country, flag: p.flag, lat: p.lat, lng: p.lng, blurb: p.blurb,
+    key: p.key, name: p.name, country: p.country, code: p.code, lat: p.lat, lng: p.lng, blurb: p.blurb,
     ...LABEL[p.key],
     events: placeList.filter((q) => target(q.key) === p.key).flatMap((q) => q.events.map((e: any) => e.slug)),
   }));

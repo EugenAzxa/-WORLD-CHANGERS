@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Globe from '../components/Globe.astro';
 import EventCard from '../components/EventCard.astro';
-import PostCard from '../components/PostCard.astro';
-import { SITE, stats, events, upcoming, completed, people, posts, pages, galleries, places, THEMES, media, rewriteHtml, personRole } from '../lib/data';
+import PersonCard from '../components/PersonCard.astro';
+import { SITE, stats, events, upcoming, completed, people, posts, pages, galleries, places, THEMES, media, rewriteHtml, fmtDate, CATEGORY_NAMES } from '../lib/data';
 
 const next = upcoming[0];
 const nextPlace = next?.place ? places[next.place] : null;
@@ -11,202 +11,242 @@ const home = pages.home;
 const letter = home.blocks.find((b: any) => b.type === 'heading' && b.body)?.body;
 const testimonials = home.blocks.find((b: any) => b.type === 'testimonials')?.items || [];
 const recent = completed.slice(0, 6);
-const faces = people.filter((p) => p.image && p.roles.has('Speaker') && p.events.length).slice(0, 36);
-const latestPosts = posts.slice(0, 3);
-const themeCounts = Object.entries(THEMES).map(([k, t]) => ({ k, ...t, n: events.filter((e) => e.themes.includes(k)).length })).filter((t) => t.n);
-const mosaic = galleries.flatMap((g) => g.images.slice(3, 4).map((im: any) => ({ ...im, g }))).slice(0, 10);
-const counters = [
-  { n: stats.events, l: 'Summits, forums & cultural gatherings' },
-  { n: stats.countries, l: 'Countries on four continents' },
+const faces = people.filter((p) => p.image && p.roles.has('Speaker') && p.events.length).slice(0, 10);
+const latestPosts = posts.slice(0, 5);
+const themeRows = Object.entries(THEMES)
+  .map(([k, t]) => { const evs = events.filter((e) => e.themes.includes(k)); return { k, label: t.label, n: evs.length, cities: [...new Set(evs.map((e) => e.place && places[e.place].name).filter(Boolean))] }; })
+  .filter((t) => t.n)
+  .sort((a, b) => b.n - a.n);
+const mosaic = galleries.flatMap((g) => g.images.slice(3, 4).map((im: any) => ({ ...im, g }))).slice(0, 9);
+const stat = [
+  { n: stats.events, l: 'Gatherings' },
+  { n: stats.countries, l: 'Countries' },
   { n: stats.cities, l: 'Host cities' },
-  { n: stats.people, l: 'Leaders, scientists & experts in the network' },
-  { n: stats.awards, l: 'Awards for impact' },
-  { n: stats.photos, l: 'Moments captured' },
+  { n: stats.people, l: 'Network members' },
+  { n: stats.awards, l: 'Awards given' },
+  { n: stats.photos, l: 'Photographs' },
 ];
+const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> — ${label}`;
 ---
 <Layout>
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-text reveal">
-        <p class="kicker">World Changers Summits · by IASC</p>
-        <h1 class="display">Uniting visionary minds to <span class="gold italic">shape the future</span> of our world.</h1>
-        <p class="lead">Born at the Pontifical Academy of Sciences in Vatican City, World Changers has grown into a global network of scientists, faith leaders, entrepreneurs and artists — {stats.events} gatherings in {stats.countries} countries dedicated to ethical and social innovation.</p>
-        <div class="hero-cta">
-          <a href="#map" class="btn btn-gold">Explore the world map <span class="arr">↓</span></a>
-          {next && <a href={next.url} class="btn btn-ghost">Next: {next.title} <span class="arr">→</span></a>}
+      <dl class="hero-meta">
+        <div><dt>Founded</dt><dd>Pontifical Academy of Sciences, Vatican City, 2023</dd></div>
+        <div><dt>Reach</dt><dd>{stats.events} gatherings in {stats.countries} countries</dd></div>
+        <div><dt>Access</dt><dd>By invitation only</dd></div>
+        {next && <div><dt>Next</dt><dd><a class="link" href={next.url}>{next.title}, {fmtDate(next.start, { short: true })}</a></dd></div>}
+      </dl>
+      <h1 class="display hero-title reveal">Uniting visionary minds to shape the <em>future</em> of our world.</h1>
+      <div class="hero-sub">
+        <p class="eyebrow">World Changers Summits<br />by the Institute for Advance<br />Studies and Cooperation</p>
+        <div>
+          <p class="lead">An international network of scientists, faith leaders, entrepreneurs and artists, meeting in the Vatican and around the world to advance ethical and social innovation.</p>
+          <div class="hero-actions">
+            <a href="#atlas" class="btn btn-primary">Explore the atlas <span class="arr" aria-hidden="true">↓</span></a>
+            <a href="/events-cat/" class="btn btn-secondary">All gatherings</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="wrap hero-globe reveal" id="map">
-      <Globe mode="hero" />
-    </div>
+    <figure class="hero-photo wrap">
+      <img src="/media/2024-08/eventteam.webp" alt="World Changers participants gathered in the Sistine Chapel" width="1024" height="768" fetchpriority="high" />
+      <figcaption class="meta">World Changers participants in the Sistine Chapel, Vatican City</figcaption>
+    </figure>
   </section>
 
-  <!-- STATS -->
-  <section class="section-tight">
+  <!-- 01 ATLAS -->
+  <section class="section" id="atlas" style="padding-bottom:0">
     <div class="wrap">
-      <div class="stats reveal">
-        {counters.map((c) => <div class="stat"><b data-count={c.n} class="gold">{c.n.toLocaleString('en')}</b><span>{c.l}</span></div>)}
+      <div class="section-head">
+        <p class="idx" set:html={idx(1, 'Atlas')} />
+        <div>
+          <h2 class="h2">Where the conversation has travelled</h2>
+          <p class="lead">From the Casina Pio IV in the Vatican Gardens to Davos, Dubai, Riyadh, Tirana and Washington. Turn the globe, open a city, or play every gathering in order.</p>
+        </div>
+      </div>
+    </div>
+    <Globe mode="hero" />
+    <div class="wrap">
+      <div class="stats" style="border-top:0">
+        {stat.map((s) => <div class="stat"><b data-count={s.n}>{s.n.toLocaleString('en')}</b><span>{s.l}</span></div>)}
       </div>
     </div>
   </section>
 
-  <!-- NEXT EVENT -->
+  <!-- 02 NEXT -->
   {next && (
     <section class="section">
-      <div class="wrap next-event">
-        <a href={next.url} class="next-poster reveal">
-          <img src={next.posterFull} alt={next.title} loading="lazy" />
-        </a>
-        <div class="reveal">
-          <p class="kicker">Next gathering</p>
-          <h2 class="h1">{next.title}</h2>
-          <p class="lead">{next.dateRange} · {nextPlace?.flag} {nextPlace?.name}</p>
-          {next.description && <p class="muted" style="max-width:56ch">{next.description}</p>}
-          <div class="countdown" data-countdown={next.start} style="margin:28px 0 32px">
-            <div><b data-cd="d">–</b><small>days</small></div>
-            <div><b data-cd="h">–</b><small>hours</small></div>
-            <div><b data-cd="m">–</b><small>min</small></div>
-            <div><b data-cd="s">–</b><small>sec</small></div>
-          </div>
-          <div class="hero-cta">
-            <a href={next.url} class="btn btn-gold">Discover the event <span class="arr">→</span></a>
-            <a href="/spirit-of-quantum/" class="btn btn-ghost">Become a patron</a>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="idx" set:html={idx(2, 'Next gathering')} />
+          <div><h2 class="h2">{next.title}</h2></div>
+        </div>
+        <div class="next">
+          <a href={next.url} class="next-poster"><img src={next.posterFull} alt={`${next.title} poster`} loading="lazy" /></a>
+          <div>
+            <dl class="info-list">
+              <div><dt>Date</dt><dd>{next.dateRange}{next.timeLabel && ` · ${next.timeLabel}`}</dd></div>
+              <div><dt>Place</dt><dd>{next.venue}{nextPlace && nextPlace.name !== next.venue ? `, ${nextPlace.name}` : ''}</dd></div>
+              <div><dt>Access</dt><dd>By invitation · <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
+            </dl>
+            {next.description && <p class="lead" style="margin-top:32px">{next.description}</p>}
+            <div class="countdown" data-countdown={next.start} style="margin-top:32px" aria-label="Time until the event">
+              <div><b data-cd="d">–</b><small>Days</small></div>
+              <div><b data-cd="h">–</b><small>Hours</small></div>
+              <div><b data-cd="m">–</b><small>Min</small></div>
+              <div><b data-cd="s">–</b><small>Sec</small></div>
+            </div>
+            <div class="hero-actions">
+              <a href={next.url} class="btn btn-primary">Read about the event <span class="arr" aria-hidden="true">→</span></a>
+              <a href="/spirit-of-quantum/" class="btn btn-secondary">Patron programme</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )}
 
-  <!-- FOUNDER LETTER -->
+  <!-- 03 LETTER -->
   {letter && (
     <section class="section bg-2">
-      <div class="wrap letter">
-        <div class="letter-side reveal">
-          <img src={media('https://wcsiasc.org/wp-content/uploads/2023/08/gabround.png')} alt="Prof. Gabriele Pao-Pei Andreoli" width="220" height="220" loading="lazy" />
-          <p class="kicker" style="margin-top:28px">Founder &amp; Director</p>
-          <p class="h3">Prof. Gabriele Pao-Pei Andreoli, MD</p>
-          <a href="/network/gabriele-pao-pei-andreoli/" class="link" style="font-size:14px">Read profile</a>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="idx" set:html={idx(3, 'A letter from the founder')} />
+          <div><h2 class="h2">“Do more than observe; become an active participant.”</h2></div>
         </div>
-        <div class="reveal">
-          <p class="kicker">A word of welcome</p>
-          <div class="prose dropcap letter-body" set:html={rewriteHtml(letter)} />
-          <img src="/brand/logofullwhite.png" alt="Institute for Advance Studies and Cooperation" width="220" height="42" style="margin-top:28px;opacity:.9" loading="lazy" />
+        <div class="letter">
+          <figure class="letter-photo">
+            <img src={media('https://wcsiasc.org/wp-content/uploads/2023/08/gabround.png')} alt="Prof. Gabriele Pao-Pei Andreoli" width="312" height="312" loading="lazy" />
+            <figcaption>
+              <span class="h4">Prof. Gabriele Pao-Pei Andreoli, MD</span>
+              <span class="meta" style="margin-top:6px">Founder &amp; Director</span>
+              <a class="text-link" style="margin-top:16px" href="/network/gabriele-pao-pei-andreoli/">Profile <span class="arr" aria-hidden="true">→</span></a>
+            </figcaption>
+          </figure>
+          <div class="prose serif dropcap" set:html={rewriteHtml(letter)} />
         </div>
       </div>
     </section>
   )}
 
-  <!-- THEMES -->
+  <!-- 04 THEMES -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head">
+        <p class="idx" set:html={idx(4, 'Subjects')} />
         <div>
-          <p class="kicker">What we work on</p>
-          <h2 class="h2">Where faith, science and art<br class="hide-sm" /> meet the questions of our time</h2>
+          <h2 class="h2">Faith, science and art, around the questions of our time</h2>
+          <div class="head-actions"><a class="text-link" href="/our-mission/">Our mission <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
-        <a class="btn btn-ghost" href="/our-mission/">Our mission <span class="arr">→</span></a>
       </div>
-      <div class="theme-grid reveal">
-        {themeCounts.map((t) => (
-          <a class="theme" href={`/events-cat/?theme=${t.k}`}>
-            <span class="ic" aria-hidden="true">{t.icon}</span>
-            <b>{t.label}</b>
-            <small>{t.n} gathering{t.n === 1 ? '' : 's'}</small>
+      <div class="rows">
+        {themeRows.map((t, i) => (
+          <a class="row theme-row" href={`/events-cat/?theme=${t.k}`}>
+            <span class="meta">{String(i + 1).padStart(2, '0')} / {t.n} gathering{t.n === 1 ? '' : 's'}</span>
+            <span class="row-title">{t.label}</span>
+            <span class="row-aside">{t.cities.slice(0, 3).join(', ')}{t.cities.length > 3 ? ` +${t.cities.length - 3}` : ''}</span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- RECENT EVENTS -->
+  <!-- 05 RECENT -->
   <section class="section bg-2">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head">
+        <p class="idx" set:html={idx(5, 'Recent gatherings')} />
         <div>
-          <p class="kicker">The journey so far</p>
-          <h2 class="h2">Recent gatherings</h2>
+          <h2 class="h2">The latest chapters</h2>
+          <div class="head-actions"><a class="text-link" href="/events-cat/">All {stats.events} events <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
-        <a class="btn btn-ghost" href="/events-cat/">All {stats.events} events <span class="arr">→</span></a>
       </div>
-      <div class="grid grid-3 reveal">{recent.map((e) => <EventCard e={e} />)}</div>
+      <div class="grid grid-3">{recent.map((e) => <EventCard e={e} />)}</div>
     </div>
   </section>
 
-  <!-- NETWORK -->
+  <!-- 06 NETWORK -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head">
+        <p class="idx" set:html={idx(6, 'Network')} />
         <div>
-          <p class="kicker">The network</p>
-          <h2 class="h2">{stats.people} people who chose to change the world</h2>
-          <p class="lead">Cardinals and spiritual leaders, scientists, founders, diplomats, artists and physicians — the speakers and guests who have shared the World Changers stage.</p>
+          <h2 class="h2">{stats.people} people have shared the stage</h2>
+          <p class="lead">Cardinals and spiritual leaders, scientists, founders, diplomats, artists and physicians.</p>
+          <div class="head-actions"><a class="text-link" href="/network-list/">The full network <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
-        <a class="btn btn-ghost" href="/network-list/">Meet the network <span class="arr">→</span></a>
       </div>
-    </div>
-    <div class="marquee reveal" aria-label="Speakers from the network">
-      <div class="marquee-track">
-        {[...faces, ...faces].map((p, i) => (
-          <a class="face" href={`/network/${p.slug}/`} aria-hidden={i >= faces.length ? 'true' : undefined} tabindex={i >= faces.length ? -1 : undefined}>
-            <div class="ph"><img src={media(p.image, 's')} alt={p.name} loading="lazy" /></div>
-            <b>{p.name}</b><small>{personRole(p)}</small>
-          </a>
-        ))}
-      </div>
+      <div class="grid grid-4 people-grid">{faces.map((p) => <PersonCard p={p} />)}</div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- 07 VOICES -->
   {testimonials.length > 0 && (
     <section class="section bg-2">
       <div class="wrap">
-        <div class="section-head reveal"><div><p class="kicker">Testimonials</p><h2 class="h2">What people say</h2></div></div>
-        <div class="grid grid-3 reveal">
-          {testimonials.map((q: any) => <figure class="card quote-card" style="margin:0"><span class="q" aria-hidden="true">“</span><p class="meta" style="margin:0 0 12px">{q.title}</p><blockquote>{q.quote}</blockquote><footer>— {q.author}</footer></figure>)}
+        <div class="section-head">
+          <p class="idx" set:html={idx(7, 'Voices')} />
+          <div><h2 class="h2">What participants say</h2></div>
+        </div>
+        <div class="grid grid-3">
+          {testimonials.map((q: any) => <figure class="quote"><blockquote>“{q.quote}”</blockquote><figcaption>{q.author}</figcaption></figure>)}
         </div>
       </div>
     </section>
   )}
 
-  <!-- PRESS -->
+  <!-- 08 PRESS -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div><p class="kicker">Media &amp; press</p><h2 class="h2">Latest news</h2></div>
-        <a class="btn btn-ghost" href="/blog/">All articles <span class="arr">→</span></a>
+      <div class="section-head">
+        <p class="idx" set:html={idx(8, 'Press')} />
+        <div>
+          <h2 class="h2">News and releases</h2>
+          <div class="head-actions"><a class="text-link" href="/blog/">All {stats.press} articles <span class="arr" aria-hidden="true">→</span></a></div>
+        </div>
       </div>
-      <div class="grid grid-3 reveal">{latestPosts.map((p) => <PostCard p={p} />)}</div>
+      <div class="rows">
+        {latestPosts.map((p) => (
+          <a class="row" href={p.url}>
+            <span class="meta">{fmtDate(p.date, { short: true })}</span>
+            <span class="row-title" style="font-size:var(--size-24)">{p.title}</span>
+            <span class="row-aside meta">{p.categories.map((c: string) => CATEGORY_NAMES[c] || c).join(', ')}</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- GALLERY MOSAIC -->
-  <section class="section-tight">
+  <!-- 09 ARCHIVE -->
+  <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div><p class="kicker">Gallery</p><h2 class="h2">{stats.photos.toLocaleString('en')} moments</h2></div>
-        <a class="btn btn-ghost" href="/gallery/">Open the gallery <span class="arr">→</span></a>
+      <div class="section-head">
+        <p class="idx" set:html={idx(9, 'Archive')} />
+        <div>
+          <h2 class="h2">{stats.photos.toLocaleString('en')} photographs from {galleries.length} gatherings</h2>
+          <div class="head-actions"><a class="text-link" href="/gallery/">Open the archive <span class="arr" aria-hidden="true">→</span></a></div>
+        </div>
       </div>
-      <div class="mosaic reveal">
-        {mosaic.map((im: any) => <a href={`/${im.g.slug}/`} title={im.g.title}><img src={media(im.src, 's')} alt={im.g.title} loading="lazy" /><span>{im.g.title}</span></a>)}
+      <div class="mosaic">
+        {mosaic.map((im: any) => <a href={`/${im.g.slug}/`}><img src={media(im.src, 's')} alt={im.g.title} loading="lazy" /><span class="meta">{im.g.title}</span></a>)}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section">
+  <section class="section inverse">
     <div class="wrap">
-      <div class="cta-band reveal">
+      <div class="section-head">
+        <p class="idx"><b>Participate</b></p>
         <div>
-          <p class="kicker">Join the movement</p>
-          <h2 class="h2">Participation is by invitation.<br /><span class="gold italic">Your voice is welcome.</span></h2>
-          <p class="lead">Write to us to take part in a summit, propose a speaker, partner with IASC or support the mission.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-gold" href={`mailto:${SITE.email}`}>{SITE.email}</a>
-          <a class="btn btn-ghost" href="/donate/">Support the mission</a>
-          <a class="btn btn-ghost" href="/locations/">Our venues</a>
+          <h2 class="h1">Participation is by invitation. <em style="color:var(--green-300)">Your voice is welcome.</em></h2>
+          <p class="lead" style="margin-top:24px">Write to us to take part in a summit, propose a speaker, partner with IASC or support the mission.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            <a class="btn btn-secondary" href="/donate/">Support the mission</a>
+          </div>
         </div>
       </div>
     </div>
@@ -214,34 +254,44 @@ const counters = [
 </Layout>
 
 <style>
-  .hero { position: relative; padding: calc(var(--header-h) + clamp(40px, 7vw, 96px)) 0 clamp(24px, 4vw, 48px); overflow: hidden; isolation: isolate; }
-  .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(1100px 600px at 75% 0%, rgba(216, 180, 106, 0.14), transparent 60%), radial-gradient(900px 600px at 0% 60%, rgba(60, 90, 180, 0.12), transparent 60%); }
-  .hero-text { max-width: 980px; }
-  .hero-text .lead { margin: 26px 0 0; }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-  .hero-globe { margin-top: clamp(40px, 5vw, 64px); max-width: 1400px; }
-  .next-event { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
-  .next-poster { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); transform: rotate(-1.2deg); transition: transform 0.5s; }
-  .next-poster:hover { transform: rotate(0) scale(1.01); }
-  .letter { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
-  .letter-side img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(216, 180, 106, 0.5); box-shadow: 0 0 0 10px rgba(216, 180, 106, 0.06); }
-  .letter-side { position: sticky; top: calc(var(--header-h) + 40px); }
-  .letter-body { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 24px); line-height: 1.6; color: var(--text); }
-  .mosaic { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 180px; gap: 10px; }
-  .mosaic a { position: relative; border-radius: 14px; overflow: hidden; background: var(--bg-3); }
-  .mosaic a:nth-child(1), .mosaic a:nth-child(7) { grid-column: span 2; grid-row: span 2; }
-  .mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-  .mosaic a:hover img { transform: scale(1.05); }
-  .mosaic span { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px; font-size: 12.5px; font-weight: 600; background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); opacity: 0; transition: opacity 0.3s; }
-  .mosaic a:hover span { opacity: 1; }
-  .cta-band { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; padding: clamp(32px, 5vw, 72px); border-radius: 28px; border: 1px solid rgba(216, 180, 106, 0.3); background: radial-gradient(800px 400px at 100% 0%, rgba(216, 180, 106, 0.16), transparent 60%), var(--bg-2); }
-  .cta-actions { display: grid; gap: 12px; }
+  .hero { padding: clamp(32px, 4vw, 56px) 0 0; }
+  .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 clamp(40px, 6vw, 88px); border-top: 1px solid var(--color-line-strong); }
+  .hero-meta div { padding: 12px 16px 0 0; }
+  .hero-meta div + div { padding-left: 16px; border-left: 1px solid var(--color-line); }
+  .hero-meta dt { font: 500 var(--size-12)/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .hero-meta dd { margin: 4px 0 0; font-size: var(--size-15); }
+  .hero-title { max-width: 14ch; }
+  .hero-sub { display: grid; grid-template-columns: 3fr 9fr; gap: var(--space-5); margin-top: clamp(32px, 4vw, 56px); }
+  .hero-sub .lead { max-width: 52ch; }
+  .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6); }
+  .hero-photo { margin: clamp(48px, 6vw, 96px) auto 0; }
+  .hero-photo img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: center 62%; }
+  .hero-photo figcaption { margin-top: 10px; }
+  .next { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .next-poster { display: block; border: 1px solid var(--color-line-strong); }
+  .letter { display: grid; grid-template-columns: 3fr 9fr; gap: var(--space-5); align-items: start; }
+  .letter-photo { margin: 0; position: sticky; top: calc(var(--header-h) + 32px); }
+  .letter-photo img { width: 100%; max-width: 240px; aspect-ratio: 1; object-fit: cover; filter: grayscale(1); border-radius: 50%; }
+  .letter-photo figcaption { display: flex; flex-direction: column; align-items: flex-start; margin-top: var(--space-4); }
+  .letter .prose { max-width: 40em; }
+  .theme-row .row-aside { max-width: 34ch; }
+  .mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: var(--space-3); }
+  .mosaic a { position: relative; overflow: hidden; background: var(--media-bg); display: flex; flex-direction: column; }
+  .mosaic a:first-child { grid-column: span 2; grid-row: span 2; }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-slow) var(--ease); }
+  .mosaic a:hover img { transform: scale(1.03); }
+  .mosaic span { position: absolute; left: 0; bottom: 0; background: var(--color-bg); padding: 8px 10px; color: var(--color-fg); max-width: 90%; opacity: 0; transition: opacity var(--dur); }
+  .mosaic a:hover span, .mosaic a:focus-visible span { opacity: 1; }
   @media (max-width: 960px) {
-    .next-event, .letter, .cta-band { grid-template-columns: 1fr; }
-    .next-poster { max-width: 420px; }
-    .letter-side { position: static; }
-    .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
-    .mosaic a:nth-child(7) { grid-column: auto; grid-row: auto; }
-    .hide-sm { display: none; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .hero-meta div:nth-child(odd) { border-left: 0 !important; padding-left: 0 !important; }
+    .hero-meta div:nth-child(n+3) { border-top: 1px solid var(--color-line); margin-top: 12px; }
+    .hero-sub, .next, .letter { grid-template-columns: 1fr; }
+    .hero-photo img { aspect-ratio: 4 / 3; }
+    .letter-photo { position: static; display: flex; gap: var(--space-4); align-items: center; }
+    .letter-photo img { width: 96px; }
+    .letter-photo figcaption { margin-top: 0; }
+    .next-poster { max-width: 380px; }
+    .mosaic { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
   }
 </style>

@@ -9,19 +9,19 @@ const p = l.place ? places[l.place] : null;
 const mapKey = l.place === 'rome' ? 'vatican' : l.place === 'st-moritz' ? 'davos' : l.place;
 ---
 <Layout title={l.name} description={`${l.name}${p ? ', ' + p.name + ', ' + p.country : ''} — a World Changers venue.`} image={media(l.image)}>
-  <PageHero title={l.name} kicker={p ? `${p.flag} ${p.name} · ${p.country}` : 'Venue'} lead={l.address || undefined} image={media(l.image)} crumbs={[{ href: '/locations/', label: 'Venues' }]}>
-    {p && <div style="margin-top:28px"><a class="btn btn-gold" href={`/world-map/#place=${mapKey}`}>See on the world map <span class="arr">→</span></a></div>}
+  <PageHero title={l.name} eyebrow={p ? `${p.code} — ${p.name}, ${p.country}` : 'Venue'} lead={l.address || undefined} image={media(l.image)} crumbs={[{ href: '/locations/', label: 'Venues' }]}>
+    {p && <div class="hero-actions"><a class="btn btn-primary" href={`/world-map/#place=${mapKey}`}>Show on the atlas <span class="arr">→</span></a></div>}
   </PageHero>
   <section class="section" style="padding-top:0">
     <div class="wrap two-col">
       <div class="prose" set:html={rewriteHtml(l.html) || '<p>Venue details coming soon.</p>'} />
-      {l.image && <img src={media(l.image)} alt={l.name} class="sticky-col" style="border-radius:var(--radius);border:1px solid var(--line)" loading="lazy" />}
+      {l.image && <img src={media(l.image)} alt={l.name} class="sticky-col"  loading="lazy" />}
     </div>
   </section>
   {l.events.length > 0 && (
     <section class="section bg-2">
       <div class="wrap">
-        <div class="section-head"><div><p class="kicker">Hosted here</p><h2 class="h2">Gatherings at {l.name}</h2></div></div>
+        <div class="section-head"><p class="idx"><b>Hosted here</b></p><div><h2 class="h2">Gatherings at {l.name}</h2></div></div>
         <div class="grid grid-3">{l.events.map((e: any) => <EventCard e={e} />)}</div>
       </div>
     </section>

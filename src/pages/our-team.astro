@@ -8,7 +8,7 @@ const bySlug = Object.fromEntries(people.map((p) => [p.slug, p]));
 const team = block?.people || [];
 ---
 <Layout title="Our Team" description="The team behind World Changers Summits.">
-  <PageHero title="Our team" kicker="The people behind the summits" crumbs={[{ href: '/our-mission/', label: 'About' }, { href: '/our-team/', label: 'Our Team' }]} />
+  <PageHero title="Our team" eyebrow="The people behind the summits" crumbs={[{ href: '/our-mission/', label: 'About' }, { href: '/our-team/', label: 'Our Team' }]} />
   <section class="section" style="padding-top:0"><div class="wrap"><div class="grid grid-4 stack-sm">
     {team.map((x: any) => bySlug[x.slug] ? <PersonCard p={bySlug[x.slug]} role={x.role} /> : (
       <div class="card person"><div class="ph">{x.image && <img src={media(x.image, 's')} alt={x.name} loading="lazy" />}</div><div class="card-body"><h3>{x.name}</h3>{x.role && <p>{x.role}</p>}</div></div>

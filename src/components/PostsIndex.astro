@@ -11,8 +11,8 @@ const cats = Object.keys(CATEGORY_NAMES).filter((c) => !category && posts.some((
     <input class="field" type="search" placeholder="Search articles…" data-filter-q aria-label="Search articles" />
     {cats.length > 0 && (
       <div class="filters" role="group" aria-label="Category">
-        <button class="chip" data-filter="cat:" aria-pressed="true">All · {list.length}</button>
-        {cats.map((c) => <button class="chip" data-filter={`cat:${c}`} aria-pressed="false">{CATEGORY_NAMES[c]}</button>)}
+        <button class="tag" data-filter="cat:" aria-pressed="true">All · {list.length}</button>
+        {cats.map((c) => <button class="tag" data-filter={`cat:${c}`} aria-pressed="false">{CATEGORY_NAMES[c]}</button>)}
       </div>
     )}
   </div>

@@ -7,19 +7,19 @@ export function getStaticPaths() { return awards.map((a) => ({ params: { slug: a
 const { a } = Astro.props as { a: any };
 ---
 <Layout title={`${a.name} — World Changers Award`} description={textOf(a.html).slice(0, 180)} image={media(a.image)}>
-  <PageHero title={a.name} kicker="World Changers Award" crumbs={[{ href: '/awards/', label: 'Awards' }]} />
+  <PageHero title={a.name} eyebrow="World Changers Award" crumbs={[{ href: '/awards/', label: 'Awards' }]} />
   <section class="section" style="padding-top:0">
     <div class="wrap two-col">
       <div>
         <div class="prose" set:html={rewriteHtml(a.html) || '<p>Award recipient.</p>'} />
-        {a.person && <p style="margin-top:28px"><a class="btn btn-ghost" href={`/network/${a.person.slug}/`}>View {a.person.name}'s profile <span class="arr">→</span></a></p>}
+        {a.person && <p style="margin-top:28px"><a class="btn btn-secondary" href={`/network/${a.person.slug}/`}>View {a.person.name}'s profile <span class="arr">→</span></a></p>}
       </div>
-      {a.image && <a href={media(a.image)} data-lb="award" class="sticky-col"><img src={media(a.image)} alt={`${a.name} award`} style="border-radius:var(--radius);border:1px solid var(--line)" /></a>}
+      {a.image && <a href={media(a.image)} data-lb="award" class="sticky-col"><img src={media(a.image)} alt={`${a.name} award`} style="border:1px solid var(--color-line)" /></a>}
     </div>
   </section>
   {a.events.length > 0 && (
     <section class="section bg-2"><div class="wrap">
-      <div class="section-head"><div><p class="kicker">Presented at</p><h2 class="h2">The ceremony</h2></div></div>
+      <div class="section-head"><p class="idx"><b>Presented at</b></p><div><h2 class="h2">The ceremony</h2></div></div>
       <div class="grid grid-3">{a.events.map((e: any) => <EventCard e={e} />)}</div>
     </div></section>
   )}

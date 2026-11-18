@@ -4,6 +4,6 @@ import PageHero from '../components/PageHero.astro';
 import EventsIndex from '../components/EventsIndex.astro';
 ---
 <Layout title="Upcoming Events" description="Upcoming World Changers summits and gatherings.">
-  <PageHero title="Upcoming events" kicker="Explore the schedule" lead="Participation is strictly by invitation — write to world@iascoop.org to request yours." crumbs={[{ href: '/events-cat/', label: 'Events' }, { href: '/upcoming-events/', label: 'Upcoming' }]} />
+  <PageHero title="Upcoming events" eyebrow="Explore the schedule" lead="Participation is strictly by invitation — write to world@iascoop.org to request yours." crumbs={[{ href: '/events-cat/', label: 'Events' }, { href: '/upcoming-events/', label: 'Upcoming' }]} />
   <section class="section" style="padding-top:0"><div class="wrap"><EventsIndex status="upcoming" /></div></section>
 </Layout>

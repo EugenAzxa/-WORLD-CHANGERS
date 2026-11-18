@@ -4,12 +4,10 @@
 // clickable pulsing markers, year filter and an animated chronological "journey".
 import { geoOrthographic, geoPath, geoDistance, geoInterpolate, geoGraticule10 } from 'd3-geo';
 
-type Place = { key: string; name: string; country: string; flag: string; lat: number; lng: number; blurb: string; events: string[] };
+type Place = { key: string; name: string; country: string; code: string; lat: number; lng: number; blurb: string; events: string[] };
 type Ev = { slug: string; title: string; start: string; date: string; place: string; status: string; url: string; poster?: string; venue?: string; themes: string[] };
 type Data = { dots: number[]; highlight: any; places: Place[]; events: Ev[]; hub: string };
 
-const GOLD = '216,180,106';
-const GOLD_HI = '243,220,155';
 const esc = (s: string) => (s || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -22,6 +20,13 @@ export function mountGlobe(root: HTMLElement) {
   const panel = root.querySelector<HTMLElement>('.globe-panel');
   const journeyCard = root.querySelector<HTMLElement>('.globe-journey');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = getComputedStyle(root);
+  const tok = (n: string, f: string) => css.getPropertyValue(n).trim() || f;
+  const INK = tok('--globe-ink', '17, 17, 17');
+  const ACCENT = tok('--globe-accent', '31, 90, 61');
+  const SPHERE = tok('--globe-sphere', '#f8f6f1');
+  const SPHERE_EDGE = tok('--globe-sphere-edge', '#e9e3d8');
+  const PAPER = tok('--color-bg', '#f5f2ec');
 
   const evBySlug = Object.fromEntries(data.events.map((e) => [e.slug, e]));
   const placeByKey = Object.fromEntries(data.places.map((p) => [p.key, p]));
@@ -86,62 +91,52 @@ export function mountGlobe(root: HTMLElement) {
       if (!s.vis) { pen = false; continue; }
       if (!pen) { ctx.moveTo(s.x, s.y); pen = true; } else ctx.lineTo(s.x, s.y);
     }
-    ctx.strokeStyle = `rgba(${GOLD_HI},${alpha})`;
+    ctx.strokeStyle = `rgba(${ACCENT},${alpha})`;
     ctx.lineWidth = width;
-    if (dash && !reduced) { ctx.setLineDash([4, 7]); ctx.lineDashOffset = -t * 0.04; } else ctx.setLineDash([]);
+    if (dash && !reduced) { ctx.setLineDash([2, 5]); ctx.lineDashOffset = -t * 0.025; } else ctx.setLineDash([]);
     ctx.stroke();
     ctx.setLineDash([]);
   }
 
   function draw() {
-    const baseR = Math.min(W, H) / 2 * (mode === 'hero' ? 0.86 : 0.82);
+    const baseR = Math.min(W, H) / 2 * (mode === 'hero' ? 0.88 : 0.84);
     R = baseR * zoom;
     projection.translate([W / 2, H / 2]).scale(R).rotate([rot[0], rot[1], 0]);
     ctx.clearRect(0, 0, W, H);
 
-    // atmosphere glow
-    const glow = ctx.createRadialGradient(W / 2, H / 2, R * 0.92, W / 2, H / 2, R * 1.22);
-    glow.addColorStop(0, `rgba(${GOLD},0.20)`);
-    glow.addColorStop(0.35, `rgba(${GOLD},0.06)`);
-    glow.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = glow;
-    ctx.beginPath(); ctx.arc(W / 2, H / 2, R * 1.22, 0, Math.PI * 2); ctx.fill();
-
-    // ocean sphere
-    const sph = ctx.createRadialGradient(W / 2 - R * 0.35, H / 2 - R * 0.4, R * 0.1, W / 2, H / 2, R);
-    sph.addColorStop(0, '#16203a');
-    sph.addColorStop(0.65, '#0a1020');
-    sph.addColorStop(1, '#05070e');
+    // paper sphere with a soft terminator (no glow)
+    const sph = ctx.createRadialGradient(W / 2 - R * 0.3, H / 2 - R * 0.35, R * 0.2, W / 2, H / 2, R);
+    sph.addColorStop(0, SPHERE);
+    sph.addColorStop(1, SPHERE_EDGE);
     ctx.fillStyle = sph;
     ctx.beginPath(); ctx.arc(W / 2, H / 2, R, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = `rgba(${GOLD},0.35)`; ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = `rgba(${INK},0.9)`; ctx.lineWidth = 1; ctx.stroke();
 
     // graticule
-    ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(255,255,255,0.045)'; ctx.lineWidth = 0.6; ctx.stroke();
+    ctx.beginPath(); path(graticule); ctx.strokeStyle = `rgba(${INK},0.07)`; ctx.lineWidth = 0.6; ctx.stroke();
 
-    // land dots
+    // highlighted countries (under the dots)
+    ctx.beginPath(); path(data.highlight);
+    ctx.fillStyle = `rgba(${ACCENT},0.16)`; ctx.fill();
+    ctx.strokeStyle = `rgba(${ACCENT},0.75)`; ctx.lineWidth = 0.9; ctx.stroke();
+
+    // land dots (ink)
     const c = center();
-    const dotSize = Math.max(1.5, R / 190);
+    const dotR = Math.max(0.9, R / 300);
+    ctx.fillStyle = `rgb(${INK})`;
     for (let i = 0; i < N; i++) {
       const lng = dotLL[i * 2], lat = dotLL[i * 2 + 1];
       const d = Math.cos(geoDistance([lng, lat], c));
       if (d <= 0.02) continue;
       const p = projection([lng, lat])!;
-      ctx.fillStyle = `rgba(178,192,226,${0.16 + d * 0.62})`;
-      const s = dotSize * (0.55 + d * 0.45);
-      ctx.fillRect(p[0] - s / 2, p[1] - s / 2, s, s);
+      ctx.globalAlpha = 0.12 + d * 0.5;
+      ctx.beginPath(); ctx.arc(p[0], p[1], dotR * (0.6 + d * 0.4), 0, Math.PI * 2); ctx.fill();
     }
-
-    // highlighted countries
-    ctx.beginPath(); path(data.highlight);
-    ctx.fillStyle = `rgba(${GOLD},0.34)`; ctx.fill();
-    ctx.strokeStyle = `rgba(${GOLD_HI},0.85)`; ctx.lineWidth = 1; ctx.stroke();
+    ctx.globalAlpha = 1;
 
     const act = activePlaces();
-    // arcs from hub
-    for (const p of act) if (p !== hub) drawArc(hub, p, journey ? 0.12 : selected && selected !== p ? 0.14 : 0.42, !journey);
-    // journey trail
-    if (journey) for (let i = 1; i < journey.trail.length; i++) drawArc(journey.trail[i - 1], journey.trail[i], 0.85, true, 1.8);
+    for (const p of act) if (p !== hub) drawArc(hub, p, journey ? 0.15 : selected && selected !== p ? 0.18 : 0.55, !journey);
+    if (journey) for (let i = 1; i < journey.trail.length; i++) drawArc(journey.trail[i - 1], journey.trail[i], 0.95, true, 1.6);
 
     // markers
     const labels: { p: Place; x: number; y: number; base: number; fade: number; prio: number }[] = [];
@@ -149,56 +144,58 @@ export function mountGlobe(root: HTMLElement) {
       const s = screen(p.lng, p.lat);
       if (s.depth <= 0) continue;
       const n = placeEvents(p).length;
-      const base = (3 + Math.sqrt(n) * 2.2) * Math.min(1.5, Math.max(0.8, R / 300));
+      const base = (2.6 + Math.sqrt(n) * 1.9) * Math.min(1.5, Math.max(0.85, R / 300));
       const isSel = selected === p, isHov = hovered === p;
-      const pulse = reduced ? 0 : (t * 0.0012 + p.lat) % 1;
+      const pulse = reduced ? 0 : (t * 0.0009 + p.lat) % 1;
       const fade = Math.min(1, s.depth * 2.2);
-      // pulse ring
-      ctx.beginPath(); ctx.arc(s.x, s.y, base + pulse * base * 2.6, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${GOLD_HI},${(1 - pulse) * 0.55 * fade})`; ctx.lineWidth = 1.2; ctx.stroke();
-      // glow
-      const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, base * 3);
-      g.addColorStop(0, `rgba(${GOLD_HI},${0.55 * fade})`); g.addColorStop(1, `rgba(${GOLD},0)`);
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(s.x, s.y, base * 3, 0, Math.PI * 2); ctx.fill();
-      // core
+      ctx.globalAlpha = fade;
+      // thin pulse ring
+      ctx.beginPath(); ctx.arc(s.x, s.y, base + pulse * base * 2.4, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${ACCENT},${(1 - pulse) * 0.6})`; ctx.lineWidth = 1; ctx.stroke();
+      // core: accent disc with paper ring
       ctx.beginPath(); ctx.arc(s.x, s.y, isSel || isHov ? base * 1.25 : base, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${isSel ? '255,240,200' : GOLD_HI},${fade})`; ctx.fill();
-      ctx.lineWidth = 1.5; ctx.strokeStyle = `rgba(10,12,20,${0.9 * fade})`; ctx.stroke();
-      if (isSel) { ctx.beginPath(); ctx.arc(s.x, s.y, base * 2.1, 0, Math.PI * 2); ctx.strokeStyle = `rgba(255,240,200,${fade})`; ctx.lineWidth = 1.5; ctx.stroke(); }
-      // label candidate (drawn after all markers, with collision avoidance)
-      const showLabel = isSel || isHov || (mode === 'full' && s.depth > 0.35) || (mode === 'hero' && p === hub && !selected);
+      ctx.fillStyle = isSel ? `rgb(${INK})` : `rgb(${ACCENT})`; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = SPHERE; ctx.stroke();
+      if (isSel) { ctx.beginPath(); ctx.arc(s.x, s.y, base * 2.2, 0, Math.PI * 2); ctx.strokeStyle = `rgb(${INK})`; ctx.lineWidth = 1; ctx.stroke(); }
+      ctx.globalAlpha = 1;
+      const showLabel = isSel || isHov || (mode === 'full' && s.depth > 0.35) || (mode === 'hero' && (p === hub || n > 1) && !selected && s.depth > 0.3);
       if (showLabel) labels.push({ p, x: s.x, y: s.y, base, fade, prio: isSel ? 3 : isHov ? 2 : n / 100 });
     }
 
-    // labels: highest priority first; skip any that would overlap one already placed
+    // labels: ink tabs with mono country code; highest priority first, skip overlaps
     labels.sort((a, b) => b.prio - a.prio);
     const placed: { x: number; y: number; w: number; h: number }[] = [];
     for (const l of labels) {
       const isSel = selected === l.p;
-      ctx.font = `${isSel ? 600 : 500} ${isSel ? 13 : 12}px Manrope, system-ui, sans-serif`;
+      ctx.font = `400 ${isSel ? 16 : 14}px Newsreader, Georgia, serif`;
       const tw = ctx.measureText(l.p.name).width;
-      // try right, left, above, below
+      ctx.font = '500 10px "IBM Plex Mono", monospace';
+      const cw = ctx.measureText(l.p.code).width + 8;
+      const w = tw + cw + 18, h = isSel ? 26 : 24;
       const spots = [
-        [l.x + l.base + 8, l.y - l.base - 6],
-        [l.x - l.base - 8 - tw, l.y - l.base - 6],
-        [l.x - tw / 2, l.y - l.base - 14],
-        [l.x - tw / 2, l.y + l.base + 22],
+        [l.x + l.base + 8, l.y - h / 2],
+        [l.x - l.base - 8 - w, l.y - h / 2],
+        [l.x - w / 2, l.y - l.base - 8 - h],
+        [l.x - w / 2, l.y + l.base + 8],
       ];
       let spot: number[] | null = null;
       for (const [lx, ly] of spots) {
-        const r = { x: lx - 6, y: ly - 13, w: tw + 12, h: 20 };
-        if (r.x < 4 || r.x + r.w > W - 4 || r.y < 4) continue;
-        if (!placed.some((q) => r.x < q.x + q.w && r.x + r.w > q.x && r.y < q.y + q.h && r.y + r.h > q.y)) { spot = [lx, ly]; placed.push(r); break; }
+        const r = { x: lx, y: ly, w, h };
+        if (r.x < 4 || r.x + r.w > W - 4 || r.y < 4 || r.y + r.h > H - 4) continue;
+        if (!placed.some((q) => r.x < q.x + q.w + 2 && r.x + r.w + 2 > q.x && r.y < q.y + q.h + 2 && r.y + r.h + 2 > q.y)) { spot = [lx, ly]; placed.push(r); break; }
       }
       if (!spot) continue;
-      ctx.fillStyle = `rgba(6,8,14,${0.78 * l.fade})`;
-      roundRect(spot[0] - 6, spot[1] - 13, tw + 12, 20, 6); ctx.fill();
-      ctx.fillStyle = `rgba(${isSel ? '255,240,200' : '244,239,230'},${l.fade})`;
-      ctx.fillText(l.p.name, spot[0], spot[1] + 1);
+      ctx.globalAlpha = l.fade;
+      ctx.fillStyle = isSel ? `rgb(${ACCENT})` : `rgb(${INK})`;
+      ctx.fillRect(spot[0], spot[1], w, h);
+      ctx.fillStyle = PAPER;
+      ctx.font = '500 10px "IBM Plex Mono", monospace';
+      ctx.fillText(l.p.code, spot[0] + 8, spot[1] + h / 2 + 3.5);
+      ctx.fillRect(spot[0] + cw + 4, spot[1] + 6, 1, h - 12);
+      ctx.font = `400 ${isSel ? 16 : 14}px Newsreader, Georgia, serif`;
+      ctx.fillText(l.p.name, spot[0] + cw + 11, spot[1] + h / 2 + 4.5);
+      ctx.globalAlpha = 1;
     }
-  }
-  function roundRect(x: number, y: number, w: number, h: number, r: number) {
-    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
   }
 
   // ------------------------------------------------------------- loop
@@ -262,7 +259,7 @@ export function mountGlobe(root: HTMLElement) {
     if (tooltip) {
       if (p) {
         const n = placeEvents(p).length;
-        tooltip.innerHTML = `<b>${p.flag} ${esc(p.name)}</b><span>${esc(p.country)} · ${n} event${n === 1 ? '' : 's'}</span>`;
+        tooltip.innerHTML = `<b>${esc(p.name)}</b><span>${p.code} · ${esc(p.country)} · ${n} event${n === 1 ? '' : 's'}</span>`;
         tooltip.style.transform = `translate(${e.clientX - r.left + 14}px, ${e.clientY - r.top + 14}px)`;
         tooltip.classList.add('on');
       } else tooltip.classList.remove('on');
@@ -307,7 +304,7 @@ export function mountGlobe(root: HTMLElement) {
 
   function eventItem(e: Ev) {
     return `<a class="gp-event" href="${e.url}">
-      ${e.poster ? `<img src="${e.poster}" alt="" loading="lazy" width="64" height="64">` : '<span class="gp-noimg"></span>'}
+      ${e.poster ? `<img src="${e.poster}" alt="" loading="lazy" width="56" height="70">` : '<span class="gp-noimg"></span>'}
       <span><small>${esc(e.date)}${e.status === 'upcoming' ? ' · <em>Upcoming</em>' : ''}</small><b>${esc(e.title)}</b>${e.venue ? `<i>${esc(e.venue)}</i>` : ''}</span>
     </a>`;
   }
@@ -319,11 +316,11 @@ export function mountGlobe(root: HTMLElement) {
       const evCount = act.reduce((s, p) => s + placeEvents(p).length, 0);
       const ctry = new Set(act.map((p) => p.country)).size;
       panel.innerHTML = `
-        <p class="gp-kicker">${year ? `In ${year}` : 'Since 2023'}</p>
-        <h3 class="gp-title">${evCount} gatherings · ${ctry} countries</h3>
-        <p class="gp-hint">Drag the globe, tap a golden point — or press <b>Play the journey</b>.</p>
+        <p class="gp-eyebrow">${year ? `Year ${year}` : '2023 — today'}</p>
+        <h3 class="gp-title">${evCount} gatherings in ${ctry} countries</h3>
+        <p class="gp-hint">Drag to turn the globe. Select a place to see what happened there, or play the whole journey in order.</p>
         <ul class="gp-places">${act.sort((a, b) => placeEvents(b).length - placeEvents(a).length).map((p) => `
-          <li><button type="button" data-pick="${p.key}"><span class="gp-flag">${p.flag}</span><span><b>${esc(p.name)}</b><small>${esc(p.country)}</small></span><span class="gp-count">${placeEvents(p).length}</span></button></li>`).join('')}
+          <li><button type="button" data-pick="${p.key}"><span class="gp-code">${p.code}</span><span><b>${esc(p.name)}</b><small>${esc(p.country)}</small></span><span class="gp-count">${placeEvents(p).length}</span></button></li>`).join('')}
         </ul>`;
     } else {
       const evs = placeEvents(selected).sort((a, b) => b.start.localeCompare(a.start));
@@ -333,7 +330,7 @@ export function mountGlobe(root: HTMLElement) {
           <button type="button" data-back>← All places</button>
           <span><button type="button" data-step="-1" aria-label="Previous place">‹</button><button type="button" data-step="1" aria-label="Next place">›</button></span>
         </div>
-        <p class="gp-kicker">${selected.flag} ${esc(selected.country)}</p>
+        <p class="gp-eyebrow">${selected.code} — ${esc(selected.country)}</p>
         <h3 class="gp-title">${esc(selected.name)}</h3>
         <p class="gp-blurb">${esc(selected.blurb)}</p>
         <div class="gp-events">${evs.map(eventItem).join('')}</div>`;
@@ -365,7 +362,7 @@ export function mountGlobe(root: HTMLElement) {
         <div class="gj-progress"><i style="width:${((journey.i + 1) / journey.list.length) * 100}%"></i></div>
         <a href="${e.url}" class="gj-body">
           ${e.poster ? `<img src="${e.poster}" alt="">` : ''}
-          <span><small>${journey.i + 1} / ${journey.list.length} · ${esc(e.date)}</small><b>${esc(e.title)}</b><i>${p.flag} ${esc(e.venue || p.name)}</i></span>
+          <span><small>${journey.i + 1} / ${journey.list.length} · ${esc(e.date)}</small><b>${esc(e.title)}</b><i>${p.code} — ${esc(e.venue || p.name)}</i></span>
         </a>`;
       journeyCard.classList.add('on');
     }
