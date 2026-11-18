@@ -1,0 +1,118 @@
+---
+// Opening sequence for the home page: the World Changers journey drawn on a flat
+// world map — from the Vatican (2023) outwards, gathering by gathering.
+// Shown once per browser session, skippable, never shown with reduced motion.
+// Replay with /?intro=1
+import { globeData } from '../lib/globe-data';
+import { stats, places as allPlaces } from '../lib/data';
+
+const g = globeData();
+const placeByKey = Object.fromEntries(g.places.map((p: any) => [p.key, p]));
+const steps = g.events
+  .filter((e: any) => e.start && placeByKey[e.place])
+  .map((e: any) => ({ year: e.start.slice(0, 4), title: e.title, place: e.place, date: e.date }));
+// country of each event — counted with the un-merged place list (Holy See and Italy are separate)
+const countryOf = (slug: string) => {
+  const p = Object.values(allPlaces).find((pl: any) => pl.events.some((ev: any) => ev.slug === slug)) as any;
+  return p?.country || '';
+};
+const evCountries = g.events.filter((e: any) => e.start && placeByKey[e.place]).map((e: any) => countryOf(e.slug));
+const data = {
+  dots: g.dots,
+  hub: g.hub,
+  places: g.places.map((p: any) => ({ key: p.key, name: p.name, code: p.code, lat: p.lat, lng: p.lng })),
+  steps: steps.map((s: any, i: number) => ({ ...s, country: evCountries[i] })),
+  totals: { people: stats.people, events: stats.events, countries: stats.countries },
+};
+---
+<script is:inline>
+  (function () {
+    try {
+      var force = /[?&]intro=1/.test(location.search);
+      var seen = sessionStorage.getItem('wcs-intro');
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (force || (!seen && !reduce)) document.documentElement.classList.add('intro-on');
+    } catch (e) {}
+  })();
+</script>
+<div class="intro" data-intro>
+  <canvas class="intro-map" aria-hidden="true"></canvas>
+  <div class="intro-labels" aria-hidden="true"></div>
+  <div class="intro-top">
+    <span class="intro-brand" aria-hidden="true"><img src="/brand/wcsnewlogoPc.png" alt="" width="40" height="31" /><span>World Changers Summits</span></span>
+    <button type="button" class="intro-skip" data-intro-skip>Skip intro <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="intro-bottom" aria-hidden="true">
+    <div class="intro-now">
+      <span class="intro-year" data-year>2023</span>
+      <span class="intro-caption" data-caption>Vatican City — where it began</span>
+    </div>
+    <dl class="intro-counters">
+      <div><dt>Gatherings</dt><dd data-c="events">0</dd></div>
+      <div><dt>Countries</dt><dd data-c="countries">0</dd></div>
+      <div><dt>Cities</dt><dd data-c="cities">0</dd></div>
+    </dl>
+  </div>
+  <div class="intro-final" aria-hidden="true">
+    <p class="intro-figures"><b>{stats.people}</b> people · <b>{stats.events}</b> gatherings · <b>{stats.countries}</b> countries</p>
+    <p class="intro-line" data-line>Uniting visionary minds to shape the <em>future</em> of our world.</p>
+  </div>
+  <script type="application/json" set:html={JSON.stringify(data)} />
+</div>
+
+<style is:global>
+  .intro { display: none; }
+  html.intro-on { overflow: hidden; }
+  html.intro-on .intro {
+    display: block; position: fixed; inset: 0; z-index: 200; background: var(--color-bg); color: var(--color-fg);
+    transition: clip-path 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+    clip-path: inset(0 0 0 0);
+  }
+  .intro.leaving { clip-path: inset(0 0 100% 0) !important; }
+  .intro-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .intro-labels { position: absolute; inset: 0; pointer-events: none; }
+  .intro-label {
+    position: absolute; transform: translate(10px, -50%); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    background: var(--color-fg); color: var(--color-bg); padding: 4px 8px 4px 6px;
+    font: 400 14px/1 var(--font-display); opacity: 0; transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+  .intro-label i { font: 500 10px/1 var(--font-meta); letter-spacing: 0.06em; font-style: normal; padding-right: 6px; border-right: 1px solid rgba(245, 242, 236, 0.35); }
+  .intro-label.on { opacity: 1; transform: translate(12px, -50%); }
+  .intro-label.left { transform: translate(calc(-100% - 10px), -50%); }
+  .intro-label.left.on { transform: translate(calc(-100% - 12px), -50%); }
+  .intro-label.hub { background: var(--color-accent); }
+  .intro-top { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 20px var(--gutter); border-bottom: 1px solid var(--color-line); }
+  .intro-brand { display: inline-flex; align-items: center; gap: 12px; font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.1em; text-transform: uppercase; }
+  .intro-brand img { height: 32px; width: auto; }
+  .intro-skip { font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 14px; border: 1px solid var(--color-fg); min-height: 44px; background: var(--color-bg); }
+  .intro-skip:hover { background: var(--color-fg); color: var(--color-bg); }
+  .intro-bottom { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 96px var(--gutter) 28px; background: linear-gradient(to bottom, transparent, var(--color-bg) 45%); transition: opacity 0.5s var(--ease); }
+  .intro-now { display: grid; gap: 8px; min-width: 0; }
+  .intro-year { font: 400 clamp(64px, 11vw, 168px)/0.85 var(--font-display); letter-spacing: -0.04em; font-variant-numeric: lining-nums tabular-nums; }
+  .intro-caption { font: 500 var(--size-12)/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); max-width: 46ch; min-height: 2.8em; }
+  .intro-counters { display: grid; grid-template-columns: repeat(3, auto); margin: 0; border-top: 1px solid var(--color-fg); }
+  .intro-counters div { padding: 10px 0 0 18px; min-width: 92px; }
+  .intro-counters div:first-child { padding-left: 0; }
+  .intro-counters dt { font: 500 11px/1 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .intro-counters dd { margin: 8px 0 0; font: 400 44px/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
+  .intro-final { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 var(--gutter); pointer-events: none; opacity: 0; transition: opacity 0.6s var(--ease); }
+  .intro.final .intro-final { opacity: 1; }
+  .intro.final .intro-bottom, .intro.final .intro-labels { opacity: 0; }
+  .intro-labels { transition: opacity 0.4s var(--ease); }
+  .intro-figures { margin: 0 0 24px; font: 500 var(--size-13)/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .intro-figures b { color: var(--color-fg); font-weight: 500; }
+  .intro-line { margin: 0 auto; max-width: 16ch; font: 400 clamp(40px, 6.4vw, 96px)/0.98 var(--font-display); letter-spacing: -0.03em; }
+  .intro-line em { color: var(--color-accent); }
+  .intro-line .w { display: inline-block; opacity: 0; transform: translateY(0.25em); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  .intro-line .w.on { opacity: 1; transform: none; }
+  @media (max-width: 700px) {
+    .intro-bottom { flex-direction: column; align-items: stretch; }
+    .intro-counters dd { font-size: 32px; }
+    .intro-brand span { display: none; }
+  }
+</style>
+
+<script>
+  import { mountIntro } from '../scripts/intro';
+  mountIntro();
+</script>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Globe from '../components/Globe.astro';
+import Intro from '../components/Intro.astro';
 import EventCard from '../components/EventCard.astro';
 import PersonCard from '../components/PersonCard.astro';
 import { SITE, stats, events, upcoming, completed, people, posts, pages, galleries, places, THEMES, media, rewriteHtml, fmtDate, CATEGORY_NAMES } from '../lib/data';
@@ -29,6 +30,7 @@ const stat = [
 const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> — ${label}`;
 ---
 <Layout>
+  <Intro />
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
@@ -52,7 +54,7 @@ const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> 
     </div>
     <figure class="hero-photo wrap">
       <img src="/media/2024-08/eventteam.webp" alt="World Changers participants gathered in the Sistine Chapel" width="1024" height="768" fetchpriority="high" />
-      <figcaption class="meta">World Changers participants in the Sistine Chapel, Vatican City</figcaption>
+      <figcaption class="meta hero-cap"><span>World Changers participants in the Sistine Chapel, Vatican City</span><a href="/?intro=1" class="link">Replay intro ↺</a></figcaption>
     </figure>
   </section>
 
@@ -266,7 +268,7 @@ const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> 
   .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6); }
   .hero-photo { margin: clamp(48px, 6vw, 96px) auto 0; }
   .hero-photo img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: center 62%; }
-  .hero-photo figcaption { margin-top: 10px; }
+  .hero-photo figcaption { margin-top: 10px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .next { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
   .next-poster { display: block; border: 1px solid var(--color-line-strong); }
   .letter { display: grid; grid-template-columns: 3fr 9fr; gap: var(--space-5); align-items: start; }
