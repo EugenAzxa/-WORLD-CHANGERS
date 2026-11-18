@@ -1,0 +1,4 @@
+.media-cache/
+dist/
+node_modules/
+.astro/
