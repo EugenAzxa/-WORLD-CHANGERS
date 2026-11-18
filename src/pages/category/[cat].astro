@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostsIndex from '../../components/PostsIndex.astro';
+import { CATEGORY_NAMES } from '../../lib/data';
+export function getStaticPaths() { return Object.keys(CATEGORY_NAMES).map((cat) => ({ params: { cat } })); }
+const { cat } = Astro.params;
+const name = CATEGORY_NAMES[cat!];
+---
+<Layout title={name} description={`${name} — World Changers Summits.`}>
+  <PageHero title={name} kicker="Media & press" crumbs={[{ href: '/blog/', label: 'Media' }, { href: `/category/${cat}/`, label: name }]} />
+  <section class="section" style="padding-top:0"><div class="wrap"><PostsIndex category={cat} /></div></section>
+</Layout>

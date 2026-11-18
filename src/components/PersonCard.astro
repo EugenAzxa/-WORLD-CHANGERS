@@ -1,0 +1,16 @@
+---
+import { personRole } from '../lib/data';
+import { media } from '../lib/data';
+const { p, role } = Astro.props as { p: any; role?: string };
+const sub = role || personRole(p);
+const initials = p.name.replace(/^(H\.E\.|Dr\.|Prof\.|Sir|Hon\.|Rev\.?|Mons\.)\s*/gi, '').split(/\s+/).map((w: string) => w[0]).slice(0, 2).join('');
+---
+<a href={`/network/${p.slug}/`} class="card person" data-item data-role={[...p.roles].map((r: string) => r.toLowerCase().split(' ')[0]).join(' ')} data-search={`${p.name} ${p.headline || ''}`}>
+  <div class="ph">
+    {p.image ? <img src={media(p.image, 's')} alt={p.name} loading="lazy" /> : <span class="initials">{initials}</span>}
+  </div>
+  <div class="card-body">
+    <h3>{p.name}</h3>
+    {sub && <p>{sub}</p>}
+  </div>
+</a>

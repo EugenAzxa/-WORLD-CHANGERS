@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import PostsIndex from '../components/PostsIndex.astro';
+import { posts } from '../lib/data';
+---
+<Layout title="News & Articles" description="Press releases, stories and articles from World Changers.">
+  <PageHero title="News & articles" kicker={`${posts.length} stories`} lead="Press releases, reports and stories from the World Changers journey." crumbs={[{ href: '/blog/', label: 'Media' }]} />
+  <section class="section" style="padding-top:0"><div class="wrap"><PostsIndex /></div></section>
+</Layout>

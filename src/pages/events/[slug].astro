@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Blocks from '../../components/Blocks.astro';
+import EventCard from '../../components/EventCard.astro';
+import { events, places, forms, THEMES, link } from '../../lib/data';
+
+export function getStaticPaths() {
+  return events.map((e) => ({ params: { slug: e.slug }, props: { e } }));
+}
+const { e } = Astro.props as { e: any };
+const place = e.place ? places[e.place] : null;
+const chrono = [...events].sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+const idx = chrono.indexOf(e);
+const prev = chrono[idx - 1];
+const nextEv = chrono[idx + 1];
+const samePlace = place ? place.events.filter((x: any) => x !== e).slice(0, 3) : [];
+
+const SECTION_LABELS: Record<string, string> = { gallery: 'Gallery', topics: 'Topics', speakers: 'Speakers', agenda: 'Agenda', partners: 'Partners', thanksto: 'Thanks to', awards: 'Awards', finalreport: 'Final report', team: 'Team', ambassadors: 'Ambassadors', guests: 'Guests' };
+const sections = [...new Set(e.blocks.map((b: any) => b.section).filter(Boolean))] as string[];
+const nav = sections.map((s) => ({ id: s, label: SECTION_LABELS[s] || s.replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase()) }));
+
+// Registration (forms live on the old WordPress site)
+const words = e.slug.split('-').filter((w: string) => w.length > 3).slice(0, 3);
+const form = e.status === 'upcoming' ? forms.find((f) => words.filter((w: string) => f.slug.includes(w)).length >= 2) : null;
+---
+<Layout title={e.title} description={e.description || `${e.title} — ${e.dateRange}${place ? ', ' + place.name : ''}`} image={e.posterFull}>
+  <section class="ev-hero">
+    <div class="ev-bg" style={e.posterFull ? `background-image:url(${e.posterFull})` : ''}></div>
+    <div class="wrap ev-grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/events-cat/">Events</a><span aria-hidden="true">/</span><a href={e.status === 'upcoming' ? '/upcoming-events/' : '/completed-events/'}>{e.status === 'upcoming' ? 'Upcoming' : 'Completed'}</a>
+        </nav>
+        <div class="filters" style="margin-bottom:20px">
+          <span class:list={['chip', e.status === 'upcoming' ? 'chip-green' : 'chip-gold']}>{e.status === 'upcoming' ? '● Upcoming' : 'Completed'}</span>
+          {e.themes.map((t: string) => <a class="chip" href={`/events-cat/?theme=${t}`}>{THEMES[t].icon} {THEMES[t].label}</a>)}
+        </div>
+        <h1 class="h1">{e.title}</h1>
+        <dl class="info-list ev-facts">
+          <div><dt aria-hidden="true">◷</dt><dd><small>Date &amp; time</small>{e.dateRange}{e.timeLabel && ` · ${e.timeLabel}`}</dd></div>
+          {(e.venue || place) && (
+            <div><dt aria-hidden="true">◉</dt><dd><small>Location</small>
+              {e.venueSlug ? <a class="link" href={`/events/locations/${e.venueSlug}/`}>{e.venue}</a> : e.venue}
+              {place && <span class="muted"> · {place.flag} {place.name}, {place.country}</span>}
+            </dd></div>
+          )}
+          {e.people.length > 0 && <div><dt aria-hidden="true">✦</dt><dd><small>Network</small>{e.people.length} speakers &amp; guests</dd></div>}
+        </dl>
+        <div class="hero-cta">
+          {form && <a class="btn btn-gold" href={form.url} target="_blank" rel="noopener">Register <span class="arr">↗</span></a>}
+          {e.gallery && <a class="btn btn-ghost" href={`/${e.gallery.slug}/`}>Photo gallery · {e.gallery.images.length}</a>}
+          {e.docs.map((d: any) => <a class="btn btn-ghost" href={link(d.href)} target="_blank" rel="noopener">↓ {d.label}</a>)}
+          {place && <a class="btn btn-ghost" href={`/world-map/#place=${e.place === 'rome' ? 'vatican' : e.place === 'st-moritz' ? 'davos' : e.place}`}>See on the map</a>}
+        </div>
+      </div>
+      {e.posterFull && (
+        <a class="ev-poster" href={e.posterFull} data-lb="poster">
+          <img src={e.posterFull} alt={`${e.title} poster`} />
+        </a>
+      )}
+    </div>
+  </section>
+
+  {nav.length > 1 && (
+    <nav class="pill-nav" aria-label="Sections">
+      <div class="wrap">
+        <a href="#overview">Overview</a>
+        {nav.map((n) => <a href={`#${n.id}`}>{n.label}</a>)}
+      </div>
+    </nav>
+  )}
+
+  <section class="section" id="overview">
+    <div class="wrap">
+      {e.blocks.length ? <Blocks blocks={e.blocks} group={e.slug} galleryHref={e.gallery ? `/${e.gallery.slug}/` : undefined} /> : <p class="lead">{e.description}</p>}
+      {e.status === 'upcoming' && (
+        <div class="notice" style="margin-top:48px">Participation is strictly by invitation. To request an invitation write to <a class="link" href="mailto:world@iascoop.org">world@iascoop.org</a>.</div>
+      )}
+    </div>
+  </section>
+
+  {samePlace.length > 0 && (
+    <section class="section bg-2">
+      <div class="wrap">
+        <div class="section-head"><div><p class="kicker">{place.flag} {place.name}</p><h2 class="h2">More gatherings here</h2></div></div>
+        <div class="grid grid-3">{samePlace.map((x: any) => <EventCard e={x} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <nav class="wrap ev-pager" aria-label="Chronological navigation">
+    {prev ? <a href={prev.url} class="card hover"><small>← Earlier</small><b>{prev.title}</b><span class="muted">{prev.dateRange}</span></a> : <span></span>}
+    {nextEv ? <a href={nextEv.url} class="card hover" style="text-align:right"><small>Later →</small><b>{nextEv.title}</b><span class="muted">{nextEv.dateRange}</span></a> : <span></span>}
+  </nav>
+</Layout>
+
+<style>
+  .ev-hero { position: relative; padding: calc(var(--header-h) + clamp(40px, 6vw, 80px)) 0 clamp(48px, 6vw, 80px); overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+  .ev-bg { position: absolute; inset: -40px; z-index: -2; background-size: cover; background-position: center; filter: blur(60px) saturate(1.2); opacity: 0.35; transform: scale(1.1); }
+  .ev-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5, 6, 11, 0.4), var(--bg)); }
+  .ev-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .ev-facts { margin: 28px 0 0; }
+  .ev-poster { border-radius: 20px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow); max-width: 460px; justify-self: end; }
+  .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+  .ev-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-top: 56px; padding-bottom: 72px; }
+  .ev-pager a { padding: 22px 24px; display: grid; gap: 6px; }
+  .ev-pager small { color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 11.5px; }
+  .ev-pager b { font: 600 20px/1.25 var(--serif); }
+  @media (max-width: 860px) { .ev-grid { grid-template-columns: 1fr; } .ev-poster { justify-self: start; max-width: 360px; order: -1; } .ev-pager { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pages, SITE, link } from '../lib/data';
+const why = pages.donate.blocks.find((b: any) => b.type === 'list')?.items || [];
+const BANK = [
+  ['Account name', 'FONDACIONI IASC M22005452G'],
+  ['Beneficiary bank', 'Raiffeisen Bank Sha'],
+  ['SWIFT code', 'SGSBALTX'],
+  ['IBAN', 'AL72 2021 1006 0000 0000 0169 2889'],
+];
+---
+<Layout title="Donate" description="Support World Changers Summits — every donation helps bring together visionaries, innovators and leaders committed to a better world.">
+  <PageHero title="Make a difference today" kicker="Support the mission" lead="We believe in the power of collective action. Your support helps bring together visionaries, innovators and leaders who are committed to making a positive impact on our world." crumbs={[{ href: '/donate/', label: 'Donate' }]} />
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <p class="kicker">Why donate?</p>
+    <ul class="checklist">{why.map((t: string) => { const [h, ...r] = t.split(':'); return <li><b>{h}:</b>{r.join(':')}</li>; })}</ul>
+  </div></section>
+  <section class="section bg-2"><div class="wrap">
+    <div class="section-head"><div><p class="kicker">Ways to give</p><h2 class="h2">Every donation, no matter the amount, matters</h2></div></div>
+    <div class="grid grid-3 stack-sm">
+      <div class="card card-body give">
+        <span class="ic">◎</span><h3 class="h3">Online</h3>
+        <p class="muted">Use our secure donation page.</p>
+        <a class="btn btn-gold" href={link('/donations/givewp-donation-form/')} target="_blank" rel="noopener">Donate online <span class="arr">↗</span></a>
+      </div>
+      <div class="card card-body give">
+        <span class="ic">⇄</span><h3 class="h3">Bank transfer</h3>
+        <dl class="bank">
+          {BANK.map(([k, v]) => <div><dt>{k}</dt><dd><span>{v}</span><button type="button" class="copy" data-copy={v.replace(/\s/g, k === 'IBAN' ? '' : ' ')} aria-label={`Copy ${k}`}>Copy</button></dd></div>)}
+        </dl>
+      </div>
+      <div class="card card-body give">
+        <span class="ic">✉</span><h3 class="h3">Other ways</h3>
+        <p class="muted">Contact us for more information on other ways to give, sponsorship and patronage.</p>
+        <a class="btn btn-ghost" href={`mailto:${SITE.email}?subject=Supporting%20World%20Changers`}>{SITE.email}</a>
+        <a class="btn btn-ghost" href="/spirit-of-quantum/" style="margin-top:10px">Spirit of Quantum patron</a>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:48px">Thank you for your generosity. Your support is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact.</p>
+  </div></section>
+</Layout>
+<style>
+  .give { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .give .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(216, 180, 106, 0.12); color: var(--gold-hi); font-size: 22px; }
+  .give .btn { width: 100%; }
+  .bank { margin: 0; display: grid; gap: 12px; width: 100%; }
+  .bank dt { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .bank dd { margin: 2px 0 0; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-weight: 600; font-size: 14.5px; word-break: break-word; }
+  .copy { font-size: 11.5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--gold-hi); flex-shrink: 0; }
+  .copy:hover { border-color: var(--gold); }
+</style>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy!); b.textContent = 'Copied ✓'; setTimeout(() => (b.textContent = 'Copy'), 1600); } catch {}
+  }));
+</script>

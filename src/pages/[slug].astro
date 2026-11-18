@@ -1,0 +1,67 @@
+---
+// Old-site URLs that live at the root: articles, galleries and content pages.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Blocks from '../components/Blocks.astro';
+import PostCard from '../components/PostCard.astro';
+import EventCard from '../components/EventCard.astro';
+import { posts, galleries, pages, GENERIC_PAGES, media, rewriteHtml, textOf, fmtDate, CATEGORY_NAMES } from '../lib/data';
+
+export function getStaticPaths() {
+  return [
+    ...posts.map((p) => ({ params: { slug: p.slug }, props: { kind: 'post', item: p } })),
+    ...galleries.map((g) => ({ params: { slug: g.slug }, props: { kind: 'gallery', item: g } })),
+    ...GENERIC_PAGES.filter((s) => pages[s]).map((s) => ({ params: { slug: s }, props: { kind: 'page', item: pages[s] } })),
+  ];
+}
+const { kind, item } = Astro.props as { kind: string; item: any };
+const related = kind === 'post' ? posts.filter((p) => p !== item && p.categories.some((c: string) => item.categories.includes(c))).slice(0, 3) : [];
+const pageTitle = kind === 'page' ? item.title.replace(/&#8217;/g, '’').replace(/&amp;/g, '&') : item.title;
+const niceTitle = pageTitle === pageTitle.toUpperCase() ? pageTitle.charAt(0) + pageTitle.slice(1).toLowerCase() : pageTitle;
+---
+{kind === 'post' && (
+  <Layout title={item.title} description={item.excerpt || textOf(item.html).slice(0, 180)} image={media(item.image)}>
+    <article>
+      <header class="post-hero">
+        <div class="wrap wrap-narrow">
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Media</a>{item.categories[0] && <><span aria-hidden="true">/</span><a href={`/category/${item.categories[0]}/`}>{CATEGORY_NAMES[item.categories[0]]}</a></>}</nav>
+          <p class="meta">{fmtDate(item.date)}</p>
+          <h1 class="h1" style="margin-top:14px">{item.title}</h1>
+        </div>
+      </header>
+      {item.image && <div class="wrap" style="max-width:1100px"><img class="post-cover" src={media(item.image)} alt="" /></div>}
+      <div class="wrap wrap-narrow section-tight"><div class="prose" set:html={rewriteHtml(item.html)} /></div>
+    </article>
+    {related.length > 0 && (
+      <section class="section bg-2"><div class="wrap">
+        <div class="section-head"><div><p class="kicker">Keep reading</p><h2 class="h2">Related articles</h2></div></div>
+        <div class="grid grid-3">{related.map((p) => <PostCard p={p} />)}</div>
+      </div></section>
+    )}
+  </Layout>
+)}
+{kind === 'gallery' && (
+  <Layout title={`${item.title} — Gallery`} description={`${item.images.length} photos: ${item.title}.`} image={media(item.images[0]?.src)}>
+    <PageHero title={item.title} kicker={`${item.images.length} photos`} crumbs={[{ href: '/gallery/', label: 'Gallery' }]}>
+      {item.event && <div style="margin-top:24px"><a class="btn btn-ghost" href={item.event.url}>About the event · {item.event.dateRange} <span class="arr">→</span></a></div>}
+    </PageHero>
+    <section class="section" style="padding-top:0"><div class="wrap">
+      <div class="masonry">
+        {item.images.map((im: any, i: number) => {
+          const info = im.src;
+          return <a href={media(im.src)} data-lb="album"><img src={media(im.src, 's')} alt={`${item.title} — photo ${i + 1}`} loading="lazy" /></a>;
+        })}
+      </div>
+    </div></section>
+  </Layout>
+)}
+{kind === 'page' && (
+  <Layout title={niceTitle} description={textOf(item.blocks.map((b: any) => b.html || b.body || '').join(' ')).slice(0, 180)} image={item.image ? media(item.image) : undefined}>
+    <PageHero title={niceTitle} crumbs={[{ href: `/${item.slug}/`, label: niceTitle }]} />
+    <section class="section" style="padding-top:0"><div class="wrap"><Blocks blocks={item.blocks.filter((b: any, i: number) => !(i === 0 && b.type === 'heading' && b.text.toLowerCase() === niceTitle.toLowerCase()))} group={item.slug} /></div></section>
+  </Layout>
+)}
+<style>
+  .post-hero { padding: calc(var(--header-h) + clamp(40px, 6vw, 88px)) 0 clamp(28px, 4vw, 48px); background: radial-gradient(900px 500px at 50% -20%, rgba(216, 180, 106, 0.12), transparent 60%); }
+  .post-cover { width: 100%; max-height: 640px; object-fit: cover; border-radius: 22px; border: 1px solid var(--line); }
+</style>

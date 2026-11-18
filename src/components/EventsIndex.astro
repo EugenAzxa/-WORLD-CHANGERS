@@ -1,0 +1,50 @@
+---
+import EventCard from './EventCard.astro';
+import { events as all, places, THEMES } from '../lib/data';
+interface Props { status?: 'upcoming' | 'completed' }
+const { status } = Astro.props;
+const list = all.filter((e) => !status || e.status === status);
+const years = [...new Set(list.map((e) => e.year))].sort().reverse();
+const byYear = years.map((y) => ({ y, items: list.filter((e) => e.year === y).sort((a, b) => b.start.localeCompare(a.start)) }));
+const themes = Object.entries(THEMES).filter(([k]) => list.some((e) => e.themes.includes(k)));
+const placeKeys = [...new Set(list.map((e) => e.place).filter(Boolean))].sort((a, b) => places[a].name.localeCompare(places[b].name));
+---
+<div data-filter-root>
+  <div class="toolbar">
+    <input class="field" type="search" placeholder="Search events, cities, venues…" data-filter-q aria-label="Search events" />
+    <span class="muted"><b data-filter-count>{list.length}</b> events</span>
+  </div>
+  <div class="filter-rows">
+    {!status && (
+      <div class="filters" role="group" aria-label="Status">
+        <span class="flabel">Status</span>
+        <button class="chip" data-filter="status:" aria-pressed="true">All</button>
+        <button class="chip" data-filter="status:upcoming" aria-pressed="false">Upcoming</button>
+        <button class="chip" data-filter="status:completed" aria-pressed="false">Completed</button>
+      </div>
+    )}
+    <div class="filters" role="group" aria-label="Theme">
+      <span class="flabel">Theme</span>
+      <button class="chip" data-filter="theme:" aria-pressed="true">All</button>
+      {themes.map(([k, t]) => <button class="chip" data-filter={`theme:${k}`} aria-pressed="false">{t.icon} {t.label}</button>)}
+    </div>
+    <div class="filters" role="group" aria-label="Place">
+      <span class="flabel">Place</span>
+      <button class="chip" data-filter="place:" aria-pressed="true">All</button>
+      {placeKeys.map((k) => <button class="chip" data-filter={`place:${k}`} aria-pressed="false">{places[k].flag} {places[k].name}</button>)}
+    </div>
+  </div>
+  <div class="timeline">
+    {byYear.map(({ y, items }) => (
+      <div class="tl-year" data-group-for={y}>
+        <h3 class="gold">{y}</h3>
+        <div class="grid grid-3 stack-sm">{items.map((e) => <EventCard e={e} />)}</div>
+      </div>
+    ))}
+  </div>
+  <p class="empty" data-filter-empty hidden>No events match these filters.</p>
+</div>
+<style>
+  .filter-rows { display: grid; gap: 12px; margin-bottom: 40px; }
+  .flabel { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); min-width: 70px; }
+</style>

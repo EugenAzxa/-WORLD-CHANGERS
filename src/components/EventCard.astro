@@ -1,0 +1,16 @@
+---
+import { places } from '../lib/data';
+const { e, row = false } = Astro.props as { e: any; row?: boolean };
+const place = e.place ? places[e.place] : null;
+---
+<a href={e.url} class:list={['card ev-card', { row }]} data-item data-year={e.year} data-status={e.status} data-place={e.place} data-theme={e.themes.join(' ')} data-search={`${e.title} ${e.venue || ''} ${place?.name || ''} ${place?.country || ''}`}>
+  <div class="poster">
+    {e.posterSm ? <img src={e.posterSm} alt="" loading="lazy" /> : null}
+    {!row && e.status === 'upcoming' && <span class="chip chip-green badge">Upcoming</span>}
+  </div>
+  <div class="card-body">
+    <div class="date">{e.dateRange}</div>
+    <h3>{e.title}</h3>
+    {(e.venue || place) && <div class="where"><span aria-hidden="true">{place?.flag || '◉'}</span><span>{[e.venue, place && place.name !== e.venue ? place.name : null].filter(Boolean).join(' · ')}</span></div>}
+  </div>
+</a>

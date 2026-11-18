@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Globe from '../components/Globe.astro';
+import { stats } from '../lib/data';
+---
+<Layout title="World Map" description={`An interactive globe of every World Changers gathering: ${stats.events} events in ${stats.countries} countries.`} solidHeader>
+  <h1 class="sr-only">World Changers world map</h1>
+  <div style="padding-top:var(--header-h)"><Globe mode="full" /></div>
+</Layout>

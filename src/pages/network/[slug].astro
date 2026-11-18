@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EventCard from '../../components/EventCard.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import { people, media, rewriteHtml, textOf } from '../../lib/data';
+export function getStaticPaths() { return people.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props as { p: any };
+const related = [...new Set(p.events.flatMap((e: any) => e.people))].filter((x: any) => x !== p && x.image).slice(0, 8);
+const desc = textOf(p.bio).slice(0, 180) || `${p.name} — World Changers network.`;
+const socialName = (u: string) => (u.match(/linkedin|instagram|facebook|twitter|x\.com|youtube/)?.[0] || 'Website').replace('x.com', 'X').replace(/^\w/, (c) => c.toUpperCase());
+---
+<Layout title={p.name} description={desc} image={media(p.image)}>
+  <section class="pp-hero">
+    <div class="wrap pp-grid">
+      <div class="pp-photo">
+        {p.image ? <img src={media(p.image)} alt={p.name} /> : <div class="pp-ph" aria-hidden="true">{p.name.split(' ').map((w: string) => w[0]).slice(0, 2).join('')}</div>}
+      </div>
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/network-list/">Network</a></nav>
+        <div class="filters" style="margin-bottom:18px">{[...p.roles].map((r: string) => <span class="chip chip-gold">{r}</span>)}</div>
+        <h1 class="h1">{p.name}</h1>
+        {p.headline && <p class="lead">{p.headline}</p>}
+        {p.socials.length > 0 && <div class="filters" style="margin-top:20px">{p.socials.map((s: string) => <a class="chip" href={s} target="_blank" rel="noopener">{socialName(s)} ↗</a>)}</div>}
+        {p.events.length > 0 && <p class="muted" style="margin-top:24px">Took part in {p.events.length} World Changers gathering{p.events.length > 1 ? 's' : ''}{p.awards.length ? ` · ${p.awards.length} award${p.awards.length > 1 ? 's' : ''}` : ''}</p>}
+      </div>
+    </div>
+  </section>
+  {p.bio && (
+    <section class="section-tight"><div class="wrap"><div class="prose" set:html={rewriteHtml(p.bio)} /></div></section>
+  )}
+  {p.awards.length > 0 && (
+    <section class="section-tight"><div class="wrap">
+      <p class="kicker">Recognition</p>
+      <div class="grid grid-2">{p.awards.map((a: any) => (
+        <a class="card hover award-row" href={`/awards/${a.slug}/`}>
+          {a.image && <img src={media(a.image, 's')} alt="" loading="lazy" />}
+          <div class="card-body"><b class="h3">World Changers Award</b><p class="muted" style="margin:6px 0 0">{textOf(a.html).slice(0, 140)}…</p></div>
+        </a>
+      ))}</div>
+    </div></section>
+  )}
+  {p.events.length > 0 && (
+    <section class="section bg-2"><div class="wrap">
+      <div class="section-head"><div><p class="kicker">On the World Changers stage</p><h2 class="h2">Gatherings</h2></div></div>
+      <div class="grid grid-3">{p.events.map((e: any) => <EventCard e={e} />)}</div>
+    </div></section>
+  )}
+  {related.length > 0 && (
+    <section class="section"><div class="wrap">
+      <div class="section-head"><div><p class="kicker">Shared the stage with</p><h2 class="h2">Related people</h2></div><a href="/network-list/" class="btn btn-ghost">Whole network <span class="arr">→</span></a></div>
+      <div class="grid grid-4 stack-sm">{related.map((x: any) => <PersonCard p={x} />)}</div>
+    </div></section>
+  )}
+</Layout>
+<style>
+  .pp-hero { padding: calc(var(--header-h) + clamp(40px, 6vw, 80px)) 0 clamp(32px, 4vw, 56px); background: radial-gradient(900px 500px at 85% 0%, rgba(216, 180, 106, 0.12), transparent 60%); }
+  .pp-grid { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .pp-photo img, .pp-ph { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 20%; border-radius: 22px; border: 1px solid var(--line-2); background: var(--bg-3); }
+  .pp-ph { display: grid; place-items: center; font: 500 80px/1 var(--serif); color: var(--gold); }
+  .award-row { display: grid; grid-template-columns: 140px 1fr; align-items: center; }
+  .award-row img { height: 100%; width: 100%; object-fit: cover; }
+  @media (max-width: 760px) { .pp-grid { grid-template-columns: 1fr; } .pp-photo { max-width: 280px; } }
+</style>

@@ -1,0 +1,125 @@
+---
+// Renders content blocks extracted from the old Elementor pages.
+import { media, rewriteHtml, link, people as allPeople, awards as allAwards } from '../lib/data';
+import PersonCard from './PersonCard.astro';
+
+interface Props { blocks: any[]; group?: string; galleryHref?: string; skip?: string[] }
+const { blocks, group = 'page', galleryHref, skip = [] } = Astro.props;
+const personBySlug = Object.fromEntries(allPeople.map((p) => [p.slug, p]));
+const awardBySlug = Object.fromEntries(allAwards.map((a) => [a.slug, a]));
+
+const titleCase = (s: string) => {
+  if (s !== s.toLowerCase() && s !== s.toUpperCase()) return s;
+  const small = new Set(['and', 'of', 'the', 'in', 'to', 'for', 'with', 'a', 'on', 'by']);
+  return s.toLowerCase().split(' ').map((w, i) => (i && small.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1))).join(' ');
+};
+const seenSections = new Set<string>();
+const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button' && b.hidden) && b.type !== 'social' && b.type !== 'counter');
+---
+<div class="blocks">
+  {list.map((b, i) => {
+    const anchor = b.section && !seenSections.has(b.section) ? (seenSections.add(b.section), b.section) : undefined;
+    switch (b.type) {
+      case 'heading':
+        return (
+          <div class:list={['blk-heading', { 'blk-section': anchor }]} id={anchor}>
+            {b.sub && <p class="kicker">{titleCase(b.sub)}</p>}
+            {b.text && <h2 class="h2">{titleCase(b.text)}</h2>}
+            {b.body && <div class="prose" style="margin-top:20px" set:html={rewriteHtml(b.body)} />}
+          </div>
+        );
+      case 'html':
+        return <div class="prose" id={anchor} set:html={rewriteHtml(b.html)} />;
+      case 'accordion':
+        return (
+          <div class="accordion" id={anchor}>
+            {b.items.map((it: any, j: number) => (
+              <details open={j === 0}>
+                <summary>{it.title}<span class="pm" aria-hidden="true">+</span></summary>
+                <div class="acc-body prose" set:html={rewriteHtml(it.html)} />
+              </details>
+            ))}
+          </div>
+        );
+      case 'image': {
+        const img = <img src={media(b.src)} alt={b.alt || ''} loading="lazy" />;
+        return <figure class="blk-image" id={anchor} style="margin:0">{b.href ? <a href={link(b.href)}>{img}</a> : img}</figure>;
+      }
+      case 'gallery': {
+        const shown = b.images.slice(0, 12);
+        return (
+          <div id={anchor}>
+            <div class="strip">
+              {shown.map((im: any) => <a href={media(im.src)} data-lb={`${group}-${i}`}><img src={media(im.src, 's')} alt={im.alt || ''} loading="lazy" /></a>)}
+            </div>
+            {galleryHref && <p style="margin-top:16px"><a class="btn btn-ghost btn-sm" href={galleryHref}>Open full gallery <span class="arr">→</span></a></p>}
+          </div>
+        );
+      }
+      case 'video':
+        return b.youtube ? (
+          <div class="video" id={anchor}><iframe src={`https://www.youtube-nocookie.com/embed/${b.youtube}`} title="Video" loading="lazy" allowfullscreen allow="accelerometer; encrypted-media; picture-in-picture"></iframe></div>
+        ) : (
+          <div class="video" id={anchor}><video src={b.src} controls preload="metadata" playsinline></video></div>
+        );
+      case 'button': {
+        if (/view full gallery/i.test(b.text) && galleryHref) return null;
+        const href = link(b.href);
+        if (!href) return null;
+        const ext = /^https?:/.test(href) || href.endsWith('.pdf');
+        const isPdf = /\.pdf$/i.test(href);
+        return <p id={anchor}><a class="btn btn-ghost btn-sm" href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{isPdf ? '↓ ' : ''}{titleCase(b.text)} <span class="arr">→</span></a></p>;
+      }
+      case 'people':
+        return (
+          <div class="grid grid-4 stack-sm people-grid" id={anchor}>
+            {b.people.map((p: any) => personBySlug[p.slug]
+              ? <PersonCard p={personBySlug[p.slug]} />
+              : <div class="card person"><div class="ph">{p.image && <img src={media(p.image, 's')} alt={p.name} loading="lazy" />}</div><div class="card-body"><h3>{p.name}</h3>{p.role && <p>{p.role}</p>}</div></div>)}
+          </div>
+        );
+      case 'logos':
+        return (
+          <div class="logos" id={anchor}>
+            {b.items.map((l: any) => l.href && /^https?:/.test(l.href)
+              ? <a href={l.href} target="_blank" rel="noopener" title={l.alt}><img src={media(l.src, 's')} alt={l.alt || 'Partner logo'} loading="lazy" /></a>
+              : <span><img src={media(l.src, 's')} alt={l.alt || 'Partner logo'} loading="lazy" /></span>)}
+          </div>
+        );
+      case 'cards':
+        return (
+          <div class="grid grid-4 stack-sm" id={anchor}>
+            {b.items.map((c: any) => {
+              const award = c.href?.match(/\/awards\/([^/]+)/)?.[1];
+              const a = award ? awardBySlug[award] : null;
+              const href = link(c.href);
+              const inner = (
+                <>
+                  <div class="ph">{c.image && <img src={media(c.image, 's')} alt="" loading="lazy" />}</div>
+                  <div class="card-body"><h3>{a?.name || titleCase(c.title)}</h3>{(c.sub || a) && <p>{a ? 'Award recipient' : c.sub}</p>}</div>
+                </>
+              );
+              return href && !/^https?:\/\/(?:www\.)?wcsiasc/.test(href) ? <a class="card person" href={href}>{inner}</a> : <div class="card person">{inner}</div>;
+            })}
+          </div>
+        );
+      case 'info':
+        return (
+          <a class="card hover card-body" href={link(b.href) || '#'} id={anchor} style="display:block">
+            <b class="h3">{titleCase(b.title)}</b>
+            {b.text && <p class="muted" style="margin:8px 0 0">{b.text}</p>}
+          </a>
+        );
+      case 'testimonials':
+        return (
+          <div class="grid grid-3" id={anchor}>
+            {b.items.map((q: any) => <figure class="card quote-card" style="margin:0"><span class="q" aria-hidden="true">“</span><blockquote>{q.quote}</blockquote><footer>{q.author}</footer></figure>)}
+          </div>
+        );
+      case 'list':
+        return <ul class="checklist" id={anchor}>{b.items.map((t: string) => { const [h, ...rest] = t.split(':'); return rest.length ? <li><b>{h}:</b>{rest.join(':')}</li> : <li>{t}</li>; })}</ul>;
+      default:
+        return null;
+    }
+  })}
+</div>

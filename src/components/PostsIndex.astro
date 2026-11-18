@@ -1,0 +1,21 @@
+---
+import PostCard from './PostCard.astro';
+import { posts, CATEGORY_NAMES } from '../lib/data';
+interface Props { category?: string }
+const { category } = Astro.props;
+const list = posts.filter((p) => !category || p.categories.includes(category));
+const cats = Object.keys(CATEGORY_NAMES).filter((c) => !category && posts.some((p) => p.categories.includes(c)));
+---
+<div data-filter-root>
+  <div class="toolbar">
+    <input class="field" type="search" placeholder="Search articles…" data-filter-q aria-label="Search articles" />
+    {cats.length > 0 && (
+      <div class="filters" role="group" aria-label="Category">
+        <button class="chip" data-filter="cat:" aria-pressed="true">All · {list.length}</button>
+        {cats.map((c) => <button class="chip" data-filter={`cat:${c}`} aria-pressed="false">{CATEGORY_NAMES[c]}</button>)}
+      </div>
+    )}
+  </div>
+  <div class="grid grid-3 stack-sm">{list.map((p) => <PostCard p={p} />)}</div>
+  <p class="empty" data-filter-empty hidden>No articles found.</p>
+</div>

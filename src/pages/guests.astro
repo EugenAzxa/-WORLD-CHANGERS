@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import NetworkIndex from '../components/NetworkIndex.astro';
+---
+<Layout title="Guests" description="Distinguished guests of the World Changers summits.">
+  <PageHero title="Guests" kicker="The network" lead="Distinguished guests of the World Changers summits." crumbs={[{ href: '/network-list/', label: 'Network' }, { href: '/guests/', label: 'Guests' }]} />
+  <section class="section" style="padding-top:0"><div class="wrap"><NetworkIndex role="guest" /></div></section>
+</Layout>

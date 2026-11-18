@@ -1,0 +1,159 @@
+{
+ "_note": "City-level coordinates for the interactive globe. Venues (location slugs from the old site) map to a place; events without a venue on the old site are mapped by slug.",
+ "places": {
+  "vatican": {
+   "name": "Vatican City",
+   "country": "Holy See",
+   "flag": "🇻🇦",
+   "lat": 41.9029,
+   "lng": 12.4534,
+   "blurb": "The heart of the movement: the first World Changers Summit was hosted by the Pontifical Academy of Sciences in 2023, and every year the network returns here."
+  },
+  "rome": {
+   "name": "Rome",
+   "country": "Italy",
+   "flag": "🇮🇹",
+   "lat": 41.8967,
+   "lng": 12.4822,
+   "blurb": "Book presentations, sacred music, art and the World Changers 10th-anniversary celebration in historic palaces and basilicas of the Eternal City."
+  },
+  "assisi": {
+   "name": "Assisi",
+   "country": "Italy",
+   "flag": "🇮🇹",
+   "lat": 43.0707,
+   "lng": 12.6196,
+   "blurb": "Eight hundred years after St. Francis: a panel on peace, fraternity and human responsibility in the quantum age."
+  },
+  "davos": {
+   "name": "Davos",
+   "country": "Switzerland",
+   "flag": "🇨🇭",
+   "lat": 46.8027,
+   "lng": 9.836,
+   "blurb": "The World Changers Davos Summit 2025 at Village Davos."
+  },
+  "st-moritz": {
+   "name": "St. Moritz",
+   "country": "Switzerland",
+   "flag": "🇨🇭",
+   "lat": 46.4908,
+   "lng": 9.8355,
+   "blurb": "A longevity forum on health, regeneration and the science of living well."
+  },
+  "skopje": {
+   "name": "Skopje",
+   "country": "North Macedonia",
+   "flag": "🇲🇰",
+   "lat": 41.9981,
+   "lng": 21.4254,
+   "blurb": "The Balkan Summit: “Harmony in Progress — mastering the present for a thriving future”."
+  },
+  "tirana": {
+   "name": "Tirana",
+   "country": "Albania",
+   "flag": "🇦🇱",
+   "lat": 41.3275,
+   "lng": 19.8187,
+   "blurb": "The Quantum Balkan Initiative at the Polytechnic University of Tirana and its gala dinner at the Palace of Brigades."
+  },
+  "himare": {
+   "name": "Himarë & Porto Palermo",
+   "country": "Albania",
+   "flag": "🇦🇱",
+   "lat": 40.08,
+   "lng": 19.77,
+   "blurb": "Culture, music and Mediterranean heritage on the Albanian Riviera."
+  },
+  "dubai": {
+   "name": "Dubai",
+   "country": "United Arab Emirates",
+   "flag": "🇦🇪",
+   "lat": 25.2048,
+   "lng": 55.2708,
+   "blurb": "World Changers Summit Dubai 2024."
+  },
+  "riyadh": {
+   "name": "Riyadh",
+   "country": "Saudi Arabia",
+   "flag": "🇸🇦",
+   "lat": 24.7136,
+   "lng": 46.6753,
+   "blurb": "Quantum education for children and youth with the King Salman Science Oasis and C4IR Saudi Arabia (WEF affiliate)."
+  },
+  "alexandria": {
+   "name": "Alexandria",
+   "country": "Egypt",
+   "flag": "🇪🇬",
+   "lat": 31.2001,
+   "lng": 29.9187,
+   "blurb": "Euro-Med to Med-Capital: a Mediterranean dialogue of culture, politics and literature."
+  },
+  "riviera": {
+   "name": "Beaulieu-sur-Mer",
+   "country": "France",
+   "flag": "🇫🇷",
+   "lat": 43.7069,
+   "lng": 7.3317,
+   "blurb": "Supporting the Monte-Carlo Polo Federation and the Monte-Carlo Polo Beach Cup 2025 — ethics, courage and excellence in sport."
+  },
+  "washington": {
+   "name": "Washington, D.C.",
+   "country": "United States",
+   "flag": "🇺🇸",
+   "lat": 38.9072,
+   "lng": -77.0369,
+   "blurb": "Regeneration for Humanity: rebuilding Ukraine through healing, longevity and renewal."
+  },
+  "spartanburg": {
+   "name": "Spartanburg, SC",
+   "country": "United States",
+   "flag": "🇺🇸",
+   "lat": 34.9496,
+   "lng": -81.932,
+   "blurb": "IASC and Elysian for a Better World — two days of talks, awards and cooperation in South Carolina."
+  }
+ },
+ "venues": {
+  "vatican-city-2": "vatican",
+  "casina-pio-iv": "vatican",
+  "the-pontifical-academy-of-sciences": "vatican",
+  "vatican-museums": "vatican",
+  "studio-26": "rome",
+  "basilica-di-santa-maria-in-montesanto": "rome",
+  "church-of-san-silvestro-al-quirinale": "rome",
+  "princess-salons-of-palazzo-brancaccio": "rome",
+  "venus-the-lateran-university": "rome",
+  "lateran-apostolic-palace": "rome",
+  "cancelleria-palace": "rome",
+  "municipality-of-assisi": "assisi",
+  "village-davos": "davos",
+  "st-moritz-switzerland": "st-moritz",
+  "skopje": "skopje",
+  "polytechnic-university-of-tirana": "tirana",
+  "palace-of-brigadave": "tirana",
+  "villa-bardha": "tirana",
+  "himare": "himare",
+  "the-castle-of-porto-palermo": "himare",
+  "porto-palermo": "himare",
+  "dubai-united-arab-emirates": "dubai",
+  "riyadh-saudi-arabia": "riyadh",
+  "maison-assouline-diriyah": "riyadh",
+  "spartanburg-south-carolina": "spartanburg",
+  "monte-carlo": "riviera"
+ },
+ "events": {
+  "from-albania-to-egypt-the-common-story-through-culture-politics-and-literature": {
+   "place": "alexandria",
+   "venue": "Jesuit Culture Center, Alexandria"
+  },
+  "iasc-world-changers-the-monte-carlo-polo-federation": {
+   "place": "riviera",
+   "venue": "Monte-Carlo Polo Beach Cup, Beaulieu-sur-Mer"
+  },
+  "regeneration-for-humanity-the-ukrainian-reconstruction-summit": {
+   "place": "washington",
+   "venue": "Washington, D.C."
+  }
+ }
+}

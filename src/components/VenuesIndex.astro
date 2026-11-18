@@ -1,0 +1,26 @@
+---
+import { locations, places, media } from '../lib/data';
+const list = [...locations].sort((a, b) => b.events.length - a.events.length || a.name.localeCompare(b.name));
+---
+<div class="grid grid-3 stack-sm">
+  {list.map((l) => {
+    const p = l.place ? places[l.place] : null;
+    return (
+      <a href={`/events/locations/${l.slug}/`} class="card venue">
+        <div class="thumb">{l.image && <img src={media(l.image, 's')} alt="" loading="lazy" />}</div>
+        <div class="card-body">
+          <div class="meta">{p ? `${p.flag} ${p.name} · ${p.country}` : 'Venue'}</div>
+          <h3>{l.name}</h3>
+          <p class="muted">{l.events.length ? `${l.events.length} gathering${l.events.length > 1 ? 's' : ''}` : 'Partner venue'}</p>
+        </div>
+      </a>
+    );
+  })}
+</div>
+<style>
+  .venue .thumb { aspect-ratio: 16 / 10; background: var(--bg-3); overflow: hidden; }
+  .venue .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .venue:hover .thumb img { transform: scale(1.04); }
+  .venue h3 { font: 600 22px/1.2 var(--serif); margin: 8px 0 4px; }
+  .venue p { margin: 0; font-size: 14px; }
+</style>

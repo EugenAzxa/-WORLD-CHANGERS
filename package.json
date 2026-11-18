@@ -1,0 +1,24 @@
+{
+  "name": "world-changers",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "World Changers Summits — new website (IASC)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "extract": "node scripts/extract.mjs",
+    "media": "node scripts/media.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.12",
+    "d3-geo": "^3.1.2",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0",
+    "sharp": "^0.35.5"
+  }
+}

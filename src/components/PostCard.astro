@@ -1,0 +1,12 @@
+---
+import { fmtDate, media, CATEGORY_NAMES } from '../lib/data';
+const { p } = Astro.props as { p: any };
+---
+<a href={p.url} class="card post-card" data-item data-cat={p.categories.join(' ')} data-search={p.title}>
+  <div class="thumb">{p.image && <img src={media(p.image, 's')} alt="" loading="lazy" />}</div>
+  <div class="card-body">
+    <div class="meta">{fmtDate(p.date)} · {p.categories.map((c: string) => CATEGORY_NAMES[c] || c).join(', ')}</div>
+    <h3>{p.title}</h3>
+    {p.excerpt && <p>{p.excerpt}</p>}
+  </div>
+</a>

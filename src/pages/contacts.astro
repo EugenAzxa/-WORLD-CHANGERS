@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../lib/data';
+---
+<Layout title="Contact" description="Get in touch with World Changers Summits — world@iascoop.org.">
+  <PageHero title="Get in touch" kicker="Contact us" lead="Get in touch to discuss your needs today. Feel free to drop us an email — participation in our summits is by invitation." crumbs={[{ href: '/contacts/', label: 'Contact' }]} />
+  <section class="section" style="padding-top:0">
+    <div class="wrap two-col">
+      <form class="card card-body contact-form" data-mailto={SITE.email}>
+        <div class="grid grid-2">
+          <div><label class="lbl" for="c-name">Name</label><input class="field" id="c-name" name="name" required autocomplete="name" /></div>
+          <div><label class="lbl" for="c-email">Email</label><input class="field" id="c-email" name="email" type="email" required autocomplete="email" /></div>
+        </div>
+        <div><label class="lbl" for="c-topic">Topic</label>
+          <select class="field" id="c-topic" name="topic">
+            <option>Invitation to a summit</option><option>Speaking proposal</option><option>Partnership</option><option>Press &amp; media</option><option>Donation</option><option>Other</option>
+          </select>
+        </div>
+        <div><label class="lbl" for="c-msg">Message</label><textarea class="field" id="c-msg" name="message" required></textarea></div>
+        <button class="btn btn-gold" type="submit">Write the email <span class="arr">→</span></button>
+        <p class="muted" style="font-size:13px;margin:0">This opens your email app with the message ready to send to {SITE.email}.</p>
+      </form>
+      <aside class="sticky-col">
+        <dl class="info-list card card-body">
+          <div><dt>✉</dt><dd><small>Email</small><a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
+          <div><dt>◎</dt><dd><small>Institute</small><a class="link" href={SITE.orgUrl} target="_blank" rel="noopener">www.iascoop.org</a></dd></div>
+          <div><dt>◉</dt><dd><small>Home of the summits</small>Pontifical Academy of Sciences, Casina Pio IV, Vatican City</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="/world-map/" style="margin-top:16px;width:100%">Where we gather</a>
+      </aside>
+    </div>
+  </section>
+</Layout>
+<style>
+  .contact-form { display: grid; gap: 18px; }
+  select.field { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 22px) 22px, calc(100% - 16px) 22px; background-size: 6px 6px; background-repeat: no-repeat; }
+  select.field option { background: #0e111b; }
+</style>
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-mailto]').forEach((f) => f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(f);
+    const subject = `[World Changers] ${d.get('topic')} — ${d.get('name')}`;
+    const body = `${d.get('message')}\n\n— ${d.get('name')} <${d.get('email')}>`;
+    location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }));
+</script>

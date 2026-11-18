@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { awards, media, textOf } from '../../lib/data';
+const list = [...awards].sort((a, b) => b.date.localeCompare(a.date));
+---
+<Layout title="Awards" description="World Changers Awards — honouring outstanding contributions to humanity, sustainable development and ethical innovation.">
+  <PageHero title="World Changers Awards" kicker={`${awards.length} recipients`} lead="Presented at World Changers summits to people and organisations whose vision, leadership and service advance a more ethical, sustainable and humane world." crumbs={[{ href: '/network-list/', label: 'Network' }, { href: '/awards/', label: 'Awards' }]} />
+  <section class="section" style="padding-top:0"><div class="wrap">
+    <div class="grid grid-3 stack-sm">
+      {list.map((a) => (
+        <a href={`/awards/${a.slug}/`} class="card award-card">
+          <div class="thumb">{a.image && <img src={media(a.image, 's')} alt="" loading="lazy" />}</div>
+          <div class="card-body">
+            <div class="meta">{a.events[0] ? a.events[0].title : 'World Changers Award'}</div>
+            <h3>{a.name}</h3>
+            <p>{textOf(a.html).slice(0, 120)}{textOf(a.html).length > 120 ? '…' : ''}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div></section>
+</Layout>
+<style>
+  .award-card .thumb { aspect-ratio: 4 / 3; overflow: hidden; background: #f3eee4; }
+  .award-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .award-card:hover .thumb img { transform: scale(1.04); }
+  .award-card h3 { font: 600 22px/1.2 var(--serif); margin: 8px 0; }
+  .award-card p { margin: 0; color: var(--muted); font-size: 14px; }
+</style>

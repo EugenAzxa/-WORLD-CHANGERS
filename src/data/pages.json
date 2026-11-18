@@ -1,0 +1,951 @@
+{
+ "home": {
+  "slug": "",
+  "title": "Home",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "button",
+    "text": "Register to World Changers Davos Summit",
+    "href": "/world-changer-davos-registration-form/",
+    "hidden": true
+   },
+   {
+    "type": "heading",
+    "text": "world changers summits",
+    "body": "<p>As the founder and director of the World Changers Summits, I extend my sincerest welcome to you. It is with great pleasure that I introduce this esteemed gathering, a place of boundless inspiration for visionary minds, a profound journey towards expanded consciousness. Celebrated at the Pontifical Academy of Science in the Vatican City, this international summit, has evolved into a global network uniting institutions, brilliant intellects, scientists, entrepreneurs, and experts, all dedicated to the advancement of ethical and social innovation, fostering values and economic progress for the betterment of our world. The World Changers Summits encompass a diverse array of forums, each delving into distinct subjects, serving not only as platforms for knowledge exchange and consciousness expansion but also as gateways to transcend boundaries. A testament to collaborative effort and creative synergy, these exclusive VIP summits, meticulously curated and unique in focus, gather some of the most forward-thinking minds from various fields, converging in different locations and forums. Beyond being a mere academic gathering, this event symbolizes a celebration of collective intellect—a harmonious blend of scholarly pursuits and human empathy. We cordially invite you to do more than observe; become an active participant in this transformative symphony of change. With warm regards,</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/08/gabround.png",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "FOUNDER AND DIRECTOR<p>Prof. Gabriele Pao Pei Andreoli, MD</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/08/logofullwhite.png",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p>by</p><p><a href=\"mailto:world@iascoop.org\"><b>world@iascoop.org</b></a></p>"
+   },
+   {
+    "type": "heading",
+    "text": "Upcoming Events",
+    "sub": "explore schedule"
+   },
+   {
+    "type": "button",
+    "text": "view all events",
+    "href": "/events/"
+   },
+   {
+    "type": "heading",
+    "text": "Uniting Visionary Experts and Inspiring Voices to Shape the Future of Our World."
+   },
+   {
+    "type": "info",
+    "title": "Events",
+    "href": "/events-cat/"
+   },
+   {
+    "type": "info",
+    "title": "Venues",
+    "href": "/locations/"
+   },
+   {
+    "type": "info",
+    "title": "NETWORKING",
+    "href": "/network-list/"
+   },
+   {
+    "type": "heading",
+    "text": "You Give Us Courage",
+    "sub": "find out"
+   },
+   {
+    "type": "button",
+    "text": "view all",
+    "href": "/blog/"
+   },
+   {
+    "type": "heading",
+    "text": "Latest Articles",
+    "sub": "explore more"
+   },
+   {
+    "type": "button",
+    "text": "view all articles",
+    "href": "/blog/"
+   },
+   {
+    "type": "counter",
+    "value": "25",
+    "suffix": "+",
+    "title": "Skilled Speakers"
+   },
+   {
+    "type": "counter",
+    "value": "2",
+    "suffix": "",
+    "title": "Days Full of Inspiration"
+   },
+   {
+    "type": "counter",
+    "value": "2",
+    "suffix": "",
+    "title": "Unique Workshops"
+   },
+   {
+    "type": "counter",
+    "value": "2",
+    "suffix": "X",
+    "title": "Networking with Industry"
+   },
+   {
+    "type": "heading",
+    "text": "what people say",
+    "sub": "testimonials"
+   },
+   {
+    "type": "testimonials",
+    "items": [
+     {
+      "title": "Great Event!",
+      "quote": "Attending the World Changers Summit was a game-changer for me. The efficiency with which the event was organized truly impressed me.",
+      "author": "Robert Grant"
+     },
+     {
+      "title": "Incredible Conf!",
+      "quote": "This summit empowered me with the knowledge and connections needed to make a real difference in the world. I can't wait for the next one!",
+      "author": "Nina Larinson"
+     },
+     {
+      "title": "Interesting Summit!",
+      "quote": "The World Changers Summit exceeded my expectations in every way. From registration to the final keynote, everything flowed seamlessly. What really stood out, though, was the content.",
+      "author": "Mikky Peterson"
+     }
+    ]
+   }
+  ]
+ },
+ "our-mission": {
+  "slug": "our-mission",
+  "title": "Our Mission",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<p>The World Changer Summit is a premier platform dedicated to fostering transformative collaboration and innovation. We bring together leaders from diverse sectors—including government, business, academia, and civil society—to tackle the world’s most pressing challenges with a spirit of unity and shared purpose.</p> <p>In an era defined by unprecedented complexity and rapid change, the World Changer Summit provides a neutral and inclusive space for impactful dialogue and collective action. As a not-for-profit initiative, we are committed to operating independently and impartially, free from any special interests. Our dedication to the highest standards of governance and integrity ensures that our efforts are guided by principles of fairness, transparency, and the power of human intellectual.</p> <p>Central to our mission is the belief in the extraordinary potential of human creativity, entrepreneurship, and collaboration. We are dedicated to creating an environment where diverse perspectives are valued and where meaningful conversations can drive ethical and innovative solutions. By uniting stakeholders with a shared vision for progress, we aim to catalyse initiatives that address global and regional challenges.</p> <p>Our commitment to systemic change is reflected in our focus on fostering partnerships and driving initiatives across key areas of impact. Through strategic collaborations and targeted actions, we work to translate ambitious goals into tangible outcomes, supported by a community of committed and forward-thinking individuals and organizations. Together, we strive to create a world where cooperation, mutual respect, and ethical practices pave the way for enduring progress and positive change. By leveraging our collective expertise and resources, we are dedicated to advancing a future characterized by social equity, global harmony, and innovative progress.</p>"
+   }
+  ]
+ },
+ "history": {
+  "slug": "history",
+  "title": "History",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<p>The World Changer Summit, founded by Sir Professor Gabriele Pao-Pei Andreoli, began with a vision to unite brilliant minds and innovative spirits in a quest for transformative change. Established with the aim of fostering ethical and social innovation, our summit has evolved into a premier global gathering that bridges diverse fields of expertise and thought.</p> <p>In its initial phase, the World Changer Summit was launched to create a platform for visionary leaders, scientists, entrepreneurs, and experts to come together. The first event took place at the Pontifical Academy of Sciences in Vatican City. The summit was conceived as a place of boundless inspiration and profound exploration. Our mission was to advance values and economic progress, providing a space where expansive consciousness and collective intellect could thrive.</p> <p>As the summit grew, it developed into a global network of institutions and thought leaders dedicated to addressing the world’s most pressing challenges. The World Changer Summit became known for its diverse array of forums, each meticulously curated to explore distinct subjects and foster impactful dialogue. These exclusive events are not only platforms for knowledge exchange but also gateways to transcending boundaries and forging new pathways for progress.</p> <p>In subsequent phases, the summit expanded its reach and influence by creating a series of VIP gatherings that showcase creative synergy and collaborative effort. These gatherings are celebrated as a harmonious blend of scholarly pursuits and human empathy, uniting forward-thinking minds from various disciplines.</p> <p>Today, the World Changer Summit continues to evolve, reflecting our commitment to ethical practices and innovative solutions. We have established ourselves as a key facilitator of global dialogue and collaboration, where diverse perspectives are valued and meaningful conversations drive systemic change. Our gatherings are more than academic events; they are transformative experiences that celebrate collective intellect and encourage active participation in shaping a better world. Looking ahead, the World Changer Summit remains dedicated to expanding its global network and deepening its impact. Our goal is to create a future where cooperation, respect, and ethical practices lead to enduring progress and positive change.</p>"
+   }
+  ]
+ },
+ "about-us": {
+  "slug": "about-us",
+  "title": "ABOUT",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/World-Changers-Summit-forum-2.png",
+  "blocks": [
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/08/World-Changers-Summit-forum-2-1024x519.png",
+    "alt": ""
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/World-Changers-Summit-images-4.png",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p>In partnership with</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Monte-Crypto-Club-logo-blue-orange-1024x250.png",
+    "alt": ""
+   },
+   {
+    "type": "video",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/05/World-Changers-Summit-2023_1.mp4"
+   },
+   {
+    "type": "heading",
+    "text": "You give us courage"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Pope-Francis.png",
+    "alt": ""
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Father-Cosma.png",
+    "alt": ""
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Baba-Mondi.png",
+    "alt": ""
+   },
+   {
+    "type": "heading",
+    "text": "our events",
+    "sub": "immense experience"
+   },
+   {
+    "type": "cards",
+    "items": [
+     {
+      "title": "The First Annual World Changer’s Summit",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/covnew-updated.jpg",
+      "href": "/events/the-first-annual-world-changers-summit/"
+     },
+     {
+      "title": "The First Annual World Changer’s Summit",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/covnew-updated.jpg",
+      "href": "/events/the-first-annual-world-changers-summit/"
+     },
+     {
+      "title": "The First Annual World Changer’s Summit",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/covnew-updated.jpg",
+      "href": "/events/the-first-annual-world-changers-summit/"
+     },
+     {
+      "title": "The First Annual World Changer’s Summit",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/covnew-updated.jpg",
+      "href": "/events/the-first-annual-world-changers-summit/"
+     }
+    ]
+   }
+  ]
+ },
+ "board-of-directors": {
+  "slug": "board-of-directors",
+  "title": "Board of Directors",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/gabriele1.png",
+  "blocks": [
+   {
+    "type": "people",
+    "people": [
+     {
+      "slug": "gabriele-pao-pei-andreoli",
+      "name": "Gabriele Pao-Pei Andreoli",
+      "role": "Founder",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/gabriele1-720x840.png"
+     },
+     {
+      "slug": "christina-rahm",
+      "name": "Christina Rahm",
+      "role": "Board Member",
+      "image": "https://wcsiasc.org/wp-content/uploads/2024/05/christina-rahm1-720x840.png"
+     },
+     {
+      "slug": "jessica-word",
+      "name": "Jessica Word",
+      "role": "Board Member",
+      "image": "https://wcsiasc.org/wp-content/uploads/2024/08/jessicaward-720x840.png"
+     },
+     {
+      "slug": "karl-nagy",
+      "name": "Karl Nagy",
+      "role": "Vice President",
+      "image": "https://wcsiasc.org/wp-content/uploads/2024/11/karlnagy-720x840.png"
+     },
+     {
+      "slug": "hazleen-ahmad",
+      "name": "Hazleen Ahmad",
+      "role": "Vice President",
+      "image": "https://wcsiasc.org/wp-content/uploads/2025/09/Hazleen-Ahmad-720x840.png"
+     }
+    ]
+   },
+   {
+    "type": "html",
+    "html": "<a href=\"/network/hazleen-ahmad/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Hazleen-Ahmad.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/hazleen-ahmad/\">Hazleen Ahmad</a></h3><a href=\"/network/hazleen-ahmad/\">read more</a> <a href=\"/network/gabriele-pao-pei-andreoli/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/gabriele1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/gabriele-pao-pei-andreoli/\">Gabriele Pao-Pei Andreoli</a></h3><a href=\"/network/gabriele-pao-pei-andreoli/\">read more</a> <a href=\"/network/karl-nagy/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/11/karlnagy.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/karl-nagy/\">Karl Nagy</a></h3><a href=\"/network/karl-nagy/\">read more</a> <a href=\"/network/christina-rahm/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/05/christina-rahm1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/christina-rahm/\">Christina Rahm</a></h3><a href=\"/network/christina-rahm/\">read more</a> <a href=\"/network/jessica-word/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/08/jessicaward.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/jessica-word/\">Jessica Word</a></h3><a href=\"/network/jessica-word/\">read more</a>"
+   }
+  ]
+ },
+ "ambassadors": {
+  "slug": "ambassadors",
+  "title": "Ambassadors",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "No related network members found."
+   }
+  ]
+ },
+ "our-team": {
+  "slug": "our-team",
+  "title": "Our Team",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/05/gabriii-e1693996788463-720x840.jpeg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "TEAM",
+    "sub": "members"
+   },
+   {
+    "type": "people",
+    "people": [
+     {
+      "slug": "slava-kabantsev",
+      "name": "SLAVA KABANTSEV",
+      "role": "WCS",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/06/slavakabantsev-720x840.jpeg"
+     },
+     {
+      "slug": "prof-giuseppe-tedeschi",
+      "name": "Prof. GIUSEPPE TEDESCHI",
+      "role": "Protocol Master",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/tedeschii-e1693996906907-720x840.jpg"
+     },
+     {
+      "slug": "alda-gashi",
+      "name": "ALDA GASHI",
+      "role": "Chief Financial Officer",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/team-img4-720x840.jpg"
+     },
+     {
+      "slug": "patrizia-marin",
+      "name": "PATRIZIA MARIN",
+      "role": "Founder and Chair of Marco Polo Experience",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/patriziamarin1-720x840.png"
+     },
+     {
+      "slug": "igli-tola",
+      "name": "IGLI TOLA",
+      "role": "Special Advisor",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/team-img5-720x840.jpg"
+     },
+     {
+      "slug": "melisa-braho",
+      "name": "MELISA BRAHO",
+      "role": "Production Manager",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/melisabraho-e1693997010824-720x840.jpg"
+     },
+     {
+      "slug": "prof-lawrence-m-krauss",
+      "name": "Prof. Lawrence M.Krauss",
+      "role": "Theoretical Physicist",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/08/lawrencekrauss-720x840.png"
+     },
+     {
+      "slug": "joe-foster",
+      "name": "Joe Foster",
+      "role": "Founder of Reebook",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/joefoster-720x840.png"
+     },
+     {
+      "slug": "dr-michael-tjalve",
+      "name": "Dr. Michael Tjalve",
+      "role": "Chief AI Architect on the Tech for Social Impact",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/michaeltjalve-e1729376716826-720x840.png"
+     },
+     {
+      "slug": "robert-grant",
+      "name": "Robert Grant",
+      "role": "TV Host & Polymath",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/Robert-Edward-Grant-720x840.png"
+     },
+     {
+      "slug": "warren-woon",
+      "name": "Warren Woon",
+      "role": "Co-founder & CEO of Xctuality",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/warrenwoon-720x840.png"
+     },
+     {
+      "slug": "adrian-olivero",
+      "name": "Adrian Olivero",
+      "role": "Xctuality Team",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/adrian-olivero-720x840.png"
+     },
+     {
+      "slug": "andrea-dabramo",
+      "name": "Andrea D’Abramo",
+      "role": "Founder of Grey Swan Risk Advisors ltd",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/andreadabramo-720x840.png"
+     },
+     {
+      "slug": "prof-dr-adolfo-panfili",
+      "name": "Prof. Dr. Adolfo Panfili",
+      "role": "MD President of International Association for Orthomolecular Medicine & Founder of Robotic & Regenerative Society",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/adolfopanfili-720x840.png"
+     },
+     {
+      "slug": "prof-gustavo-montero",
+      "name": "Prof. Gustavo Montero",
+      "role": "Founder/Chaiman Carter & Capital",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/gustavomontero-1-720x840.png"
+     },
+     {
+      "slug": "prof-martin-nkafu-nkemnkia",
+      "name": "Prof. Martin Nkafu Nkemnkia",
+      "role": "President of NCDEIF Nkemnkia Community Development Empowerment International Foundation",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/martinnkafunkemnkia-720x840.png"
+     },
+     {
+      "slug": "dr-michele-tribuzio",
+      "name": "Dr. Michele Tribuzio",
+      "role": "Uncle Mike",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/micheletribuzion-720x840.png"
+     },
+     {
+      "slug": "giuseppe-gatti",
+      "name": "Giuseppe Gatti",
+      "role": "Speaker",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/giuseppegatti-720x840.png"
+     },
+     {
+      "slug": "leonardo-pelagotti",
+      "name": "Leonardo Pelagotti",
+      "role": "CEO of Inspire Academy and Inspire Potential",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/leonardopelagaotti-720x840.png"
+     },
+     {
+      "slug": "antonino-galloni",
+      "name": "Antonino Galloni",
+      "role": "Economist & Author",
+      "image": "https://wcsiasc.org/wp-content/uploads/2023/09/antoniogalloni-720x840.png"
+     }
+    ]
+   }
+  ]
+ },
+ "contacts": {
+  "slug": "contacts",
+  "title": "Contacts",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "get in touch with us",
+    "sub": "contact us",
+    "body": "<p>Get in touch to discuss your needs today. Feel free to drop us an email.</p>"
+   },
+   {
+    "type": "info",
+    "title": "contacts",
+    "text": "www.iascoop.orgworld@iascoop.org",
+    "href": "https://iascoop.org/"
+   },
+   {
+    "type": "social",
+    "items": [
+     {
+      "href": "https://facebook.com/",
+      "label": "Facebook-f"
+     },
+     {
+      "href": "http://linkedin.com",
+      "label": "Linkedin-in"
+     },
+     {
+      "href": "https://www.instagram.com/",
+      "label": "Instagram"
+     }
+    ]
+   },
+   {
+    "type": "html",
+    "html": "<p>Your email address will not be published. Required fields are marked *</p>"
+   }
+  ]
+ },
+ "donate": {
+  "slug": "donate",
+  "title": "Donate",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<p><strong>Make a Difference Today</strong></p><p>At the World Changer Summit, we believe in the power of collective action to drive meaningful change and create a better future for all. Your support is crucial in helping us bring together visionaries, innovators, and leaders who are committed to making a positive impact on our world.</p><p><strong>Why Donate?</strong></p>"
+   },
+   {
+    "type": "list",
+    "items": [
+     "Empowering Change: Your contribution directly supports the World Changer Summit, providing essential resources and opportunities for individuals and organizations dedicated to creating innovative solutions and addressing pressing global challenges.",
+     "Building a Brighter Future: By donating, you play a key role in shaping a brighter future. Your support helps us host impactful events, foster collaboration, and drive sustainable progress across various sectors.",
+     "Joining a Global Movement: When you donate to the World Changer Summit, you become part of a global movement striving for transformative change. Together, we can achieve extraordinary outcomes and inspire action on a global scale."
+    ]
+   },
+   {
+    "type": "html",
+    "html": "<p><strong>Your Gift Matters:</strong></p><p>Every donation, no matter the amount, is a vital contribution to our mission. Your support will be used effectively to enhance the summit experience, facilitate groundbreaking discussions, and drive real-world impact.</p><p><strong>Thank You for Your Generosity:</strong></p><p>We are deeply grateful for your support. Your generosity is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact. Thank you for being a part of this journey.</p><p><strong>Donate Today:</strong></p><p>Be a catalyst for change by making a donation to the World Changer Summit. To contribute, visit our secure donation page <a href=\"/donations/givewp-donation-form/\">HERE</a> or contact us at <a href=\"mailto:world@iascoop.org\">world@iascoop.org</a> for more information on other ways to give.</p><p>Together, we can make a significant difference and shape a brighter future for everyone. Thank you for your generosity and commitment to our cause.</p><p><strong>Bank Details</strong></p><p><strong>Account Name:</strong> FONDACIONI IASC M22005452G<br><strong>Beneficiary Bank:</strong> Raiffeisen Bank Sha<br><strong>SWIFT Code:</strong> SGSBALTX<br><strong>IBAN:</strong> AL72 2021 1006 0000 0000 0169 2889</p>"
+   }
+  ]
+ },
+ "yougiveuscourage": {
+  "slug": "yougiveuscourage",
+  "title": "COURAGE",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/04/Pope-Francis.png",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "You Give Us Courage"
+   },
+   {
+    "type": "html",
+    "html": "<p>“The people who are crazy enough to think they can change the world are the ones who do. “Steve Jobs, American business magnate”. <br>In our short history at IASC we have demonstrated that together we can achieve a lot. We have to thank so many wonderful people for making our journey extraordinary, for giving us the strength and the courage to embark and pursue so many activities, sometimes just with their example, others with an encounter, a sign of appreciation, meeting or a letter.</p>"
+   }
+  ]
+ },
+ "venue": {
+  "slug": "venue",
+  "title": "VENUE",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<a href=\"/events/locations/vatican-museums/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/DSC_5884.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/vatican-museums/\">Vatican Museums</a></h3> <a href=\"/events/locations/vatican-museums/\">read more</a> <a href=\"/events/locations/the-pontifical-academy-of-sciences/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/06/ponti.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/the-pontifical-academy-of-sciences/\">The Pontifical Academy of Sciences</a></h3> <a href=\"/events/locations/the-pontifical-academy-of-sciences/\">read more</a> <a href=\"/events/locations/cancelleria-palace/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/DSC_5078.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/cancelleria-palace/\">Cancelleria Palace</a></h3> <a href=\"/events/locations/cancelleria-palace/\">read more</a> <a href=\"/events/locations/lateran-apostolic-palace/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/apostol1.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/lateran-apostolic-palace/\">The Lateran Apostolic Palace</a></h3> <a href=\"/events/locations/lateran-apostolic-palace/\">read more</a> <a href=\"/events/locations/skopje/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/07/best-things-to-do-in-skopje-main-image-hd-op.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/skopje/\">Skopje</a></h3> <a href=\"/events/locations/skopje/\">read more</a> <a href=\"/events/locations/venus-the-lateran-university/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/11/Universita-picture.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/venus-the-lateran-university/\">Venus The Lateran University</a></h3> <a href=\"/events/locations/venus-the-lateran-university/\">read more</a> <a href=\"/events/locations/village-davos/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/Davos-Village.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/village-davos/\">Village Davos</a></h3> <a href=\"/events/locations/village-davos/\">read more</a> <a href=\"/events/locations/st-moritz-switzerland/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/04/moritz3.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/st-moritz-switzerland/\">St. Moritz Switzerland</a></h3> <a href=\"/events/locations/st-moritz-switzerland/\">read more</a> <a href=\"/events/locations/dubai-united-arab-emirates/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/dubaivenue.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/dubai-united-arab-emirates/\">Dubai, United Arab Emirates</a></h3> <a href=\"/events/locations/dubai-united-arab-emirates/\">read more</a> <a href=\"/events/locations/spartanburg-south-carolina/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/spartansburg.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/spartanburg-south-carolina/\">Spartanburg, South Carolina</a></h3> <a href=\"/events/locations/spartanburg-south-carolina/\">read more</a> <a href=\"/events/locations/explorer-club-new-york/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/explorer-club.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/explorer-club-new-york/\">Explorer Club New York</a></h3> <a href=\"/events/locations/explorer-club-new-york/\">read more</a> <a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/brancaccio.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\">Princess Salons of Palazzo Brancaccio</a></h3> <a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\">read more</a> <a href=\"/events/locations/casina-pio-iv/\"></a> <h3><a href=\"/events/locations/casina-pio-iv/\">Casina Pio IV</a></h3> <a href=\"/events/locations/casina-pio-iv/\">read more</a> <a href=\"/events/locations/vatican-city-2/\"></a> <h3><a href=\"/events/locations/vatican-city-2/\">Vatican City</a></h3> <a href=\"/events/locations/vatican-city-2/\">read more</a> <a href=\"/events/locations/porto-palermo/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/portopalermo.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/porto-palermo/\">Porto Palermo, Albania</a></h3> <a href=\"/events/locations/porto-palermo/\">read more</a> <a href=\"/events/locations/riyadh-saudi-arabia/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/Web_KSSO_Dome_7.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/riyadh-saudi-arabia/\">KSSO, Saudi Arabia</a></h3> <a href=\"/events/locations/riyadh-saudi-arabia/\">read more</a> <a href=\"/events/locations/maison-assouline-diriyah/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/maison-assouline.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/maison-assouline-diriyah/\">Maison Assouline</a></h3> <a href=\"/events/locations/maison-assouline-diriyah/\">read more</a> <a href=\"/events/locations/villa-bardha/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/villabardha.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/villa-bardha/\">Villa Bardha, Tirane, Albania</a></h3> <a href=\"/events/locations/villa-bardha/\">read more</a> <a href=\"/events/locations/monte-carlo/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/monte-carlo.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/monte-carlo/\">Monte Carlo</a></h3> <a href=\"/events/locations/monte-carlo/\">read more</a> <a href=\"/events/locations/polytechnic-university-of-tirana/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/03/Polytechnic-University-of-Tirana.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/polytechnic-university-of-tirana/\">Polytechnic University of Tirana</a></h3> <a href=\"/events/locations/polytechnic-university-of-tirana/\">read more</a> <a href=\"/events/locations/palace-of-brigadave/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/03/Pallati_i_Brigadave_South_side.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/palace-of-brigadave/\">Palace of Brigadave</a></h3> <a href=\"/events/locations/palace-of-brigadave/\">read more</a> <a href=\"/events/locations/municipality-of-assisi/\"></a> <h3><a href=\"/events/locations/municipality-of-assisi/\">Municipality of Assisi</a></h3> <a href=\"/events/locations/municipality-of-assisi/\">read more</a> <a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/06/sansilvestro.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\">Church of San Silvestro al Quirinale</a></h3> <a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\">read more</a> <a href=\"/events/locations/the-castle-of-porto-palermo/\"></a> <h3><a href=\"/events/locations/the-castle-of-porto-palermo/\">The Castle of Porto Palermo</a></h3> <a href=\"/events/locations/the-castle-of-porto-palermo/\">read more</a> <a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/09/basilica.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\">Basilica di Santa Maria in Montesanto, Chiesa degli Artisti</a></h3> <a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\">read more</a> <a href=\"/events/locations/himare/\"></a> <h3><a href=\"/events/locations/himare/\">Himarë</a></h3> <a href=\"/events/locations/himare/\">read more</a> <a href=\"/events/locations/studio-26/\"></a> <h3><a href=\"/events/locations/studio-26/\">Studio 26 Vicolo del Fico 3</a></h3> <a href=\"/events/locations/studio-26/\">read more</a>"
+   }
+  ]
+ },
+ "locations": {
+  "slug": "locations",
+  "title": "Locations",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<a href=\"/events/locations/vatican-museums/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/DSC_5884.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/vatican-museums/\">Vatican Museums</a></h3> <a href=\"/events/locations/vatican-museums/\">read more</a> <a href=\"/events/locations/the-pontifical-academy-of-sciences/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/06/ponti.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/the-pontifical-academy-of-sciences/\">The Pontifical Academy of Sciences</a></h3> <a href=\"/events/locations/the-pontifical-academy-of-sciences/\">read more</a> <a href=\"/events/locations/cancelleria-palace/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/DSC_5078.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/cancelleria-palace/\">Cancelleria Palace</a></h3> <a href=\"/events/locations/cancelleria-palace/\">read more</a> <a href=\"/events/locations/lateran-apostolic-palace/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/apostol1.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/lateran-apostolic-palace/\">The Lateran Apostolic Palace</a></h3> <a href=\"/events/locations/lateran-apostolic-palace/\">read more</a> <a href=\"/events/locations/skopje/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/07/best-things-to-do-in-skopje-main-image-hd-op.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/skopje/\">Skopje</a></h3> <a href=\"/events/locations/skopje/\">read more</a> <a href=\"/events/locations/venus-the-lateran-university/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/11/Universita-picture.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/venus-the-lateran-university/\">Venus The Lateran University</a></h3> <a href=\"/events/locations/venus-the-lateran-university/\">read more</a> <a href=\"/events/locations/village-davos/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/Davos-Village.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/village-davos/\">Village Davos</a></h3> <a href=\"/events/locations/village-davos/\">read more</a> <a href=\"/events/locations/st-moritz-switzerland/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/04/moritz3.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/st-moritz-switzerland/\">St. Moritz Switzerland</a></h3> <a href=\"/events/locations/st-moritz-switzerland/\">read more</a> <a href=\"/events/locations/dubai-united-arab-emirates/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/dubaivenue.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/dubai-united-arab-emirates/\">Dubai, United Arab Emirates</a></h3> <a href=\"/events/locations/dubai-united-arab-emirates/\">read more</a> <a href=\"/events/locations/spartanburg-south-carolina/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/spartansburg.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/spartanburg-south-carolina/\">Spartanburg, South Carolina</a></h3> <a href=\"/events/locations/spartanburg-south-carolina/\">read more</a> <a href=\"/events/locations/explorer-club-new-york/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/explorer-club.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/explorer-club-new-york/\">Explorer Club New York</a></h3> <a href=\"/events/locations/explorer-club-new-york/\">read more</a> <a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/brancaccio.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\">Princess Salons of Palazzo Brancaccio</a></h3> <a href=\"/events/locations/princess-salons-of-palazzo-brancaccio/\">read more</a> <a href=\"/events/locations/casina-pio-iv/\"></a> <h3><a href=\"/events/locations/casina-pio-iv/\">Casina Pio IV</a></h3> <a href=\"/events/locations/casina-pio-iv/\">read more</a> <a href=\"/events/locations/vatican-city-2/\"></a> <h3><a href=\"/events/locations/vatican-city-2/\">Vatican City</a></h3> <a href=\"/events/locations/vatican-city-2/\">read more</a> <a href=\"/events/locations/porto-palermo/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/portopalermo.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/porto-palermo/\">Porto Palermo, Albania</a></h3> <a href=\"/events/locations/porto-palermo/\">read more</a> <a href=\"/events/locations/riyadh-saudi-arabia/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/Web_KSSO_Dome_7.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/riyadh-saudi-arabia/\">KSSO, Saudi Arabia</a></h3> <a href=\"/events/locations/riyadh-saudi-arabia/\">read more</a> <a href=\"/events/locations/maison-assouline-diriyah/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/maison-assouline.webp\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/maison-assouline-diriyah/\">Maison Assouline</a></h3> <a href=\"/events/locations/maison-assouline-diriyah/\">read more</a> <a href=\"/events/locations/villa-bardha/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/villabardha.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/villa-bardha/\">Villa Bardha, Tirane, Albania</a></h3> <a href=\"/events/locations/villa-bardha/\">read more</a> <a href=\"/events/locations/monte-carlo/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/02/monte-carlo.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/monte-carlo/\">Monte Carlo</a></h3> <a href=\"/events/locations/monte-carlo/\">read more</a> <a href=\"/events/locations/polytechnic-university-of-tirana/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/03/Polytechnic-University-of-Tirana.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/polytechnic-university-of-tirana/\">Polytechnic University of Tirana</a></h3> <a href=\"/events/locations/polytechnic-university-of-tirana/\">read more</a> <a href=\"/events/locations/palace-of-brigadave/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/03/Pallati_i_Brigadave_South_side.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/palace-of-brigadave/\">Palace of Brigadave</a></h3> <a href=\"/events/locations/palace-of-brigadave/\">read more</a> <a href=\"/events/locations/municipality-of-assisi/\"></a> <h3><a href=\"/events/locations/municipality-of-assisi/\">Municipality of Assisi</a></h3> <a href=\"/events/locations/municipality-of-assisi/\">read more</a> <a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/06/sansilvestro.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\">Church of San Silvestro al Quirinale</a></h3> <a href=\"/events/locations/church-of-san-silvestro-al-quirinale/\">read more</a> <a href=\"/events/locations/the-castle-of-porto-palermo/\"></a> <h3><a href=\"/events/locations/the-castle-of-porto-palermo/\">The Castle of Porto Palermo</a></h3> <a href=\"/events/locations/the-castle-of-porto-palermo/\">read more</a> <a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/09/basilica.jpg\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\">Basilica di Santa Maria in Montesanto, Chiesa degli Artisti</a></h3> <a href=\"/events/locations/basilica-di-santa-maria-in-montesanto/\">read more</a> <a href=\"/events/locations/himare/\"></a> <h3><a href=\"/events/locations/himare/\">Himarë</a></h3> <a href=\"/events/locations/himare/\">read more</a> <a href=\"/events/locations/studio-26/\"></a> <h3><a href=\"/events/locations/studio-26/\">Studio 26 Vicolo del Fico 3</a></h3> <a href=\"/events/locations/studio-26/\">read more</a>"
+   }
+  ]
+ },
+ "terms-conditions": {
+  "slug": "terms-conditions",
+  "title": "Terms & Conditions",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<p>1. الإقرار بالأهلية واللغة</p>\n<p>English</p>\n<p>I confirm that I possess full legal capacity and sufficient proficiency in the English language to read, understand, and legally approve the Terms and Conditions of Participation.</p>\n<p>Arabic</p>\n<p>أقرّ بأنني أتمتع بالأهلية القانونية الكاملة لإبرام الاتفاقيات الملزمة، وأن لدي القدرة الكافية على فهم اللغة الإنجليزية وقراءة واستيعاب والموافقة القانونية الكاملة على شروط وأحكام المشاركة.</p>\n<p>2. الالتزام بالأنظمة والقوانين</p>\n<p>English</p>\n<p>I acknowledge that the Event is conducted in full compliance with the laws and regulations of the Kingdom of Saudi Arabia and in alignment with the objectives of Saudi Vision 2030. I agree to comply fully with all applicable laws and security procedures.</p>\n<p>Arabic</p>\n<p>أقرّ بأن هذا الحدث يُقام وفقًا للأنظمة والقوانين المعمول بها في المملكة العربية السعودية، وبما يتماشى مع مستهدفات رؤية المملكة 2030. وألتزم بالامتثال الكامل لكافة الأنظمة والتعليمات والإجراءات الأمنية المعمول بها.</p>\n<p>3. طبيعة الحدث</p>\n<p>English</p>\n<p>The Event is strictly non-political and non-religious. Participation does not constitute engagement in any political or religious activity.</p>\n<p>Arabic</p>\n<p>هذا الحدث ذو طابع غير سياسي وغير ديني بشكل صارم، ولا يُعدّ المشاركة فيه انخراطًا في أي نشاط سياسي أو ديني.</p>\n<p>4. التنازل عن المسؤولية وتحمل المخاطر</p>\n<p>English</p>\n<p>I voluntarily assume all risks associated with participation and waive any claims against IASC World Changers and its affiliates for injury, illness, allergic reaction, property loss, or other damages arising from participation.</p>\n<p>Arabic</p>\n<p>أتحمل طوعًا جميع المخاطر المرتبطة بالمشاركة، وأتنازل عن أي مطالبات ضد IASC World Changers أو الجهات التابعة لها فيما يتعلق بأي إصابة أو مرض أو حساسية غذائية أو فقدان ممتلكات أو أي أضرار أخرى ناتجة عن المشاركة.</p>\n<p>5. التعويض</p>\n<p>English</p>\n<p>I agree to indemnify and hold harmless IASC World Changers from any claims arising from my breach of the Terms or violation of applicable law.</p>\n<p>Arabic</p>\n<p>أوافق على تعويض وإبراء ذمة IASC World Changers من أي مطالبات أو خسائر تنشأ عن إخلالي بالشروط أو مخالفتي للأنظمة المعمول بها.</p>\n<p>6. التصوير والتوثيق الإعلامي</p>\n<p>English</p>\n<p>Unauthorized recording is prohibited. I grant permission for official documentation and institutional use of event media materials.</p>\n<p>Arabic</p>\n<p>يُحظر التسجيل أو التصوير غير المصرح به. وأمنح الموافقة على التوثيق الرسمي واستخدام المواد الإعلامية الخاصة بالحدث للأغراض المؤسسية.</p>\n<p>7. القانون الواجب التطبيق</p>\n<p>English</p>\n<p>This declaration is governed by the laws of the Kingdom of Saudi Arabia.</p>\n<p>Arabic</p>\n<p>يخضع هذا الإقرار لأنظمة وقوانين المملكة العربية السعودية.</p>"
+   }
+  ]
+ },
+ "world-changers-economic-summit": {
+  "slug": "world-changers-economic-summit",
+  "title": "World Changers Economic Summit",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/cover-women.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "World Changers Economic Summit"
+   },
+   {
+    "type": "html",
+    "html": "<p>It is imperative that we, as a society, reclaim our ethical values and reinstate the importance of public service. Furthermore, we must confront the challenges of financial policy and monetary control. Our collective efforts must be directed towards providing tangible solutions to global predicaments. Held on the month of November 2024 at the Pontifical Academy of Sciences in Vatican City “The world Changers Economic Summit” will be on “The Digital Future of the world and the possible role of the Vatican State” focusing on the latest trends, challenges, and opportunities in the Digital Industry with a focus on Blockchain Technologies and its various applications. As usual a maximum of 21 (top in the field) speakers will be selected. Under the guidance of the Institute for Advance Studies and Cooperation the Summit will produce a report a document of vision and knowledge. The event is intended to be small and very focused. It will be globally announced and live streamed to the world. His Holiness, and a number of key members of the Vatican administration are expected to participate.</p>"
+   },
+   {
+    "type": "heading",
+    "text": "Events List"
+   }
+  ]
+ },
+ "world-changers-biohacking-summit": {
+  "slug": "world-changers-biohacking-summit",
+  "title": "World Changers Biohacking Summit",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/covnewbiohackingeventimage.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "World Changers Biohacking Summit"
+   },
+   {
+    "type": "html",
+    "html": "<p>Welcome to an elite, invitation-only assembly of top-tier professionals and pioneering companies. This is our crucible, where tomorrow’s visions take form and we discover solutions that promote global well-being. Our discussions intertwine ethics, technology, pioneering research, risk management, security, and the profound implications of artificial intelligence in medicine. At the heart of our dialogue is Evolutionary Biohacking. This holistic approach taps into an array of techniques—spanning medical, nutritional, biological, electronic, and even cosmetic—to elevate our body’s potential, sharpen our minds, and enhance the quality of life we lead.</p>"
+   },
+   {
+    "type": "heading",
+    "text": "Events List"
+   }
+  ]
+ },
+ "world-changers-power-womens-summit": {
+  "slug": "world-changers-power-womens-summit",
+  "title": "World Changers Power Women’s Summit",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/covertemplatewomen2-1.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "World Changers Power Women’s Summit"
+   },
+   {
+    "type": "html",
+    "html": "<p>WCPWS World Changers Power Women’s Summit—an intimate gathering that champions both intellectual rigor and heartfelt connection. Our summit is meticulously curated, bringing together some of the most forward-thinking minds from the diverse terrains of law, the expansive realms of academia, the impactful world of the non-profit sector, and the ever-evolving spheres of politics, among others. Each speaker, distinguished in their domain, has a concise 10 minutes to share insights. More than just an academic conclave, this event is a celebration of collaborative thought. It’s where scholarship meets humanity, where ideas are both profound and profoundly personal. We invite you to be more than a spectator—be an active voice in this symphony of change. Participation is strictly by invitation</p>"
+   },
+   {
+    "type": "heading",
+    "text": "Events List"
+   }
+  ]
+ },
+ "emotions-revealed": {
+  "slug": "emotions-revealed",
+  "title": "Emotions Revealed",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/imageforevent.jpeg",
+  "blocks": [
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/imageforevent-1024x790.jpeg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<h3>Emotions Revealed</h3> <p>The Institute of Advanced Studies and Cooperation, in partnership with the MonteCrypto Club, proudly presents the concept “Emotions Revealed: The Making of the World Changers Power Women’s Summit.” More than just a photographic book, it will stand as a testament to leadership, innovation, unity, and legacy. Throughout the creation of the Summit, we recognized the risk of losing the magical moments shared with our esteemed guests. While the event was an overwhelming spiritual, media, and constructive triumph, we believed many intricate details might fade with time. Our aim was to immortalize these fleeting moments: from our guests’ inspiration and shared wisdom to their awe at the Sistine Chapel, the Vatican Gardens, the Vatican Museums, and the Academy of Pontifical Sciences. “Emotions Revealed” is our response: a large-format, handcrafted photographic book.</p>\n<p>The book will showcase the distinct styles from five photographers, with sections dedicated to their unique perspectives. These segments will capture key moments of the WCPWS: from the “white tie” award celebration at the Apostolic Chancery Palace to the private tour of the Vatican Museums, the breakfast in the Vatican Garden, and the summit at the Pontifical Academy of Science.</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/phoyo1.jpg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p><b>Walter Leonardi </b>was born in San Cataldo in 1945. From 1986 onwards he was the official photographer of the famous Norwegian anthropologist and explorer Thor Heyerdhal, the Kon-Tiki man. Following him he made important reportages on Easter Island, the Marquesas Islands, the archaeological and anthropological mysteries of Peru, Chile, Colombia, and the pyramids of Tenerife. Eclectic professional and tirelessly curious man, he has signed services ranging from the settlements of Italian gypsies to the operating table of the famous heart surgeon De Bakey, from the illegal migration of the Kurds to the caged prostitutes of Falkland road in Bombay to the gangs of Los Angeles; over time, with his lens, he has portrayed many protagonists of the cinema of yesterday and today: Visconti, Mastroianni, Sordi, Robert Mitchum, Mickey Rourke, John Ford, Oliver Stone, just to name a few. Some of his shots, such as that of Gorbachev’s dacha in Crimea in 1991, have been around the world. Between 1990 and 1991 he made the scoops on Soviet and Russian astronauts in Star City documenting training in the use of the Soyuz shuttles and the Mir Orbiting Station. The first and only Western photographer allowed to film the activities of “supermen” destined for space missions. He has published in over 400 magazines worldwide, including National Geographic, Life, Newsweek…</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/photo2.jpg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p><b>Roland Tasho</b>, an Albanian photographer, is celebrated for his captures of the 90s December protests and his focus on Albanian communities beyond borders. Since 2001, Tasho has produced 14 photo albums and has showcased his work in exhibitions globally. Notably, he earned the Soros prize in photography in 2000 and received recognition from Hungarian President Ader Janos in 2016.</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/anton.jpeg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p><b>Anton Giulio </b><b>Onofri</b> was born in Rome in 1959. Writer and director, with the start of the new century he decided to make independent artistic videos and documentary films about music, art and literature. He works with the magazines Close-Up and Artslife, for which he writes about cinema, music and miscellaneous current events. During Manifesta 12 he exhibited a series of photographs, In ascolto (Magneti Cowork, Parlermo, 2018). In 2019 he took part, with his photographs, in the exhibition Ritratto di famiglia (Roma, Galleria Nazionale). In 2020 he created for Galleria Nazionale Roma città chiusa, a photographic account of Rome deserted during the Covid-19 quarantine. The architecture magazine Panteon entrusted him with the entire photographic apparatus of the issue dedicated to the depiction of Roman places in Pasolini’s books and movies. In December, he opened the exhibition Non mi troverai at the Fondazione Pastificio Cerere in Rome, a photographic project about his friendship with the artist Gian Maria Tosatti. In February 2023, the exhibition is on display at the Fondazione Mudima in Milan.</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/photo4.jpg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p><b>Bruno </b><b>Sbrighi</b> is an Italian photographer who has built his career on film and television sets portraying the great actors and characters of cinema. His beginnings in fashion in Paris saw him collaborate with the great designers and with magazines such as “Elle”. After moving to Berlin, he finally arrived in Italy in the seventies where he dedicated himself to his true passion; film sets. Over the years he has collaborated with more than eighty film productions creating several hundred portraits with European film stars and directors, expertly telling with his photographs the work behind the quite of set designers, costume designers, producers, writers. From his ingenuity and vision have sprung several books and photographic exhibitions through which one can understand the evolution of cinema and its languages and techniques.</p>"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/photo5.jpg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<p><b>Sélène</b><b> de </b><b>Condat</b> a French artist who lives between Paris, Rome and Palermo. Her photographic work is rooted in day-to-day work, in the expertise and the ancestral knowledge of the professions. Interested in all the aspects of the life of workers, she devoted two large exhibitions to Paris’s sewage workers. Heroine of contemporaneity, the photographer boasts two catalogs to praise, both on forgotten works, the last of which, “Les artisans de la propreté” collects shots on black and white of garbage collectors, dark and shiny, currently on display in the City of Light, just inaugurated in the presence of the mayor Anne Hidalgo. She has been regarded in major magazine and exhibitions as her photographic work draws inspiration from ancient crafts and places the human being at the center of plastic and philosophical reflection. Her style is characterized by chiaroscuro.</p><h4>The Print</h4><ul><li>“Emotions Revealed” will be featured in a large-format, handcrafted photographic book, printed on specialized paper using select inks.</li><li>Out of the 30 numbered “Emotions Revealed” volumes, the first copy will be donated to the Holy Father.</li><li>Additionally, 200 numbered copies in a 12 by 12 format are available for pre-order at <a href=\"mailto:emotions@iascoop.org\">emotions@iascoop.org</a>.</li><li>This project is non-profit, and all proceeds will go towards humanitarian causes. Your support is deeply appreciated.</li></ul>"
+   }
+  ]
+ },
+ "spirit-of-quantum": {
+  "slug": "spirit-of-quantum",
+  "title": "Spirit of Quantum",
+  "image": "https://wcsiasc.org/wp-content/uploads/2026/10/EventBanner.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "One patron. One exceptional opportunity."
+   },
+   {
+    "type": "html",
+    "html": "<p>Your commitment to humanity’s future can mark the beginning of Spirit of Quantum 2027.</p><p><strong>22 October 2026 · €21,000 contribution</strong><br>One package, for the first confirmed patron.</p>"
+   },
+   {
+    "type": "button",
+    "text": "Register now — €21,000",
+    "href": "/the-spirit-of-quantum-registration-form/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2026/10/EventBanner.jpg",
+    "alt": ""
+   },
+   {
+    "type": "heading",
+    "text": "Your patron package",
+    "section": "patron-package"
+   },
+   {
+    "type": "html",
+    "html": "<p>Four ways your founding patronage will be recognised.</p>",
+    "section": "patron-package"
+   },
+   {
+    "type": "heading",
+    "text": "Transcendence by Rob Prior",
+    "section": "patron-package"
+   },
+   {
+    "type": "html",
+    "html": "<p>Take home a signed, limited-edition lithograph, <strong>No. 5 of 10</strong>. No. 1 in the edition was presented to the Holy Father; No. 2 to the Church of the Artists in Rome.</p>",
+    "section": "patron-package"
+   },
+   {
+    "type": "heading",
+    "text": "Visionary 2026 Award",
+    "section": "patron-package"
+   },
+   {
+    "type": "html",
+    "html": "<p>Receive the IASC World Changers <strong>“Visionary 2026 — Supporting Spirit of Quantum” Award</strong>, presented at the conclusion of the 22 October summit in recognition of your founding support.</p>",
+    "section": "patron-package"
+   },
+   {
+    "type": "heading",
+    "text": "Two VIP places",
+    "section": "patron-package"
+   },
+   {
+    "type": "html",
+    "html": "<p>Enjoy <strong>two VIP places at Spirit of Quantum 2027</strong>, with Guest-of-Honour recognition for the patron.</p>",
+    "section": "patron-package"
+   },
+   {
+    "type": "heading",
+    "text": "Your story in World Changers magazine",
+    "section": "patron-package"
+   },
+   {
+    "type": "html",
+    "html": "<p>A dedicated centre spread in <strong>IASC World Changers magazine</strong> will share your story, vision, and commitment to humanity’s future.</p>",
+    "section": "patron-package"
+   },
+   {
+    "type": "heading",
+    "text": "Supporting a human-centred quantum future"
+   },
+   {
+    "type": "html",
+    "html": "<p>Your patronage supports <strong>IASC World Changers</strong>, the <strong>Post-Quantum Constitution initiative</strong>, and the international dialogue bringing science, ethics, and human dignity to the centre of our quantum future.</p>"
+   },
+   {
+    "type": "heading",
+    "text": "Become a Visionary Patron"
+   },
+   {
+    "type": "html",
+    "html": "<p>Register and confirm your <strong>€21,000 contribution</strong> to secure this exclusive founding patronage opportunity on <strong>22 October 2026</strong>.</p>"
+   },
+   {
+    "type": "button",
+    "text": "Register now — €21,000",
+    "href": "/the-spirit-of-quantum-registration-form/"
+   },
+   {
+    "type": "html",
+    "html": "<p>For assistance, speak with the IASC team or confirm in writing to <a href=\"mailto:Spiritofquantum@iascoop.org\">Spiritofquantum@iascoop.org</a>.</p>"
+   },
+   {
+    "type": "heading",
+    "text": "Before you register"
+   },
+   {
+    "type": "html",
+    "html": "<p>Registration alone does not secure the package. Allocation, artwork handover, and the Visionary 2026 Award require confirmation of your contribution by IASC before the closing ceremony on 22 October 2026.</p>"
+   }
+  ]
+ },
+ "formal-award-ceremony-12-of-october": {
+  "slug": "formal-award-ceremony-12-of-october",
+  "title": "Formal award ceremony 12 of October",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/gabb.jpeg",
+  "blocks": [
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/gabb-1024x790.jpeg",
+    "alt": ""
+   },
+   {
+    "type": "html",
+    "html": "<h4>Formal award ceremony 12 of October</h4>\n<p>Apostolic Chancery Palace, was the first palazzo in Rome to be erected from the ground up in the new Renaissance style. According to Vasari the works were partly executed by Bramante. In the Palazzo is a vast mural that Giorgio Vasari completed in a mere 100 days, therefore named the Sala dei Cento Giorni. He boasted of this accomplishment to Michelangelo, who responded “Si vede” (“It shows”). And it is in this historical unique mesmerizing “sala dei cento Giorni” that the “World Changers Power Women’s Summit” has the exclusive honor to invite its prestigious guest on October the 12th 2023 to a formal award ceremony event and award ceremony. Please be aware this venue is by special invitation and requires formal award ceremony dressing.</p>"
+   }
+  ]
+ },
+ "speakers": {
+  "slug": "speakers",
+  "title": "Speakers",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<a href=\"/network/basma-albuharian-phd/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/Basma.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/basma-albuharian-phd/\"> Basma AlBuharian, PhD</a></h3><p>Managing Director Centre for Fourth Industrial Revolution Saudi Arabia (WEF Affiliate Centre)</p> <a href=\"/network/prof-dr-enika-abazi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/08/Enika-Abazi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/prof-dr-enika-abazi/\">Prof. Dr. Enika Abazi</a></h3><p>Director of Scientific Research Coordination at the Academy of Sciences</p> <a href=\"/network/alaa-abd-elsayed/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/05/Dr.-Alaa-Abd-Elsayed.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/alaa-abd-elsayed/\"> Dr. Alaa Abd-Elsayed</a></h3><p>Medical Director and Professor UW Madison WI, USA</p> <a href=\"/network/tim-ahmad/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/08/timahmad.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/tim-ahmad/\"> Tim Ahmad</a></h3><p>Founder of Fintech Linker</p> <a href=\"/network/hazleen-ahmad/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Hazleen-Ahmad.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/hazleen-ahmad/\"> Hazleen Ahmad</a></h3><p>Founder of the World Kindness Trust (WKT)</p> <a href=\"/network/mete-ai/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/meta.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/mete-ai/\"> Mete AI</a></h3><p>Founder of ICB Labs</p> <a href=\"/network/sheikh-abdul-aziz-al-nuaimi-green-sheikh/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/Sheikh-Abdul-Aziz-al-Nuaimi-Green-Sheikh.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/sheikh-abdul-aziz-al-nuaimi-green-sheikh/\">Sheikh Abdul Aziz al Nuaimi (Green Sheikh)</a></h3><p>Environmental adviser to the Government of Ajman</p> <a href=\"/network/dr-eng-abdullah-bin-ali-al-saihati/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/Al-Saihati.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/dr-eng-abdullah-bin-ali-al-saihati/\">Dr.Eng. Abdullah Bin Ali Al-Saihati</a></h3><p>Chairman of the Board of Directors of Al-Saihati Group of Companies</p> <a href=\"/network/ridvan-aliu/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/10/Untitled-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/ridvan-aliu/\"> Ridvan Aliu</a></h3><p>Founder and CEO of Future Minds Academy Kosove</p> <a href=\"/network/sheikh-omar-al-nuaimi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/sheikhomaralnuaimi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/sheikh-omar-al-nuaimi/\">Sheikh Omar AlNuaimi</a></h3><p>Technology Strategist at Microsoft</p> <a href=\"/network/gabriele-pao-pei-andreoli/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/gabriele1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/gabriele-pao-pei-andreoli/\"> Gabriele Pao-Pei Andreoli</a></h3><p>President of IASC &amp; Founder of W.C.S</p> <a href=\"/network/donessa-arbas/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/05/donessa.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/donessa-arbas/\"> Donessa Arbas</a></h3><p>Founder &amp; President of Growthinity Group | Co-Founder, ISELC</p> <a href=\"/network/fabio-ardossi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/10/fabioardossi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/fabio-ardossi/\"> Fabio Ardossi</a></h3><p>AI Advisor &amp; Board member of AlSaihati Intercultural Center</p> <a href=\"/network/skender-asani/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/skenderasani-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/skender-asani/\">Dr. Skender Asani</a></h3><p>Director of the Institute of Spiritual and Cultural Heritage of Albanians -Skopje</p> <a href=\"/network/lexye-aversa/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/05/Lexye-Aversa.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/lexye-aversa/\"> Lexye Aversa</a></h3><p>IASC Strategic Advisor for Global Alliances &amp; Humanitarian Initiatives</p> <a href=\"/network/akhtar-badshah/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/akhtar-badshah.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/akhtar-badshah/\"> Akhtar Badshah</a></h3><p>Best Seller Author </p> <a href=\"/network/ahmet-bagci/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/10/ahmetbagci.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/ahmet-bagci/\">Mr. Ahmet Bagci</a></h3><p>Deputy Minister The Ministry of Agriculture and Forestry The Republic of Türkiye</p> <a href=\"/network/ted-baker/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/tedbaker.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/ted-baker/\"> Ted Baker</a></h3><p>Board Member, dRc Ventures</p> <a href=\"/network/fiona-banister/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/10/fionabanister.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/fiona-banister/\"> Fiona Banister</a></h3><p>Co-Founder of Decarbonized.org and Climate Resilience Advocate</p> <a href=\"/network/liridona-beqiri/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/08/Liridona-Beqiri.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/liridona-beqiri/\"> Liridona Beqiri</a></h3><p>Lawyer, Public Affairs Expert &amp; Women's Rights Advocate</p> <a href=\"/network/andrea-bertuzzi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/05/Andrea-Bertuzzi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/andrea-bertuzzi/\"> Andrea Bertuzzi</a></h3><p>Founder &amp; CEO of 1806 Agency</p> <a href=\"/network/sergio-bevilacqua/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/05/Sergio-Bevilacqua.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/sergio-bevilacqua/\"> Sergio Bevilacqua</a></h3><p>Clinical Sociologist (Sociatrist)</p> <a href=\"/network/helene-blanchette/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/heleneblanchette.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/helene-blanchette/\"> Hélène Blanchette</a></h3><p>Advisor, National Environmental Health Association (NEHA)</p> <a href=\"/network/kim-bransdon/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/06/kimbransdon.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/kim-bransdon/\"> Kim Bransdon</a></h3><p>Leadership Advisor Entrepreneur | Author</p><ul><li>1</li><li><a href=\"/speakers/page/2/\">2</a></li><li><a href=\"/speakers/page/3/\">3</a></li><li>…</li><li><a href=\"/speakers/page/9/\">9</a></li><li><a href=\"/speakers/page/2/\"><i></i></a></li></ul>"
+   }
+  ]
+ },
+ "guests": {
+  "slug": "guests",
+  "title": "Guests",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<a href=\"/network/valeria-altobelli/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/ValeriaAltobelli.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/valeria-altobelli/\"> Valeria Altobelli</a></h3><p>International Law Expert</p> <a href=\"/network/benedetta-audia/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/benedetta-audia.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/benedetta-audia/\"> Benedetta Audia</a></h3><p>Principal of International Development LLC</p> <a href=\"/network/fadil-berisha/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/05/FADIL-BERISHA.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/fadil-berisha/\"> Fadil Berisha</a></h3><p>photographer</p> <a href=\"/network/dominique-cagle/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Dominique-Cagle-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/dominique-cagle/\"> Dominique Cagle</a></h3><p>Founder/Owner/CEO of Nika Corporate Housing</p> <a href=\"/network/lale-cander/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Lale-Cander.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/lale-cander/\"> Lale Cander</a></h3><p>TFF Board Member Lale Cander</p> <a href=\"/network/olen-cesari/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/olencesari.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/olen-cesari/\"> Olen Cesari</a></h3> <a href=\"/network/andreas-christopoulos/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Andreas-Christopoulos.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/andreas-christopoulos/\"> Andreas Christopoulos</a></h3><p>Medical Chief Neurosurgeon MD SOZO BRAIN CENTER</p> <a href=\"/network/ignazio-dogliani/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/11/ignaziodogliani.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/ignazio-dogliani/\"> Ignazio Dogliani</a></h3><p>Fininc Group</p> <a href=\"/network/rashmi-dube/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/10/rashmidube.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/rashmi-dube/\"> Rashmi Dube</a></h3><p>Partner at gunnercooke LLP and Expert in Litigation &amp; ESG Advisory</p> <a href=\"/network/alexander-evsyukov/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/Aleksander-evsyukov.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/alexander-evsyukov/\"> Alexander Evsyukov</a></h3><p>Guest of Honor</p> <a href=\"/network/francesco-favaro/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/francescofavaro.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/francesco-favaro/\"> Francesco Favaro</a></h3><p>Managing Director and Chairman of Watergy International LLC</p> <a href=\"/network/richard-finkelman/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/RichardFinkelman.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/richard-finkelman/\"> Richard Finkelman</a></h3><p>Managing Director at Secretariat Advisors, LLC</p> <a href=\"/network/zulia-frost/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Zulia-Frost.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/zulia-frost/\"> Zulia Frost</a></h3><p>Co-founder and clinical director at Recharge Health</p> <a href=\"/network/mike-fuhrmann/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Mike-Fuhrmann-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/mike-fuhrmann/\"> Mike Fuhrmann</a></h3><p>CEO &amp; Founder Eternal Echo AG / neuroVIZR</p> <a href=\"/network/alexander-galambos/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/08/Alexander-Galambos.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/alexander-galambos/\"> Alexander Galambos</a></h3><p>Founder by Passion and Family Office and Liaison by Profession</p> <a href=\"/network/paul-j-foster/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Paul-J.-Foster.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/paul-j-foster/\"> Paul J. Foster</a></h3><p>Executive Chairman, World Technology Group</p> <a href=\"/network/brittany-kaiser/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Brittany-Kaiser.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/brittany-kaiser/\"> Brittany Kaiser</a></h3><p>Chief Executive Officer and Board Member AlphaTON Capital</p> <a href=\"/network/lina-kay/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/alinakay.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/lina-kay/\"> Lina Kay</a></h3><p>Guest of Honor</p> <a href=\"/network/david-may-kolodziej/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/davidmay.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/david-may-kolodziej/\">Dr. David May Kolodziej</a></h3><p>CEO LOVE33, GETREEL GROUP</p> <a href=\"/network/yair-levy/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Yar-Levy-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/yair-levy/\"> Yair Levy</a></h3><p>CEO of Brain Space</p> <a href=\"/network/peter-liu/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/09/peterliu.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/peter-liu/\"> Peter Liu</a></h3><p>Chairman &amp; Managing Partner, WI Harper Group</p> <a href=\"/network/massimo-lucidi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/08/Massimo-Lucidi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/massimo-lucidi/\"> Massimo Lucidi</a></h3> <a href=\"/network/itai-madamomb/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/itaimadamomb.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/itai-madamomb/\"> Itai Madamomb</a></h3><p>Founder and CEO of OCEANIX</p> <a href=\"/network/madison-marie-mcintosh/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/09/madisonmarie.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/madison-marie-mcintosh/\"> Madison Marie McIntosh</a></h3><p>Mezzo-Soprano</p><ul><li>1</li><li><a href=\"/guests/page/2/\">2</a></li><li><a href=\"/guests/page/2/\"><i></i></a></li></ul>"
+   }
+  ]
+ },
+ "network-list": {
+  "slug": "network-list",
+  "title": "Network List",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "Speakers"
+   },
+   {
+    "type": "html",
+    "html": "<a href=\"/network/basma-albuharian-phd/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/Basma.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/basma-albuharian-phd/\"> Basma AlBuharian, PhD</a></h3><p>Managing Director Centre for Fourth Industrial Revolution Saudi Arabia (WEF Affiliate Centre)</p> <a href=\"/network/prof-dr-enika-abazi/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/08/Enika-Abazi.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/prof-dr-enika-abazi/\">Prof. Dr. Enika Abazi</a></h3><p>Director of Scientific Research Coordination at the Academy of Sciences</p> <a href=\"/network/alaa-abd-elsayed/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/05/Dr.-Alaa-Abd-Elsayed.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/alaa-abd-elsayed/\"> Dr. Alaa Abd-Elsayed</a></h3><p>Medical Director and Professor UW Madison WI, USA</p> <a href=\"/network/hazleen-ahmad/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Hazleen-Ahmad.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/hazleen-ahmad/\"> Hazleen Ahmad</a></h3><p>Founder of the World Kindness Trust (WKT)</p> <a href=\"/network/tim-ahmad/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/08/timahmad.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/tim-ahmad/\"> Tim Ahmad</a></h3><p>Founder of Fintech Linker</p> <a href=\"/network/mete-ai/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/meta.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/mete-ai/\"> Mete AI</a></h3><p>Founder of ICB Labs</p>"
+   },
+   {
+    "type": "button",
+    "text": "View All Speakers",
+    "href": "/speakers/"
+   },
+   {
+    "type": "heading",
+    "text": "Guests"
+   },
+   {
+    "type": "html",
+    "html": "<a href=\"/network/valeria-altobelli/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/ValeriaAltobelli.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/valeria-altobelli/\"> Valeria Altobelli</a></h3><p>International Law Expert</p> <a href=\"/network/benedetta-audia/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/05/benedetta-audia.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/benedetta-audia/\"> Benedetta Audia</a></h3><p>Principal of International Development LLC</p> <a href=\"/network/fadil-berisha/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2026/05/FADIL-BERISHA.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/fadil-berisha/\"> Fadil Berisha</a></h3><p>photographer</p> <a href=\"/network/dominique-cagle/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Dominique-Cagle-1.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/dominique-cagle/\"> Dominique Cagle</a></h3><p>Founder/Owner/CEO of Nika Corporate Housing</p> <a href=\"/network/lale-cander/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Lale-Cander.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/lale-cander/\"> Lale Cander</a></h3><p>TFF Board Member Lale Cander</p> <a href=\"/network/olen-cesari/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/09/olencesari.png\" alt=\"\" loading=\"lazy\"></a> <h3><a href=\"/network/olen-cesari/\"> Olen Cesari</a></h3>"
+   },
+   {
+    "type": "button",
+    "text": "View All Guests",
+    "href": "/guests/"
+   }
+  ]
+ },
+ "upcoming-events": {
+  "slug": "upcoming-events",
+  "title": "UPCOMING EVENTS",
+  "image": "https://wcsiasc.org/wp-content/uploads/2026/10/EventBanner.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "Events List"
+   }
+  ]
+ },
+ "completed-events": {
+  "slug": "completed-events",
+  "title": "COMPLETED EVENTS",
+  "image": "https://wcsiasc.org/wp-content/uploads/2024/07/BalkanEvent4.jpg",
+  "blocks": [
+   {
+    "type": "heading",
+    "text": "Events List"
+   }
+  ]
+ },
+ "events-cat": {
+  "slug": "events-cat",
+  "title": "Events",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/09/covnew-updated2.jpg",
+  "blocks": [
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/covnew-updated2-1024x779.jpg",
+    "alt": "",
+    "href": "/wcs/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/wcs/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/wcpwscover2-1024x779.jpg",
+    "alt": "",
+    "href": "/world-changers-power-womens-summit/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/world-changers-power-womens-summit/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/09/covneweconomic2-1024x779.jpg",
+    "alt": "",
+    "href": "/world-changers-economic-summit/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/world-changers-economic-summit/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2023/11/biohackingcover1.jpg",
+    "alt": "",
+    "href": "/world-changers-biohacking-summit/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/world-changers-biohacking-summit/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2024/08/EventCover-1024x779.jpg",
+    "alt": "",
+    "href": "/events/categories/world-changers-ethical-innovation-summit/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/events/categories/world-changers-ethical-innovation-summit/"
+   },
+   {
+    "type": "image",
+    "src": "https://wcsiasc.org/wp-content/uploads/2024/08/biohackingcoverEvent.jpg",
+    "alt": "",
+    "href": "/events/world-changers-summit-balkan-skopje-summit/"
+   },
+   {
+    "type": "button",
+    "text": "View Events",
+    "href": "/events/world-changers-summit-balkan-skopje-summit/"
+   }
+  ]
+ },
+ "gallery": {
+  "slug": "gallery",
+  "title": "Gallery",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": []
+ },
+ "blog": {
+  "slug": "blog",
+  "title": "BLOG",
+  "image": "https://wcsiasc.org/wp-content/uploads/2023/08/wcslogonew2.jpg",
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<a href=\"/maestro-olen-cesari-a-live-neuro-ai-performance-merging-sound-visuals-and-human-emotion-at-the-world-changers-10th-anniversary-celebration/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/07/olencesari-1-740x540.jpg\" alt=\"olencesari\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/maestro-olen-cesari-a-live-neuro-ai-performance-merging-sound-visuals-and-human-emotion-at-the-world-changers-10th-anniversary-celebration/\">Maestro Olen Cesari: A Live Neuro-AI Performance Merging Sound, Visuals, and Human Emotion at the World Changers 10th Anniversary Celebration</a></h3> <a href=\"/maestro-olen-cesari-a-live-neuro-ai-performance-merging-sound-visuals-and-human-emotion-at-the-world-changers-10th-anniversary-celebration/\">read more </a> <a href=\"/transcendence-by-prof-filippo-gregoretti-the-first-public-preview-of-a-live-neuro-ai-performance/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/07/FilipoGregoretti-1-740x540.jpg\" alt=\"FilipoGregoretti\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/transcendence-by-prof-filippo-gregoretti-the-first-public-preview-of-a-live-neuro-ai-performance/\">“Transcendence” by Prof. Filippo Gregoretti: The First Public Preview of a Live Neuro-AI Performance</a></h3> <a href=\"/transcendence-by-prof-filippo-gregoretti-the-first-public-preview-of-a-live-neuro-ai-performance/\">read more </a> <a href=\"/premiere-presentation-by-rob-prior-art-in-service-of-humanity-at-the-world-changers-10th-anniversary-celebration/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/Rob-Prior-740x540.jpg\" alt=\"Rob-Prior\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/premiere-presentation-by-rob-prior-art-in-service-of-humanity-at-the-world-changers-10th-anniversary-celebration/\">Premiere Presentation by Rob Prior: Art in Service of Humanity at the World Changers 10th Anniversary Celebration</a></h3> <a href=\"/premiere-presentation-by-rob-prior-art-in-service-of-humanity-at-the-world-changers-10th-anniversary-celebration/\">read more </a> <a href=\"/sr-myriam-castelli-moderator-for-transcendence-book-presentation-at-the-world-changers-10th-anniversary-celebration/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/MyriamCastelli-740x540.jpg\" alt=\"MyriamCastelli\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/sr-myriam-castelli-moderator-for-transcendence-book-presentation-at-the-world-changers-10th-anniversary-celebration/\">Sr. Myriam Castelli: Moderator for Transcendence Book Presentation at the World Changers 10th Anniversary Celebration</a></h3> <a href=\"/sr-myriam-castelli-moderator-for-transcendence-book-presentation-at-the-world-changers-10th-anniversary-celebration/\">read more </a> <a href=\"/mete-ai-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/01/MeteAi-740x540.jpg\" alt=\"MeteAi\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/mete-ai-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\">Mete AI: Co-author of Transcendence: Quantum Computing, AI, and the Future of Humanity at the World Changers 10th Anniversary Book Presentation</a></h3> <a href=\"/mete-ai-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\">read more </a> <a href=\"/karl-nagy-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2024/11/KarlNagy-1-740x540.jpg\" alt=\"KarlNagy\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/karl-nagy-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\">Karl Nagy: Co-author of Transcendence: Quantum Computing, AI, and the Future of Humanity at the World Changers 10th Anniversary Book Presentation</a></h3> <a href=\"/karl-nagy-co-author-of-transcendence-quantum-computing-ai-and-the-future-of-humanity-at-the-world-changers-10th-anniversary-book-presentation/\">read more </a> <a href=\"/h-e-mons-vincenzo-paglia-a-visionary-voice-on-ethics-at-the-transcendence-book-presentation/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2025/09/VincenzoPaglia-740x540.jpg\" alt=\"VincenzoPaglia\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/h-e-mons-vincenzo-paglia-a-visionary-voice-on-ethics-at-the-transcendence-book-presentation/\">H.E. Mons. Vincenzo Paglia: A Visionary Voice on Ethics at the Transcendence Book Presentation</a></h3> <a href=\"/h-e-mons-vincenzo-paglia-a-visionary-voice-on-ethics-at-the-transcendence-book-presentation/\">read more </a> <a href=\"/transcendence-quantum-computing-ai-and-the-future-of-humanity-book-presentation-by-prof-dr-gabriele-pao-pei-andreoli/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/gabrieleandreoli-740x540.jpg\" alt=\"gabrieleandreoli\" loading=\"lazy\"></a>September 26, 2025 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/transcendence-quantum-computing-ai-and-the-future-of-humanity-book-presentation-by-prof-dr-gabriele-pao-pei-andreoli/\">Transcendence: Quantum Computing, AI, and the Future of Humanity’ book presentation by Prof. Dr. Gabriele Pao-Pei Andreoli</a></h3> <a href=\"/transcendence-quantum-computing-ai-and-the-future-of-humanity-book-presentation-by-prof-dr-gabriele-pao-pei-andreoli/\">read more </a> <a href=\"/evolutionary-biohacking/\"><img src=\"https://wcsiasc.org/wp-content/uploads/2023/09/bookcoverARTICLE-740x540.jpg\" alt=\"bookcoverARTICLE\" loading=\"lazy\"></a>September 11, 2023 <a href=\"/category/blog/\">Blog</a><h3><a href=\"/evolutionary-biohacking/\">Evolutionary Biohacking</a></h3> <a href=\"/evolutionary-biohacking/\">read more </a>"
+   }
+  ]
+ }
+}

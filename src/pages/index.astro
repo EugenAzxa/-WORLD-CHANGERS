@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Globe from '../components/Globe.astro';
+import EventCard from '../components/EventCard.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE, stats, events, upcoming, completed, people, posts, pages, galleries, places, THEMES, media, rewriteHtml, personRole } from '../lib/data';
+
+const next = upcoming[0];
+const nextPlace = next?.place ? places[next.place] : null;
+const home = pages.home;
+const letter = home.blocks.find((b: any) => b.type === 'heading' && b.body)?.body;
+const testimonials = home.blocks.find((b: any) => b.type === 'testimonials')?.items || [];
+const recent = completed.slice(0, 6);
+const faces = people.filter((p) => p.image && p.roles.has('Speaker') && p.events.length).slice(0, 36);
+const latestPosts = posts.slice(0, 3);
+const themeCounts = Object.entries(THEMES).map(([k, t]) => ({ k, ...t, n: events.filter((e) => e.themes.includes(k)).length })).filter((t) => t.n);
+const mosaic = galleries.flatMap((g) => g.images.slice(3, 4).map((im: any) => ({ ...im, g }))).slice(0, 10);
+const counters = [
+  { n: stats.events, l: 'Summits, forums & cultural gatherings' },
+  { n: stats.countries, l: 'Countries on four continents' },
+  { n: stats.cities, l: 'Host cities' },
+  { n: stats.people, l: 'Leaders, scientists & experts in the network' },
+  { n: stats.awards, l: 'Awards for impact' },
+  { n: stats.photos, l: 'Moments captured' },
+];
+---
+<Layout>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text reveal">
+        <p class="kicker">World Changers Summits · by IASC</p>
+        <h1 class="display">Uniting visionary minds to <span class="gold italic">shape the future</span> of our world.</h1>
+        <p class="lead">Born at the Pontifical Academy of Sciences in Vatican City, World Changers has grown into a global network of scientists, faith leaders, entrepreneurs and artists — {stats.events} gatherings in {stats.countries} countries dedicated to ethical and social innovation.</p>
+        <div class="hero-cta">
+          <a href="#map" class="btn btn-gold">Explore the world map <span class="arr">↓</span></a>
+          {next && <a href={next.url} class="btn btn-ghost">Next: {next.title} <span class="arr">→</span></a>}
+        </div>
+      </div>
+    </div>
+    <div class="wrap hero-globe reveal" id="map">
+      <Globe mode="hero" />
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="stats reveal">
+        {counters.map((c) => <div class="stat"><b data-count={c.n} class="gold">{c.n.toLocaleString('en')}</b><span>{c.l}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT EVENT -->
+  {next && (
+    <section class="section">
+      <div class="wrap next-event">
+        <a href={next.url} class="next-poster reveal">
+          <img src={next.posterFull} alt={next.title} loading="lazy" />
+        </a>
+        <div class="reveal">
+          <p class="kicker">Next gathering</p>
+          <h2 class="h1">{next.title}</h2>
+          <p class="lead">{next.dateRange} · {nextPlace?.flag} {nextPlace?.name}</p>
+          {next.description && <p class="muted" style="max-width:56ch">{next.description}</p>}
+          <div class="countdown" data-countdown={next.start} style="margin:28px 0 32px">
+            <div><b data-cd="d">–</b><small>days</small></div>
+            <div><b data-cd="h">–</b><small>hours</small></div>
+            <div><b data-cd="m">–</b><small>min</small></div>
+            <div><b data-cd="s">–</b><small>sec</small></div>
+          </div>
+          <div class="hero-cta">
+            <a href={next.url} class="btn btn-gold">Discover the event <span class="arr">→</span></a>
+            <a href="/spirit-of-quantum/" class="btn btn-ghost">Become a patron</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FOUNDER LETTER -->
+  {letter && (
+    <section class="section bg-2">
+      <div class="wrap letter">
+        <div class="letter-side reveal">
+          <img src={media('https://wcsiasc.org/wp-content/uploads/2023/08/gabround.png')} alt="Prof. Gabriele Pao-Pei Andreoli" width="220" height="220" loading="lazy" />
+          <p class="kicker" style="margin-top:28px">Founder &amp; Director</p>
+          <p class="h3">Prof. Gabriele Pao-Pei Andreoli, MD</p>
+          <a href="/network/gabriele-pao-pei-andreoli/" class="link" style="font-size:14px">Read profile</a>
+        </div>
+        <div class="reveal">
+          <p class="kicker">A word of welcome</p>
+          <div class="prose dropcap letter-body" set:html={rewriteHtml(letter)} />
+          <img src="/brand/logofullwhite.png" alt="Institute for Advance Studies and Cooperation" width="220" height="42" style="margin-top:28px;opacity:.9" loading="lazy" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- THEMES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">What we work on</p>
+          <h2 class="h2">Where faith, science and art<br class="hide-sm" /> meet the questions of our time</h2>
+        </div>
+        <a class="btn btn-ghost" href="/our-mission/">Our mission <span class="arr">→</span></a>
+      </div>
+      <div class="theme-grid reveal">
+        {themeCounts.map((t) => (
+          <a class="theme" href={`/events-cat/?theme=${t.k}`}>
+            <span class="ic" aria-hidden="true">{t.icon}</span>
+            <b>{t.label}</b>
+            <small>{t.n} gathering{t.n === 1 ? '' : 's'}</small>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT EVENTS -->
+  <section class="section bg-2">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">The journey so far</p>
+          <h2 class="h2">Recent gatherings</h2>
+        </div>
+        <a class="btn btn-ghost" href="/events-cat/">All {stats.events} events <span class="arr">→</span></a>
+      </div>
+      <div class="grid grid-3 reveal">{recent.map((e) => <EventCard e={e} />)}</div>
+    </div>
+  </section>
+
+  <!-- NETWORK -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">The network</p>
+          <h2 class="h2">{stats.people} people who chose to change the world</h2>
+          <p class="lead">Cardinals and spiritual leaders, scientists, founders, diplomats, artists and physicians — the speakers and guests who have shared the World Changers stage.</p>
+        </div>
+        <a class="btn btn-ghost" href="/network-list/">Meet the network <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="marquee reveal" aria-label="Speakers from the network">
+      <div class="marquee-track">
+        {[...faces, ...faces].map((p, i) => (
+          <a class="face" href={`/network/${p.slug}/`} aria-hidden={i >= faces.length ? 'true' : undefined} tabindex={i >= faces.length ? -1 : undefined}>
+            <div class="ph"><img src={media(p.image, 's')} alt={p.name} loading="lazy" /></div>
+            <b>{p.name}</b><small>{personRole(p)}</small>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  {testimonials.length > 0 && (
+    <section class="section bg-2">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="kicker">Testimonials</p><h2 class="h2">What people say</h2></div></div>
+        <div class="grid grid-3 reveal">
+          {testimonials.map((q: any) => <figure class="card quote-card" style="margin:0"><span class="q" aria-hidden="true">“</span><p class="meta" style="margin:0 0 12px">{q.title}</p><blockquote>{q.quote}</blockquote><footer>— {q.author}</footer></figure>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- PRESS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">Media &amp; press</p><h2 class="h2">Latest news</h2></div>
+        <a class="btn btn-ghost" href="/blog/">All articles <span class="arr">→</span></a>
+      </div>
+      <div class="grid grid-3 reveal">{latestPosts.map((p) => <PostCard p={p} />)}</div>
+    </div>
+  </section>
+
+  <!-- GALLERY MOSAIC -->
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">Gallery</p><h2 class="h2">{stats.photos.toLocaleString('en')} moments</h2></div>
+        <a class="btn btn-ghost" href="/gallery/">Open the gallery <span class="arr">→</span></a>
+      </div>
+      <div class="mosaic reveal">
+        {mosaic.map((im: any) => <a href={`/${im.g.slug}/`} title={im.g.title}><img src={media(im.src, 's')} alt={im.g.title} loading="lazy" /><span>{im.g.title}</span></a>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <p class="kicker">Join the movement</p>
+          <h2 class="h2">Participation is by invitation.<br /><span class="gold italic">Your voice is welcome.</span></h2>
+          <p class="lead">Write to us to take part in a summit, propose a speaker, partner with IASC or support the mission.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          <a class="btn btn-ghost" href="/donate/">Support the mission</a>
+          <a class="btn btn-ghost" href="/locations/">Our venues</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { position: relative; padding: calc(var(--header-h) + clamp(40px, 7vw, 96px)) 0 clamp(24px, 4vw, 48px); overflow: hidden; isolation: isolate; }
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(1100px 600px at 75% 0%, rgba(216, 180, 106, 0.14), transparent 60%), radial-gradient(900px 600px at 0% 60%, rgba(60, 90, 180, 0.12), transparent 60%); }
+  .hero-text { max-width: 980px; }
+  .hero-text .lead { margin: 26px 0 0; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .hero-globe { margin-top: clamp(40px, 5vw, 64px); max-width: 1400px; }
+  .next-event { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .next-poster { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); transform: rotate(-1.2deg); transition: transform 0.5s; }
+  .next-poster:hover { transform: rotate(0) scale(1.01); }
+  .letter { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .letter-side img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(216, 180, 106, 0.5); box-shadow: 0 0 0 10px rgba(216, 180, 106, 0.06); }
+  .letter-side { position: sticky; top: calc(var(--header-h) + 40px); }
+  .letter-body { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 24px); line-height: 1.6; color: var(--text); }
+  .mosaic { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 180px; gap: 10px; }
+  .mosaic a { position: relative; border-radius: 14px; overflow: hidden; background: var(--bg-3); }
+  .mosaic a:nth-child(1), .mosaic a:nth-child(7) { grid-column: span 2; grid-row: span 2; }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .mosaic a:hover img { transform: scale(1.05); }
+  .mosaic span { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px; font-size: 12.5px; font-weight: 600; background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); opacity: 0; transition: opacity 0.3s; }
+  .mosaic a:hover span { opacity: 1; }
+  .cta-band { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; padding: clamp(32px, 5vw, 72px); border-radius: 28px; border: 1px solid rgba(216, 180, 106, 0.3); background: radial-gradient(800px 400px at 100% 0%, rgba(216, 180, 106, 0.16), transparent 60%), var(--bg-2); }
+  .cta-actions { display: grid; gap: 12px; }
+  @media (max-width: 960px) {
+    .next-event, .letter, .cta-band { grid-template-columns: 1fr; }
+    .next-poster { max-width: 420px; }
+    .letter-side { position: static; }
+    .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+    .mosaic a:nth-child(7) { grid-column: auto; grid-row: auto; }
+    .hide-sm { display: none; }
+  }
+</style>

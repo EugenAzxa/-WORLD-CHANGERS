@@ -1,0 +1,22 @@
+---
+import PersonCard from './PersonCard.astro';
+import { people } from '../lib/data';
+interface Props { role?: 'speaker' | 'guest' }
+const { role } = Astro.props;
+const lastName = (n: string) => n.replace(/,.*$/, '').replace(/\(.*?\)/g, '').trim().split(/\s+/).at(-1)!.toLowerCase();
+const list = people.filter((p) => !role || [...p.roles].some((r: string) => r.toLowerCase().startsWith(role))).sort((a, b) => lastName(a.name).localeCompare(lastName(b.name)));
+const count = (r: string) => list.filter((p) => [...p.roles].some((x: string) => x.toLowerCase().startsWith(r))).length;
+const ROLES = [['speaker', 'Speakers'], ['guest', 'Guests'], ['board', 'Board'], ['award', 'Award recipients']].filter(([r]) => count(r) && (!role || r !== role));
+---
+<div data-filter-root>
+  <div class="toolbar">
+    <input class="field" type="search" placeholder="Search by name or role…" data-filter-q aria-label="Search people" />
+    <div class="filters" role="group" aria-label="Role">
+      <button class="chip" data-filter="role:" aria-pressed="true">All · {list.length}</button>
+      {ROLES.map(([r, label]) => <button class="chip" data-filter={`role:${r}`} aria-pressed="false">{label} · {count(r)}</button>)}
+    </div>
+  </div>
+  <p class="muted" style="margin:-12px 0 24px"><b data-filter-count>{list.length}</b> people</p>
+  <div class="grid grid-4 people-grid">{list.map((p) => <PersonCard p={p} />)}</div>
+  <p class="empty" data-filter-empty hidden>No one matches this search.</p>
+</div>

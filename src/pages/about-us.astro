@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Blocks from '../components/Blocks.astro';
+import { pages } from '../lib/data';
+const blocks = pages['about-us'].blocks.filter((b: any) => b.type !== 'cards');
+---
+<Layout title="About the Summits" description="About World Changers Summits — partners, our film and the people who give us courage.">
+  <PageHero title="About the summits" kicker="World Changers" lead="An exclusive, invitation-only gathering of forward-thinking minds — celebrated at the Pontifical Academy of Sciences in Vatican City." crumbs={[{ href: '/about-us/', label: 'About' }]}>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-gold" href="/our-mission/">Our mission</a><a class="btn btn-ghost" href="/history/">History</a><a class="btn btn-ghost" href="/events-cat/">Events</a></div>
+  </PageHero>
+  <section class="section" style="padding-top:0"><div class="wrap about-blocks"><Blocks blocks={blocks} group="about" /></div></section>
+</Layout>
+<style>
+  .about-blocks :global(.blk-image img) { max-height: 520px; width: auto; }
+</style>

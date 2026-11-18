@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pages, rewriteHtml, stats } from '../lib/data';
+const html = pages['our-mission'].blocks.map((b: any) => b.html || '').join('');
+const PILLARS = [
+  { t: 'A neutral, inclusive space', d: 'Government, business, academia and civil society meet as equals for impactful dialogue and collective action.' },
+  { t: 'Independent & not-for-profit', d: 'Free from special interests, guided by fairness, transparency, integrity and the highest standards of governance.' },
+  { t: 'Human creativity first', d: 'We believe in the extraordinary potential of creativity, entrepreneurship and collaboration to find ethical solutions.' },
+  { t: 'Systemic, tangible change', d: 'Partnerships and targeted initiatives that translate ambitious goals into real outcomes — for social equity and global harmony.' },
+];
+---
+<Layout title="Our Mission" description="The World Changers Summit is a premier platform dedicated to fostering transformative collaboration and innovation.">
+  <PageHero title="Our mission" kicker="Why we exist" lead="To bring together leaders from every sector to tackle the world’s most pressing challenges — with a spirit of unity and shared purpose." crumbs={[{ href: '/our-mission/', label: 'Our Mission' }]} />
+  <section class="section-tight" style="padding-top:0"><div class="wrap">
+    <div class="grid grid-4 stack-sm">
+      {PILLARS.map((p, i) => <div class="card card-body reveal"><span class="gold h2" style="display:block;margin-bottom:12px">0{i + 1}</span><b class="h3" style="font-size:24px">{p.t}</b><p class="muted" style="margin:10px 0 0;font-size:14.5px">{p.d}</p></div>)}
+    </div>
+  </div></section>
+  <section class="section"><div class="wrap two-col">
+    <div class="prose dropcap" set:html={rewriteHtml(html)} />
+    <aside class="sticky-col card card-body">
+      <p class="kicker">In numbers</p>
+      <dl class="info-list">
+        <div><dt>◆</dt><dd><small>Gatherings</small>{stats.events} since {stats.firstYear}</dd></div>
+        <div><dt>◆</dt><dd><small>Countries</small>{stats.countries}</dd></div>
+        <div><dt>◆</dt><dd><small>Network</small>{stats.people} members</dd></div>
+      </dl>
+      <a href="/world-map/" class="btn btn-gold" style="margin-top:24px;width:100%">See the impact map</a>
+    </aside>
+  </div></section>
+</Layout>
