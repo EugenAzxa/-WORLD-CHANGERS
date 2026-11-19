@@ -1,8 +1,9 @@
 // Interactive "World Changers" globe.
-// Canvas renderer on top of d3-geo's orthographic projection: dotted land,
-// highlighted countries, lifted great-circle arcs from the Vatican hub,
+// A photographic WebGL Earth (earth.ts) under a 2D canvas drawn with d3-geo's
+// orthographic projection: outlined host countries, lifted great-circle arcs from the Vatican hub,
 // clickable pulsing markers, year filter and an animated chronological "journey".
 import { geoOrthographic, geoPath, geoDistance, geoInterpolate, geoGraticule10 } from 'd3-geo';
+import { createEarth } from './earth';
 
 type Place = { key: string; name: string; country: string; code: string; lat: number; lng: number; blurb: string; events: string[] };
 type Ev = { slug: string; title: string; start: string; date: string; place: string; status: string; url: string; poster?: string; venue?: string; themes: string[] };
@@ -14,7 +15,7 @@ const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 
 export function mountGlobe(root: HTMLElement) {
   const data: Data = JSON.parse(root.querySelector('script[type="application/json"]')!.textContent!);
   const mode = root.dataset.mode || 'hero';
-  const canvas = root.querySelector<HTMLCanvasElement>('canvas')!;
+  const canvas = root.querySelector<HTMLCanvasElement>('canvas.globe-ui')!;
   const ctx = canvas.getContext('2d')!;
   const tooltip = root.querySelector<HTMLElement>('.globe-tooltip');
   const panel = root.querySelector<HTMLElement>('.globe-panel');
@@ -27,6 +28,12 @@ export function mountGlobe(root: HTMLElement) {
   const SPHERE = tok('--globe-sphere', '#f8f6f1');
   const SPHERE_EDGE = tok('--globe-sphere-edge', '#e9e3d8');
   const PAPER = tok('--color-bg', '#f5f2ec');
+  const LIGHT = tok('--globe-light', '245, 230, 196'); // arcs and rings over the photo planet
+
+  // photographic planet underneath; falls back to the dotted atlas without WebGL
+  const earthCanvas = root.querySelector<HTMLCanvasElement>('.globe-earth');
+  const earth = earthCanvas ? createEarth(earthCanvas, () => root.classList.add('earth-on')) : null;
+  const real = () => !!earth?.ready;
 
   const evBySlug = Object.fromEntries(data.events.map((e) => [e.slug, e]));
   const placeByKey = Object.fromEntries(data.places.map((p) => [p.key, p]));
@@ -60,6 +67,7 @@ export function mountGlobe(root: HTMLElement) {
     W = r.width; H = r.height;
     canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    earth?.resize(W, H, DPR);
   }
 
   const activePlaces = () => data.places.filter((p) => !year || p.events.some((s) => evBySlug[s]?.start?.startsWith(year!)));
@@ -91,19 +99,15 @@ export function mountGlobe(root: HTMLElement) {
       if (!s.vis) { pen = false; continue; }
       if (!pen) { ctx.moveTo(s.x, s.y); pen = true; } else ctx.lineTo(s.x, s.y);
     }
-    ctx.strokeStyle = `rgba(${ACCENT},${alpha})`;
+    ctx.strokeStyle = `rgba(${real() ? LIGHT : ACCENT},${alpha})`;
     ctx.lineWidth = width;
     if (dash && !reduced) { ctx.setLineDash([2, 5]); ctx.lineDashOffset = -t * 0.025; } else ctx.setLineDash([]);
     ctx.stroke();
     ctx.setLineDash([]);
   }
 
-  function draw() {
-    const baseR = Math.min(W, H) / 2 * (mode === 'hero' ? 0.88 : 0.84);
-    R = baseR * zoom;
-    projection.translate([W / 2, H / 2]).scale(R).rotate([rot[0], rot[1], 0]);
-    ctx.clearRect(0, 0, W, H);
-
+  // fallback without WebGL (or while textures load): the dotted paper atlas
+  function drawAtlas() {
     // paper sphere with a soft terminator (no glow)
     const sph = ctx.createRadialGradient(W / 2 - R * 0.3, H / 2 - R * 0.35, R * 0.2, W / 2, H / 2, R);
     sph.addColorStop(0, SPHERE);
@@ -133,6 +137,21 @@ export function mountGlobe(root: HTMLElement) {
       ctx.beginPath(); ctx.arc(p[0], p[1], dotR * (0.6 + d * 0.4), 0, Math.PI * 2); ctx.fill();
     }
     ctx.globalAlpha = 1;
+  }
+
+  function draw() {
+    const baseR = Math.min(W, H) / 2 * (mode === 'hero' ? 0.88 : 0.84);
+    R = baseR * zoom;
+    projection.translate([W / 2, H / 2]).scale(R).rotate([rot[0], rot[1], 0]);
+    ctx.clearRect(0, 0, W, H);
+
+    if (real()) {
+      const [clng, clat] = center();
+      earth!.render(clng, clat, R, t);
+      // host countries: a fine light outline on the photograph
+      ctx.beginPath(); path(data.highlight);
+      ctx.strokeStyle = `rgba(${LIGHT},0.55)`; ctx.lineWidth = 0.8; ctx.stroke();
+    } else drawAtlas();
 
     const act = activePlaces();
     for (const p of act) if (p !== hub) drawArc(hub, p, journey ? 0.15 : selected && selected !== p ? 0.18 : 0.55, !journey);
@@ -151,12 +170,12 @@ export function mountGlobe(root: HTMLElement) {
       ctx.globalAlpha = fade;
       // thin pulse ring
       ctx.beginPath(); ctx.arc(s.x, s.y, base + pulse * base * 2.4, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${ACCENT},${(1 - pulse) * 0.6})`; ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = `rgba(${real() ? LIGHT : ACCENT},${(1 - pulse) * 0.7})`; ctx.lineWidth = 1; ctx.stroke();
       // core: accent disc with paper ring
       ctx.beginPath(); ctx.arc(s.x, s.y, isSel || isHov ? base * 1.25 : base, 0, Math.PI * 2);
       ctx.fillStyle = isSel ? `rgb(${INK})` : `rgb(${ACCENT})`; ctx.fill();
-      ctx.lineWidth = 2; ctx.strokeStyle = SPHERE; ctx.stroke();
-      if (isSel) { ctx.beginPath(); ctx.arc(s.x, s.y, base * 2.2, 0, Math.PI * 2); ctx.strokeStyle = `rgb(${INK})`; ctx.lineWidth = 1; ctx.stroke(); }
+      ctx.lineWidth = 2; ctx.strokeStyle = real() ? PAPER : SPHERE; ctx.stroke();
+      if (isSel) { ctx.beginPath(); ctx.arc(s.x, s.y, base * 2.2, 0, Math.PI * 2); ctx.strokeStyle = real() ? PAPER : `rgb(${INK})`; ctx.lineWidth = 1; ctx.stroke(); }
       ctx.globalAlpha = 1;
       const showLabel = isSel || isHov || (mode === 'full' && s.depth > 0.35) || (mode === 'hero' && (p === hub || n > 1) && !selected && s.depth > 0.3);
       if (showLabel) labels.push({ p, x: s.x, y: s.y, base, fade, prio: isSel ? 3 : isHov ? 2 : n / 100 });

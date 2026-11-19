@@ -2,7 +2,9 @@
 // Opening film for the home page: from the sky above Rome, with white doves, down
 // to St. Peter's and the founder, who welcomes the visitor holding the IASC medal.
 // Generated with Higgsfield (Seedance 2.5), see docs/FILM.md.
-// Autoplays muted (browser rule); "Sound on" restarts it with the voice.
+// Works as the opening of the site: autoplays muted (browser rule), "Skip intro" or the end
+// of the film scrolls to the page. "Sound on" restarts it with the voice. Plays once per
+// browser session; later visits show the welcome frame with a play button.
 const cues = [
   { from: 0, to: 4.2, code: 'IT', text: 'Above the clouds of Rome' },
   { from: 4.2, to: 7.6, code: 'VA', text: 'St. Peter’s Square, Vatican City' },
@@ -13,11 +15,12 @@ const subs = [{ from: 8.5, to: 99, text: '“Hello, and welcome to the World Cha
 <section class="film" data-film aria-label="Welcome film: from the sky above Rome to the Vatican, where the founder of the World Changers Summit welcomes you">
   <video class="film-video" data-film-video muted playsinline preload="auto" poster="/film/welcome-poster.webp" data-src-sm="/film/welcome-720.mp4" data-src-lg="/film/welcome-1080.mp4" data-end-poster="/film/welcome-end.webp" aria-hidden="true"></video>
   <div class="film-top">
-    <p class="film-cue" data-film-cue aria-hidden="true"><i>IT</i><span>Above Rome</span></p>
+    <p class="film-cue" data-film-cue aria-hidden="true"><i>IT</i><span>Above the clouds of Rome</span></p>
+    <a href="#hero" class="film-skip" data-film-skip>Skip intro <span aria-hidden="true">→</span></a>
   </div>
   <p class="film-sub" data-film-sub aria-live="off"></p>
   <div class="film-bottom">
-    <a href="#hero" class="film-scroll">Enter <span aria-hidden="true">↓</span></a>
+    <a href="#hero" class="film-scroll" data-film-skip>Enter the site <span aria-hidden="true">↓</span></a>
     <div class="film-ctrl">
       <button type="button" class="film-btn" data-film-sound aria-pressed="false">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3z" fill="currentColor"/><path class="on" d="M13 7.5a3.5 3.5 0 010 5M15 5.5a6.5 6.5 0 010 9" fill="none" stroke="currentColor" stroke-width="1.4"/><path class="off" d="M13 8l4 4M17 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
@@ -28,13 +31,21 @@ const subs = [{ from: 8.5, to: 99, text: '“Hello, and welcome to the World Cha
       </button>
     </div>
   </div>
+  <div class="film-progress" aria-hidden="true"><span data-film-progress></span></div>
   <script type="application/json" data-film-cues set:html={JSON.stringify({ cues, subs })} />
 </section>
 
 <style is:global>
   .film { position: relative; height: max(56.25vw, min(calc(100svh - var(--header-h)), 130vw)); max-height: calc(100svh - var(--header-h)); min-height: 420px; background: var(--color-inverse-bg); color: var(--color-inverse-fg); overflow: hidden; }
   .film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .film-top { position: absolute; top: 0; left: 0; right: 0; padding: 20px var(--gutter); pointer-events: none; }
+  .film-top { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 20px var(--gutter); pointer-events: none; }
+  .film-skip { pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; background: var(--color-bg); color: var(--color-fg); border: 1px solid var(--color-bg); font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; transition: opacity var(--dur) var(--ease); }
+  .film-skip:hover { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .film[data-state='ended'] .film-skip, .film[data-seen] .film-skip { opacity: 0; pointer-events: none; }
+  .film-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(245, 242, 236, 0.25); }
+  .film-progress span { display: block; height: 100%; background: var(--color-bg); transform-origin: left; transform: scaleX(0); }
+  .film-scroll { opacity: 0; pointer-events: none; transition: opacity var(--dur) var(--ease); }
+  .film[data-state='ended'] .film-scroll, .film[data-seen] .film-scroll { opacity: 1; pointer-events: auto; }
   .film-cue { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 7px 10px 7px 8px; background: var(--color-fg); color: var(--color-bg); font: 400 15px/1 var(--font-display); transition: opacity var(--dur) var(--ease); }
   .film-cue i { font: 500 10px/1 var(--font-meta); letter-spacing: 0.08em; font-style: normal; padding-right: 8px; border-right: 1px solid rgba(245, 242, 236, 0.35); }
   .film-cue.swap { opacity: 0; }
@@ -54,6 +65,8 @@ const subs = [{ from: 8.5, to: 99, text: '“Hello, and welcome to the World Cha
   .film[data-state='paused'] .film-btn .play { display: inline; }
   .film[data-state='ended'] .film-btn .replay { display: inline; }
   @media (max-width: 700px) {
+    .film-cue { font-size: 13px; line-height: 1.25; min-width: 0; }
+    .film-skip { padding: 0 12px; }
     .film-sub { bottom: 76px; max-width: calc(100% - 32px); }
     .film-btn [data-film-sound-label] { display: none; }
     .film-btn[data-film-sound] { width: 44px; justify-content: center; padding: 0; }

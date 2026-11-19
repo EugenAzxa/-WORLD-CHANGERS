@@ -121,4 +121,7 @@
   --globe-ink: 17, 17, 17;          /* rgb triplets for canvas alpha */
   --globe-accent: 31, 90, 61;
   --globe-tint: 220, 230, 222;
+  --globe-space: #05070b;           /* stage behind the photographic Earth */
+  --globe-light: 245, 230, 196;     /* arcs and pulse rings drawn over the photo */
+  --globe-space-fg: var(--ink-400);
 }

@@ -6,4 +6,10 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   devToolbar: { enabled: false },
+  // old WordPress URLs that now live elsewhere
+  redirects: {
+    '/network': '/network-list/',
+    '/ambassadors': '/network-list/',
+    '/3d-flip-book/catalogue': '/catalogue/',
+  },
 });

@@ -11,13 +11,13 @@ const BANK = [
 ];
 ---
 <Layout title="Donate" description="Support World Changers Summits — every donation helps bring together visionaries, innovators and leaders committed to a better world.">
-  <PageHero title="Make a difference today" eyebrow="Support the mission" lead="We believe in the power of collective action. Your support helps bring together visionaries, innovators and leaders who are committed to making a positive impact on our world." crumbs={[{ href: '/donate/', label: 'Donate' }]} />
+  <PageHero title="Make a difference today" eyebrow="Support the mission" lead="At the World Changer Summit, we believe in the power of collective action to drive meaningful change and create a better future for all. Your support is crucial in helping us bring together visionaries, innovators, and leaders who are committed to making a positive impact on our world." crumbs={[{ href: '/donate/', label: 'Donate' }]} />
   <section class="section" style="padding-top:0"><div class="wrap">
     <div class="section-head" style="margin-bottom:0;border:0;padding:0"><p class="idx"><b>Why donate</b></p><div></div></div>
     <ul class="checklist">{why.map((t: string) => { const [h, ...r] = t.split(':'); return <li><b>{h}:</b>{r.join(':')}</li>; })}</ul>
   </div></section>
   <section class="section bg-2"><div class="wrap">
-    <div class="section-head"><p class="idx"><b>Ways to give</b></p><div><h2 class="h2">Every donation, no matter the amount, matters</h2></div></div>
+    <div class="section-head"><p class="idx"><b>Ways to give</b></p><div><h2 class="h2">Your gift matters</h2><p class="lead">Every donation, no matter the amount, is a vital contribution to our mission. Your support will be used effectively to enhance the summit experience, facilitate groundbreaking discussions, and drive real-world impact.</p></div></div>
     <div class="grid grid-3 stack-sm">
       <div class="give">
         <span class="ic">01</span><h3 class="h3">Online</h3>
@@ -37,7 +37,10 @@ const BANK = [
         <a class="btn btn-secondary" href="/spirit-of-quantum/" style="margin-top:10px">Spirit of Quantum patron</a>
       </div>
     </div>
-    <p class="lead" style="margin-top:48px">Thank you for your generosity. Your support is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact.</p>
+    <div class="two-col" style="margin-top:64px">
+      <div><p class="eyebrow">Thank you for your generosity</p><p class="lead">We are deeply grateful for your support. Your generosity is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact. Thank you for being a part of this journey.</p></div>
+      <div><p class="eyebrow">Donate today</p><p class="lead">Be a catalyst for change by making a donation to the World Changer Summit. Together, we can make a significant difference and shape a brighter future for everyone. Thank you for your generosity and commitment to our cause.</p></div>
+    </div>
   </div></section>
 </Layout>
 <style>

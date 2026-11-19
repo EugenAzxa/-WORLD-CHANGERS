@@ -2,11 +2,36 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import EventsIndex from '../components/EventsIndex.astro';
-import { stats } from '../lib/data';
+import { stats, media } from '../lib/data';
+// the summit series shown as covers on the old events page
+const SERIES = [
+  { t: 'World Changers Summit', href: '/history/', img: 'https://wcsiasc.org/wp-content/uploads/2023/09/covnew-updated2.jpg' },
+  { t: 'World Changers Power Women’s Summit', href: '/world-changers-power-womens-summit/', img: 'https://wcsiasc.org/wp-content/uploads/2023/09/wcpwscover2.jpg' },
+  { t: 'World Changers Economic Summit', href: '/world-changers-economic-summit/', img: 'https://wcsiasc.org/wp-content/uploads/2023/09/covneweconomic2.jpg' },
+  { t: 'World Changers Biohacking Summit', href: '/world-changers-biohacking-summit/', img: 'https://wcsiasc.org/wp-content/uploads/2023/11/biohackingcover1.jpg' },
+  { t: 'World Changers Ethical & Innovation Summit', href: '/events/world-changers-ethical-innovation-summit/', img: 'https://wcsiasc.org/wp-content/uploads/2024/08/EventCover.jpg' },
+  { t: 'World Changers Balkan – Skopje Summit', href: '/events/world-changers-summit-balkan-skopje-summit/', img: 'https://wcsiasc.org/wp-content/uploads/2024/08/biohackingcoverEvent.jpg' },
+];
 ---
 <Layout title="Events" description={`All ${stats.events} World Changers summits, forums and cultural gatherings since ${stats.firstYear}.`}>
   <PageHero title="Events" eyebrow={`${stats.events} gatherings · ${stats.countries} countries`} lead="Summits at the Pontifical Academy of Sciences, forums in Davos and St. Moritz, quantum education in Riyadh, music on the Albanian Riviera — every World Changers gathering in one place." crumbs={[{ href: '/events-cat/', label: 'Events' }]}>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a href="/world-map/" class="btn btn-primary">View on the world map <span class="arr">→</span></a><a href="/locations/" class="btn btn-secondary">Venues</a></div>
   </PageHero>
   <section class="section" style="padding-top:0"><div class="wrap"><EventsIndex /></div></section>
+  <section class="section bg-2"><div class="wrap">
+    <div class="section-head"><p class="idx"><b>Summit series</b></p><div><h2 class="h2">Six formats, one mission</h2></div></div>
+    <div class="grid grid-3 stack-sm series">
+      {SERIES.map((x) => (
+        <a href={x.href} class="series-card">
+          <img src={media(x.img, 's')} alt="" loading="lazy" width="640" height="487" />
+          <span class="h4">{x.t} <span class="arr" aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+  </div></section>
 </Layout>
+<style>
+  .series-card { display: grid; gap: 12px; }
+  .series-card img { width: 100%; aspect-ratio: 1024 / 779; object-fit: cover; background: var(--media-bg); }
+  .series-card:hover .h4 { color: var(--color-accent); }
+</style>

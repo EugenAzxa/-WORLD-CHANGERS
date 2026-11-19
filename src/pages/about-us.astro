@@ -2,14 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import Blocks from '../components/Blocks.astro';
-import { pages } from '../lib/data';
-const blocks = pages['about-us'].blocks.filter((b: any) => b.type !== 'cards');
+import EventCard from '../components/EventCard.astro';
+import { pages, completed } from '../lib/data';
+// the old "Our events" section had four identical placeholder cards; show the latest gatherings instead
+const blocks = pages['about-us'].blocks.filter((b: any) => b.type !== 'cards' && !(b.type === 'heading' && /our events/i.test(b.text)));
+const recent = completed.slice(0, 3);
 ---
 <Layout title="About the Summits" description="About World Changers Summits — partners, our film and the people who give us courage.">
   <PageHero title="About the summits" eyebrow="World Changers" lead="An exclusive, invitation-only gathering of forward-thinking minds — celebrated at the Pontifical Academy of Sciences in Vatican City." crumbs={[{ href: '/about-us/', label: 'About' }]}>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-primary" href="/our-mission/">Our mission</a><a class="btn btn-secondary" href="/history/">History</a><a class="btn btn-secondary" href="/events-cat/">Events</a></div>
   </PageHero>
   <section class="section" style="padding-top:0"><div class="wrap about-blocks"><Blocks blocks={blocks} group="about" /></div></section>
+  <section class="section bg-2"><div class="wrap">
+    <div class="section-head"><p class="idx"><b>Immense experience</b></p><div><h2 class="h2">Our events</h2><div class="head-actions"><a class="text-link" href="/events-cat/">All gatherings <span class="arr">→</span></a></div></div></div>
+    <div class="grid grid-3 stack-sm">{recent.map((e) => <EventCard e={e} />)}</div>
+  </div></section>
 </Layout>
 <style>
   .about-blocks :global(.blk-image img) { max-height: 520px; width: auto; }

@@ -136,7 +136,11 @@ function widgetBlock($, el) {
       const src = img(i.attr('data-src') || i.attr('src'));
       if (!src) return null;
       const link = $el.find('a').first().attr('href');
-      return { type: 'image', src, alt: i.attr('alt') || '', href: link ? route(link) : undefined };
+      // captions like "<b>Pope Francis</br></b>Head of the Catholic Church…"
+      const cap = $el.find('figcaption').first();
+      const capTitle = cap.find('b, strong').first().text().trim();
+      const capText = cap.length ? cap.clone().find('b, strong').remove().end().text().replace(/\s+/g, ' ').trim() : '';
+      return { type: 'image', src, alt: i.attr('alt') || capTitle || '', href: link ? route(link) : undefined, caption: capTitle || capText ? { title: capTitle, text: capText } : undefined };
     }
     case 'image-carousel': case 'gallery': case 'wgl-gallery': {
       const list = [];
@@ -250,7 +254,11 @@ function elementorBlocks($, root) {
   for (const b of blocks) {
     const last = merged.at(-1);
     if (b.type === 'html' && last?.type === 'html' && last.section === b.section && !b.unknown && !last.unknown) last.html += b.html;
-    else merged.push(b);
+    // consecutive captioned images (portraits with name + role) become one figure grid
+    else if (b.type === 'image' && b.caption?.title && (last?.type === 'figures' || (last?.type === 'image' && last.caption?.title))) {
+      if (last.type === 'image') merged.splice(-1, 1, { type: 'figures', section: last.section, items: [last] });
+      merged.at(-1).items.push(b);
+    } else merged.push(b);
   }
   return merged;
 }

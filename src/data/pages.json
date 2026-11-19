@@ -188,19 +188,36 @@
     "text": "You give us courage"
    },
    {
-    "type": "image",
-    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Pope-Francis.png",
-    "alt": ""
-   },
-   {
-    "type": "image",
-    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Father-Cosma.png",
-    "alt": ""
-   },
-   {
-    "type": "image",
-    "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Baba-Mondi.png",
-    "alt": ""
+    "type": "figures",
+    "items": [
+     {
+      "type": "image",
+      "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Pope-Francis.png",
+      "alt": "Pope Francis",
+      "caption": {
+       "title": "Pope Francis",
+       "text": "Head of the Catholic Church, Bishop of Rome and Sovereign of the Vatican City State."
+      }
+     },
+     {
+      "type": "image",
+      "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Father-Cosma.png",
+      "alt": "Father Cosma",
+      "caption": {
+       "title": "Father Cosma",
+       "text": "Primate of the Italian Autocephalous Orthodox Church."
+      }
+     },
+     {
+      "type": "image",
+      "src": "https://wcsiasc.org/wp-content/uploads/2023/04/Baba-Mondi.png",
+      "alt": "Baba Mondi",
+      "caption": {
+       "title": "Baba Mondi",
+       "text": "World Leader of the Bektashi Muslims."
+      }
+     }
+    ]
    },
    {
     "type": "heading",
@@ -867,7 +884,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/09/covnew-updated2-1024x779.jpg",
     "alt": "",
-    "href": "/wcs/"
+    "href": "/wcs/",
+    "caption": {
+     "title": "",
+     "text": "World Changers Summit"
+    }
    },
    {
     "type": "button",
@@ -878,7 +899,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/09/wcpwscover2-1024x779.jpg",
     "alt": "",
-    "href": "/world-changers-power-womens-summit/"
+    "href": "/world-changers-power-womens-summit/",
+    "caption": {
+     "title": "",
+     "text": "World Changers POWER WOMEN'S Summit"
+    }
    },
    {
     "type": "button",
@@ -889,7 +914,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/09/covneweconomic2-1024x779.jpg",
     "alt": "",
-    "href": "/world-changers-economic-summit/"
+    "href": "/world-changers-economic-summit/",
+    "caption": {
+     "title": "",
+     "text": "World Changers Economic Summit"
+    }
    },
    {
     "type": "button",
@@ -900,7 +929,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/11/biohackingcover1.jpg",
     "alt": "",
-    "href": "/world-changers-biohacking-summit/"
+    "href": "/world-changers-biohacking-summit/",
+    "caption": {
+     "title": "",
+     "text": "World Changers BioHacking Summit"
+    }
    },
    {
     "type": "button",
@@ -911,7 +944,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2024/08/EventCover-1024x779.jpg",
     "alt": "",
-    "href": "/events/categories/world-changers-ethical-innovation-summit/"
+    "href": "/events/categories/world-changers-ethical-innovation-summit/",
+    "caption": {
+     "title": "",
+     "text": "World Changers Ethical & Innovation Summit"
+    }
    },
    {
     "type": "button",
@@ -922,7 +959,11 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2024/08/biohackingcoverEvent.jpg",
     "alt": "",
-    "href": "/events/world-changers-summit-balkan-skopje-summit/"
+    "href": "/events/world-changers-summit-balkan-skopje-summit/",
+    "caption": {
+     "title": "",
+     "text": "World Changers Balkan – Skopje Summit"
+    }
    },
    {
     "type": "button",

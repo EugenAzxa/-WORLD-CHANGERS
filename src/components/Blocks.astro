@@ -43,8 +43,24 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
         );
       case 'image': {
         const img = <img src={media(b.src)} alt={b.alt || ''} loading="lazy" />;
-        return <figure class="blk-image" id={anchor} style="margin:0">{b.href ? <a href={link(b.href)}>{img}</a> : img}</figure>;
+        return (
+          <figure class="blk-image" id={anchor} style="margin:0">
+            {b.href ? <a href={link(b.href)}>{img}</a> : img}
+            {b.caption && <figcaption class="meta" style="margin-top:8px">{b.caption.title && <b>{b.caption.title}</b>} {b.caption.text}</figcaption>}
+          </figure>
+        );
       }
+      case 'figures':
+        return (
+          <div class="blk-figures" id={anchor}>
+            {b.items.map((f: any) => (
+              <figure>
+                <img src={media(f.src, 's')} alt={f.caption?.title || f.alt || ''} loading="lazy" />
+                <figcaption><span class="h4">{f.caption?.title}</span>{f.caption?.text && <span class="muted">{f.caption.text}</span>}</figcaption>
+              </figure>
+            ))}
+          </div>
+        );
       case 'gallery': {
         const shown = b.images.slice(0, 12);
         return (

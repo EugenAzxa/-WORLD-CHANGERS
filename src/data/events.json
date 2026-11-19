@@ -6007,13 +6007,21 @@
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/09/imageforevent-1024x790.jpeg",
     "alt": "",
-    "href": "/emotions-revealed/"
+    "href": "/emotions-revealed/",
+    "caption": {
+     "title": "",
+     "text": "Emotions Revealed"
+    }
    },
    {
     "type": "image",
     "src": "https://wcsiasc.org/wp-content/uploads/2023/09/gabb-1024x790.jpeg",
     "alt": "",
-    "href": "/formal-award-ceremony-12-of-october/"
+    "href": "/formal-award-ceremony-12-of-october/",
+    "caption": {
+     "title": "",
+     "text": "Formal award ceremony 12 of October"
+    }
    },
    {
     "type": "heading",

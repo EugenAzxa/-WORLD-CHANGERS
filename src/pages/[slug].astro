@@ -5,7 +5,7 @@ import PageHero from '../components/PageHero.astro';
 import Blocks from '../components/Blocks.astro';
 import PostCard from '../components/PostCard.astro';
 import EventCard from '../components/EventCard.astro';
-import { posts, galleries, pages, GENERIC_PAGES, media, rewriteHtml, textOf, fmtDate, CATEGORY_NAMES } from '../lib/data';
+import { posts, galleries, pages, GENERIC_PAGES, media, rewriteHtml, textOf, fmtDate, CATEGORY_NAMES, events } from '../lib/data';
 
 export function getStaticPaths() {
   return [
@@ -17,6 +17,13 @@ export function getStaticPaths() {
 const { kind, item } = Astro.props as { kind: string; item: any };
 const related = kind === 'post' ? posts.filter((p) => p !== item && p.categories.some((c: string) => item.categories.includes(c))).slice(0, 3) : [];
 const pageTitle = kind === 'page' ? item.title.replace(/&#8217;/g, '’').replace(/&amp;/g, '&') : item.title;
+// summit-series pages had an "Events List" widget on the old site
+const SERIES: Record<string, (e: any) => boolean> = {
+  'world-changers-economic-summit': () => true,
+  'world-changers-power-womens-summit': (e) => /power women/i.test(e.title),
+};
+const seriesEvents = kind === 'page' && SERIES[item.slug] ? [...events].filter(SERIES[item.slug]).sort((a, b) => b.start.localeCompare(a.start)) : [];
+const pageBlocks = kind === 'page' ? item.blocks.filter((b: any) => !(b.type === 'heading' && /^events list$/i.test(b.text))) : [];
 const niceTitle = pageTitle === pageTitle.toUpperCase() ? pageTitle.charAt(0) + pageTitle.slice(1).toLowerCase() : pageTitle;
 ---
 {kind === 'post' && (
@@ -42,7 +49,7 @@ const niceTitle = pageTitle === pageTitle.toUpperCase() ? pageTitle.charAt(0) + 
 )}
 {kind === 'gallery' && (
   <Layout title={`${item.title} — Gallery`} description={`${item.images.length} photos: ${item.title}.`} image={media(item.images[0]?.src)}>
-    <PageHero title={item.title} eyebrow={`${item.images.length} photos`} crumbs={[{ href: '/gallery/', label: 'Gallery' }]}>
+    <PageHero title={item.title} eyebrow={`Gallery · ${item.images.length} photos`} crumbs={[{ href: '/gallery/', label: 'Gallery' }]}>
       {item.event && <div class="hero-actions"><a class="btn btn-secondary" href={item.event.url}>About the event · {item.event.dateRange} <span class="arr">→</span></a></div>}
     </PageHero>
     <section class="section" style="padding-top:0"><div class="wrap">
@@ -58,7 +65,13 @@ const niceTitle = pageTitle === pageTitle.toUpperCase() ? pageTitle.charAt(0) + 
 {kind === 'page' && (
   <Layout title={niceTitle} description={textOf(item.blocks.map((b: any) => b.html || b.body || '').join(' ')).slice(0, 180)} image={item.image ? media(item.image) : undefined}>
     <PageHero title={niceTitle} crumbs={[{ href: `/${item.slug}/`, label: niceTitle }]} />
-    <section class="section" style="padding-top:0"><div class="wrap"><Blocks blocks={item.blocks.filter((b: any, i: number) => !(i === 0 && b.type === 'heading' && b.text.toLowerCase() === niceTitle.toLowerCase()))} group={item.slug} /></div></section>
+    <section class="section" style="padding-top:0"><div class="wrap"><Blocks blocks={pageBlocks.filter((b: any, i: number) => !(i === 0 && b.type === 'heading' && b.text.toLowerCase() === niceTitle.toLowerCase()))} group={item.slug} /></div></section>
+    {seriesEvents.length > 0 && (
+      <section class="section bg-2"><div class="wrap">
+        <div class="section-head"><p class="idx"><b>Events list</b></p><div><h2 class="h2">{seriesEvents.length === 1 ? 'The gathering' : `${seriesEvents.length} gatherings`}</h2></div></div>
+        <div class="grid grid-3 stack-sm">{seriesEvents.map((e) => <EventCard e={e} />)}</div>
+      </div></section>
+    )}
   </Layout>
 )}
 <style>

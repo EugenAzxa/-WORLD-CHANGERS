@@ -141,7 +141,16 @@ export const locations = (rawLocations as Any[]).map((l) => ({
 const locBySlug = Object.fromEntries(locations.map((l) => [l.slug, l]));
 
 // ---------------------------------------------------------------- galleries
-export const galleries = (rawGalleries as Any[]).map((g) => ({ ...g, title: g.title.replace(/\s+Gallery(\s+\d{4})?$/i, '$1').trim(), event: null as Any }));
+// the old gallery pages titled three albums with abbreviations; their page headings spell them out
+const GALLERY_NAMES: Record<string, string> = {
+  'WCBS 2024': 'World Changers Balkan Summit 2024',
+  'WCPWS 2023': 'World Changers Power Women’s Summit 2023',
+  'WCS 2023': 'World Changers Summit 2023',
+};
+export const galleries = (rawGalleries as Any[]).map((g) => {
+  const short = g.title.replace(/\s+Gallery(\s+\d{4})?$/i, '$1').trim();
+  return { ...g, title: GALLERY_NAMES[short] || short, event: null as Any };
+});
 const galBySlug = Object.fromEntries(galleries.map((g) => [g.slug, g]));
 
 // ---------------------------------------------------------------- people
