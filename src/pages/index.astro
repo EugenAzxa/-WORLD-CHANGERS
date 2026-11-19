@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Globe from '../components/Globe.astro';
 import Intro from '../components/Intro.astro';
 import WelcomeFilm from '../components/WelcomeFilm.astro';
+import StatsBoard from '../components/StatsBoard.astro';
 import EventCard from '../components/EventCard.astro';
 import PersonCard from '../components/PersonCard.astro';
 import { SITE, stats, events, upcoming, completed, people, posts, pages, galleries, places, THEMES, media, rewriteHtml, fmtDate, CATEGORY_NAMES } from '../lib/data';
@@ -20,14 +21,6 @@ const themeRows = Object.entries(THEMES)
   .filter((t) => t.n)
   .sort((a, b) => b.n - a.n);
 const mosaic = galleries.flatMap((g) => g.images.slice(3, 4).map((im: any) => ({ ...im, g }))).slice(0, 9);
-const stat = [
-  { n: stats.events, l: 'Gatherings' },
-  { n: stats.countries, l: 'Countries' },
-  { n: stats.cities, l: 'Host cities' },
-  { n: stats.people, l: 'Network members' },
-  { n: stats.awards, l: 'Awards given' },
-  { n: stats.photos, l: 'Photographs' },
-];
 const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> — ${label}`;
 ---
 <Layout>
@@ -70,9 +63,7 @@ const idx = (n: number, label: string) => `<b>${String(n).padStart(2, '0')}</b> 
     </div>
     <Globe mode="hero" />
     <div class="wrap">
-      <div class="stats" style="border-top:0">
-        {stat.map((s) => <div class="stat"><b data-count={s.n}>{s.n.toLocaleString('en')}</b><span>{s.l}</span></div>)}
-      </div>
+      <StatsBoard />
     </div>
   </section>
 

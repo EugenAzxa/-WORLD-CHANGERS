@@ -195,8 +195,21 @@ const ext = (it: any) => (it.ext ? { target: '_blank', rel: 'noopener' } : {});
       <div class="lb-count" data-lb-count></div>
     </div>
 
+    <!-- read the page aloud (Web Speech API); shown only on pages with enough text -->
+    <div class="listen" data-listen-bar hidden role="region" aria-label="Listen to this page">
+      <button type="button" class="listen-main" data-listen-play aria-pressed="false" aria-label="Listen to this page">
+        <svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 11a6 6 0 0 1 12 0" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="2.5" y="10.5" width="4" height="6" rx="1" fill="currentColor"/><rect x="13.5" y="10.5" width="4" height="6" rx="1" fill="currentColor"/></svg>
+        <svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zM11 4h3v12h-3z" fill="currentColor"/></svg>
+        <span data-listen-label>Listen</span>
+      </button>
+      <button type="button" class="listen-x" data-listen-rate aria-label="Reading speed 1 times">1×</button>
+      <button type="button" class="listen-x" data-listen-stop aria-label="Stop reading"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="5" width="10" height="10" fill="currentColor"/></svg></button>
+      <span class="sr-only" aria-live="polite" data-listen-status></span>
+    </div>
     <script>
       import '../scripts/site';
+      import { mountListen } from '../scripts/listen';
+      if (!document.querySelector('[data-film]')) mountListen();
     </script>
   </body>
 </html>

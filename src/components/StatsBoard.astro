@@ -1,0 +1,128 @@
+---
+// "World Changers in numbers": rolling odometer figures, each with a small picture of
+// what it counts (gatherings as a calendar of squares, countries as ISO codes,
+// host cities as a route, people as faces, awards as medals, photographs as a fanned stack).
+// Everything starts when the board scrolls into view; reduced motion shows the end state.
+import { stats, events, placeList, people, galleries, media } from '../lib/data';
+
+const chron = [...events].sort((a, b) => a.start.localeCompare(b.start));
+const codes = [...new Set(placeList.map((p: any) => p.code))];
+const cities = [...placeList].sort((a: any, b: any) => a.lng - b.lng).map((p: any) => p.name);
+const faces = people.filter((p: any) => p.image && p.roles.has('Speaker')).slice(0, 6);
+const shots = galleries.slice(0, 3).map((g: any) => media(g.images[2]?.src || g.images[0]?.src, 's')).filter(Boolean);
+
+const odo = (n: number) =>
+  n.toLocaleString('en').split('').map((ch) =>
+    /\d/.test(ch)
+      ? `<span class="odo-d" style="--d:${ch}"><span class="odo-s">${'01234567890123456789'.split('').map((x) => `<i>${x}</i>`).join('')}</span></span>`
+      : `<span class="odo-sep">${ch}</span>`,
+  ).join('');
+
+const cells = [
+  { n: stats.events, l: 'Gatherings', sub: `${chron[0]?.year}–${chron.at(-1)?.year}`, v: 'cal' },
+  { n: stats.countries, l: 'Countries', sub: 'From the Holy See to the United States', v: 'codes' },
+  { n: stats.cities, l: 'Host cities', sub: `${cities[0]} → ${cities.at(-1)}`, v: 'route' },
+  { n: stats.people, l: 'Network members', sub: 'Speakers, guests and partners', v: 'faces' },
+  { n: stats.awards, l: 'Awards given', sub: 'The IASC medal', v: 'medals' },
+  { n: stats.photos, l: 'Photographs', sub: 'In the gallery', v: 'photos' },
+];
+---
+<div class="board" data-board>
+  {cells.map((c, i) => (
+    <div class="bcell" style={`--i:${i}`}>
+      <p class="bnum" aria-label={c.n.toLocaleString('en')}><span aria-hidden="true" set:html={odo(c.n)} /></p>
+      <p class="blabel">{c.l}<span>{c.sub}</span></p>
+      <div class="bviz" aria-hidden="true">
+        {c.v === 'cal' && <div class="v-cal">{chron.map((e, k) => <i class:list={[{ up: e.status === 'upcoming' }]} style={`--k:${k}`} title={e.title} />)}</div>}
+        {c.v === 'codes' && <div class="v-codes">{codes.map((cd, k) => <b style={`--k:${k}`}>{cd}</b>)}</div>}
+        {c.v === 'route' && (
+          <svg class="v-route" viewBox="0 0 280 40" preserveAspectRatio="none">
+            <path d={`M6 ${30} ${cities.map((_, k) => `L${6 + (k * 268) / (cities.length - 1)} ${k % 2 ? 12 : 28 - (k % 3) * 4}`).join(' ')}`} pathLength="1" />
+            {cities.map((_, k) => <circle cx={6 + (k * 268) / (cities.length - 1)} cy={k % 2 ? 12 : 28 - (k % 3) * 4} r="3" style={`--k:${k}`} />)}
+          </svg>
+        )}
+        {c.v === 'faces' && <div class="v-faces">{faces.map((p: any, k: number) => <img src={media(p.image, 's')} alt="" loading="lazy" style={`--k:${k}`} />)}<span style={`--k:${faces.length}`}>+{(stats.people - faces.length).toLocaleString('en')}</span></div>}
+        {c.v === 'medals' && <div class="v-medals">{Array.from({ length: stats.awards }, (_, k) => <i style={`--k:${k}`} />)}</div>}
+        {c.v === 'photos' && <div class="v-photos">{shots.map((s, k) => <img src={s} alt="" loading="lazy" style={`--k:${k}`} />)}</div>}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--color-line-strong); }
+  .bcell { display: grid; grid-template-rows: auto auto 1fr; gap: 10px; padding: 28px 28px 28px 0; border-bottom: 1px solid var(--color-line); min-width: 0; }
+  .bcell:not(:nth-child(3n + 1)) { padding-left: 28px; border-left: 1px solid var(--color-line); }
+  .bnum { --h: 1.12em; margin: 0; font: 400 clamp(56px, 6.4vw, 96px)/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: lining-nums tabular-nums; display: flex; align-items: flex-start; height: var(--h); }
+  .blabel { margin: 0; display: grid; gap: 4px; font: 500 var(--size-12)/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; }
+  .blabel span { font: 400 var(--size-15)/1.4 var(--font-text); letter-spacing: 0; text-transform: none; color: var(--color-fg-muted); }
+  .bviz { align-self: end; min-height: 44px; margin-top: 8px; }
+
+  /* odometer */
+  .odo-d { display: inline-block; height: var(--h); overflow: hidden; }
+  .odo-s { display: flex; flex-direction: column; transform: translateY(calc((var(--d) + 10) * var(--h) * -1)); }
+  .odo-s i { font-style: normal; height: var(--h); line-height: var(--h); }
+  .odo-sep { display: inline-block; height: var(--h); line-height: var(--h); margin: 0 0.02em 0 -0.1em; transform: translateY(-0.1em); }
+  .board.armed .odo-s { transform: translateY(0); transition: none; }
+  .board.run .odo-s { transition: transform 1.8s cubic-bezier(0.16, 0.84, 0.3, 1); transition-delay: calc(var(--i) * 90ms); }
+
+  /* gatherings: a calendar of squares, filled in date order */
+  .v-cal { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; max-width: 280px; }
+  .v-cal i { aspect-ratio: 1; background: var(--color-fg); }
+  .v-cal i.up { background: transparent; box-shadow: inset 0 0 0 1.5px var(--color-accent); }
+  /* countries: ISO codes */
+  .v-codes { display: flex; flex-wrap: wrap; gap: 6px; }
+  .v-codes b { font: 500 11px/1 var(--font-meta); letter-spacing: 0.06em; padding: 5px 6px; border: 1px solid var(--color-fg); }
+  /* host cities: a route west → east */
+  .v-route { width: 100%; max-width: 300px; height: 40px; overflow: visible; }
+  .v-route path { fill: none; stroke: var(--color-fg); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+  .v-route circle { fill: var(--color-accent); stroke: var(--color-bg); stroke-width: 2; }
+  /* people */
+  .v-faces { display: flex; align-items: center; }
+  .v-faces img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-bg); margin-left: -10px; filter: grayscale(1); background: var(--media-bg); }
+  .v-faces img:first-child { margin-left: 0; }
+  .v-faces span { margin-left: 10px; font: 500 var(--size-13)/1 var(--font-meta); color: var(--color-fg-muted); }
+  /* awards: medals */
+  .v-medals { display: grid; grid-template-columns: repeat(14, 1fr); gap: 5px; max-width: 280px; }
+  .v-medals i { aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #e6c879, var(--gold-600) 70%); }
+  /* photographs: a fanned stack */
+  .v-photos { position: relative; height: 72px; width: 150px; }
+  .v-photos img { position: absolute; left: 0; bottom: 0; width: 84px; height: 64px; object-fit: cover; border: 3px solid var(--color-surface); box-shadow: 0 1px 0 var(--color-line); transform: translateX(calc(var(--k) * 30px)) rotate(calc((var(--k) - 1) * 6deg)); background: var(--media-bg); }
+
+  /* entrance animations (only when JS armed the board) */
+  .board.armed .v-cal i, .board.armed .v-codes b, .board.armed .v-medals i, .board.armed .v-faces > *, .board.armed .v-route circle { opacity: 0; transform: scale(0.4); }
+  .board.armed .v-route path { stroke-dashoffset: 1; }
+  .board.armed .v-photos img { transform: translateX(0) rotate(0); }
+  .board.run .v-cal i, .board.run .v-codes b, .board.run .v-medals i, .board.run .v-faces > *, .board.run .v-route circle { opacity: 1; transform: none; transition: opacity 0.35s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1.3); }
+  .board.run .v-cal i { transition-delay: calc(400ms + var(--k) * 45ms); }
+  .board.run .v-codes b { transition-delay: calc(500ms + var(--k) * 90ms); }
+  .board.run .v-route path { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s ease-in-out 0.5s; }
+  .board.run .v-route circle { transition-delay: calc(500ms + var(--k) * 110ms); }
+  .board.run .v-faces > * { transition-delay: calc(600ms + var(--k) * 80ms); }
+  .board.run .v-medals i { transition-delay: calc(600ms + var(--k) * 35ms); }
+  .board.run .v-photos img { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1.2) calc(700ms + var(--k) * 120ms); transform: translateX(calc(var(--k) * 30px)) rotate(calc((var(--k) - 1) * 6deg)); }
+
+  @media (max-width: 900px) {
+    .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bcell, .bcell:not(:nth-child(3n + 1)) { padding: 24px 16px 24px 0; border-left: 0; }
+    .bcell:nth-child(2n) { padding-left: 16px; border-left: 1px solid var(--color-line); }
+  }
+  @media (max-width: 560px) {
+    .board { grid-template-columns: 1fr; }
+    .bcell, .bcell:nth-child(2n) { padding: 24px 0; border-left: 0; }
+  }
+</style>
+
+<script>
+  const board = document.querySelector<HTMLElement>('[data-board]');
+  if (board && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    board.classList.add('armed');
+    new IntersectionObserver(([e], io) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      void board.offsetWidth; // apply the armed state before animating
+      board.classList.add('run');
+      board.classList.remove('armed');
+    }, { threshold: 0.25 }).observe(board);
+  }
+</script>

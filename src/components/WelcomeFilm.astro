@@ -64,7 +64,12 @@ const subs = [{ from: 8.5, to: 99, text: '“Hello, and welcome to the World Cha
   .film[data-state='paused'] .film-btn .pause, .film[data-state='ended'] .film-btn .pause { display: none; }
   .film[data-state='paused'] .film-btn .play { display: inline; }
   .film[data-state='ended'] .film-btn .replay { display: inline; }
+  .film.needs-sound [data-film-sound] { background: var(--color-accent); color: var(--color-bg); border-color: var(--color-accent); animation: film-pulse 1.8s ease-out infinite; }
+  @keyframes film-pulse { 0% { box-shadow: 0 0 0 0 rgba(31, 90, 61, 0.55); } 100% { box-shadow: 0 0 0 14px rgba(31, 90, 61, 0); } }
+  @media (prefers-reduced-motion: reduce) { .film.needs-sound [data-film-sound] { animation: none; } }
   @media (max-width: 700px) {
+    .film.needs-sound .film-btn[data-film-sound] { width: auto; padding: 0 12px; }
+    .film.needs-sound .film-btn [data-film-sound-label] { display: inline; }
     .film-cue { font-size: 13px; line-height: 1.25; min-width: 0; }
     .film-skip { padding: 0 12px; }
     .film-sub { bottom: 76px; max-width: calc(100% - 32px); }

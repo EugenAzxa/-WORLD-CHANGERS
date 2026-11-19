@@ -467,3 +467,17 @@ kbd { font: 500 11px var(--font-meta); padding: 2px 6px; border: 1px solid var(-
 
 /* long single words in big headings (e.g. "Reconstruction") must not push the page wider on phones */
 .display, .h1, .h2, .row-title { overflow-wrap: break-word; }
+
+/* ---------- listen to this page ---------- */
+.listen { position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; align-items: stretch; background: var(--color-bg); border: 1px solid var(--color-fg); box-shadow: 0 6px 24px rgba(17, 17, 17, 0.12); }
+.listen[hidden] { display: none; }
+.listen button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 44px; padding: 0 14px; font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg); }
+.listen button + button { border-left: 1px solid var(--color-line); }
+.listen button:hover { background: var(--color-fg); color: var(--color-bg); }
+.listen svg { width: 18px; height: 18px; }
+.listen .i-pause, .listen-main[aria-pressed='true'] .i-play { display: none; }
+.listen-main[aria-pressed='true'] .i-pause { display: inline; }
+.listen:not(.on) .listen-x { display: none; }
+.listen.on .listen-main { background: var(--color-accent); color: var(--color-bg); }
+.is-reading { background: var(--color-accent-tint); box-shadow: 0 0 0 8px var(--color-accent-tint); transition: background var(--dur), box-shadow var(--dur); }
+@media print { .listen { display: none; } }

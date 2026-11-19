@@ -114,10 +114,43 @@ export function mountFilm() {
   });
   playBtn.addEventListener('click', () => {
     clearTimeout(leaveTimer);
+    // pressing play is a user gesture, so the film can play with its voice
+    if (video.paused || video.ended) setSound(true);
     if (video.ended) { video.currentTime = 0; video.play().catch(() => {}); }
     else if (video.paused) video.play().catch(() => {});
     else video.pause();
   });
+
+  // Browsers block sound until the visitor interacts with the page. The film tries to start
+  // with sound; if it has to start muted, the first click, tap or key press anywhere turns
+  // the voice on (rewinding to the founder if the greeting has already begun).
+  const GREETING = 7.6;
+  let soundArmed = false;
+  function armSound() {
+    if (soundArmed) return;
+    soundArmed = true;
+    root.classList.add('needs-sound');
+    soundLabel.textContent = 'Tap for sound';
+    const unmute = (e: Event) => {
+      const t = e.target as HTMLElement | null;
+      if (t?.closest('[data-film-skip], [data-film-sound], [data-film-play]')) return; // those buttons decide for themselves
+      off();
+      if (!video.muted || video.ended || video.paused) return;
+      setSound(true);
+      if (video.currentTime > GREETING + 0.7) video.currentTime = GREETING;
+      // if the browser did not count this as a gesture it pauses the unmuted video: go back to muted and wait
+      requestAnimationFrame(() => {
+        if (video.paused && !video.ended) { setSound(false); video.play().catch(() => {}); soundArmed = false; armSound(); }
+      });
+    };
+    const off = () => {
+      root.classList.remove('needs-sound');
+      ['click', 'keydown', 'touchend'].forEach((ev) => window.removeEventListener(ev, unmute, true));
+    };
+    // only events that browsers count as a user gesture (a scroll is not one)
+    ['click', 'keydown', 'touchend'].forEach((ev) => window.addEventListener(ev, unmute, true));
+    soundBtn.addEventListener('click', off, { once: true });
+  }
 
   // pause when scrolled away, resume when back (only if it was playing)
   let autoPaused = false;
@@ -136,5 +169,11 @@ export function mountFilm() {
     return;
   }
   setState('playing');
-  video.play().catch(() => setState('paused'));
+  // try with sound first (allowed for returning visitors on some browsers), else muted
+  setSound(true);
+  video.play().catch(() => {
+    setSound(false);
+    armSound();
+    video.play().catch(() => setState('paused'));
+  });
 }
