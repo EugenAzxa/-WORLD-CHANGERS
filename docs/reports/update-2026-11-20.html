@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>World Changers Summits — New Website: Updates and Additions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  @page :first { margin: 0; }
+  :root { --paper: #f5f2ec; --paper2: #ece7de; --ink: #111; --soft: #34322e; --muted: #5c5850; --line: #d6cfc2; --green: #1f5a3d; --tint: #dce6de; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font: 400 10pt/1.55 'Public Sans', system-ui, sans-serif; color: var(--soft); }
+  h1, h2, h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+  h2 { font-size: 22pt; line-height: 1.1; margin: 0 0 10pt; }
+  h3 { font-size: 13.5pt; line-height: 1.2; margin: 14pt 0 4pt; }
+  p { margin: 0 0 7pt; }
+  ul { margin: 0 0 8pt; padding-left: 14pt; }
+  li { margin: 0 0 3pt; }
+  b, strong { color: var(--ink); font-weight: 600; }
+  a { color: var(--green); text-decoration: none; }
+  .meta { font: 500 7.5pt/1.4 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .idx { font: 500 7.5pt/1 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 6pt; }
+  section { break-inside: auto; }
+  .chapter { break-before: page; }
+  .rule { border-top: 1px solid var(--ink); padding-top: 10pt; margin-top: 4pt; }
+  figure { margin: 8pt 0 10pt; break-inside: avoid; }
+  figure img { width: 100%; display: block; border: 1px solid var(--line); }
+  figcaption { margin-top: 4pt; font: 400 7.5pt/1.4 'IBM Plex Mono', monospace; color: var(--muted); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
+  .callout { background: var(--tint); padding: 9pt 11pt; margin: 8pt 0 10pt; break-inside: avoid; }
+  .callout b { color: var(--green); }
+  table { width: 100%; border-collapse: collapse; margin: 6pt 0 10pt; font-size: 9pt; break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; padding: 5pt 8pt 5pt 0; border-bottom: 1px solid var(--line); }
+  th { font: 500 7pt/1.3 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); }
+  td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
+  .num { font-family: 'Newsreader', serif; font-size: 20pt; color: var(--ink); line-height: 1; }
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); margin: 10pt 0 14pt; }
+  .nums div { padding: 8pt 8pt 8pt 0; border-bottom: 1px solid var(--line); }
+  .nums div + div { padding-left: 8pt; border-left: 1px solid var(--line); }
+  .nums div:nth-child(4n + 1) { border-left: 0; padding-left: 0; }
+  .nums span { display: block; margin-top: 4pt; }
+  .tag { display: inline-block; font: 500 7pt/1 'IBM Plex Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; padding: 3pt 5pt; border: 1px solid var(--ink); color: var(--ink); vertical-align: 1pt; }
+  .tag.new { background: var(--green); border-color: var(--green); color: var(--paper); }
+
+  /* cover */
+  .cover { height: 297mm; padding: 22mm 20mm; background: var(--paper); display: flex; flex-direction: column; justify-content: space-between; break-after: page; }
+  .cover img.logo { width: 120px; }
+  .cover h1 { font-size: 44pt; line-height: 1; margin: 0 0 14pt; max-width: 12ch; }
+  .cover h1 em { color: var(--green); }
+  .cover .lead { font-size: 13pt; line-height: 1.5; max-width: 46ch; color: var(--soft); }
+  .cover .film { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin: 18pt 0 6pt; }
+  .cover dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--ink); }
+  .cover dl div { padding: 8pt 10pt 0 0; }
+  .cover dd { margin: 3pt 0 0; color: var(--ink); font-size: 10pt; }
+  .toc { columns: 2; column-gap: 20pt; margin: 6pt 0 0; padding: 0; list-style: none; counter-reset: c; }
+  .toc li { counter-increment: c; padding: 3pt 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+  .toc li::before { content: counter(c, decimal-leading-zero) "  "; font: 500 7.5pt 'IBM Plex Mono', monospace; color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <img class="logo" src="../../public/brand/wcsnewlogoPc.png" alt="World Changers Summit" />
+  </div>
+  <div>
+    <p class="meta" style="margin-bottom:12pt">Website progress report · 20 November 2026</p>
+    <h1>The new World Changers website: <em>updates and additions</em></h1>
+    <p class="lead">What has been rebuilt, what is new, and the few decisions we need from the World Changers and IASC team before the site moves to wcsiasc.org.</p>
+    <img class="film" src="img/film-end.jpg" alt="" />
+    <p class="meta">Last frame of the new opening film: the founder welcomes visitors at the Vatican with the IASC medal</p>
+  </div>
+  <dl>
+    <div><dt class="meta">Preview</dt><dd><a href="https://world-changers-pi.vercel.app">world-changers-pi.vercel.app</a></dd></div>
+    <div><dt class="meta">Current site</dt><dd>wcsiasc.org (unchanged until switch-over)</dd></div>
+    <div><dt class="meta">Status</dt><dd>Content complete · ready for review</dd></div>
+  </dl>
+</div>
+
+<!-- 1 SUMMARY -->
+<section>
+  <p class="idx">01 — Summary</p>
+  <h2>At a glance</h2>
+  <p>The website has been rebuilt from the ground up. <b>Every page, person, event, award, article, photograph and document from the current site has been carried over</b>. New features show what World Changers does at a glance: where the summits have taken place, who takes part and why it matters.</p>
+  <div class="nums">
+    <div><b class="num">415</b><span class="meta">Pages on the new site</span></div>
+    <div><b class="num">99.6%</b><span class="meta">Of the old text found on new pages</span></div>
+    <div><b class="num">2,321</b><span class="meta">Images migrated and optimised</span></div>
+    <div><b class="num">0</b><span class="meta">Broken internal links</span></div>
+    <div><b class="num">26</b><span class="meta">Gatherings on the globe</span></div>
+    <div><b class="num">251</b><span class="meta">Network profiles</span></div>
+    <div><b class="num">78</b><span class="meta">Catalogue pages, readable on site</span></div>
+    <div><b class="num">390 px</b><span class="meta">Phone width every page was checked at</span></div>
+  </div>
+  <h3>Contents</h3>
+  <ol class="toc">
+    <li>Summary</li>
+    <li>Opening film</li>
+    <li>Interactive globe with a real Earth</li>
+    <li>World Changers in numbers</li>
+    <li>Catalogue 2025 on the website</li>
+    <li>Redesigned pages</li>
+    <li>Accessibility: “Listen to this page”</li>
+    <li>Mobile version</li>
+    <li>Full content migration</li>
+    <li>Decisions needed from the team</li>
+    <li>Content on the old site to confirm</li>
+    <li>Technical notes</li>
+  </ol>
+  <div class="callout"><b>Where to look first:</b> open the preview link on a phone and on a computer. The site opens with the film. The globe is in section 01 of the home page and full-screen under “World Map”.</div>
+</section>
+
+<!-- 2 FILM -->
+<section class="chapter">
+  <p class="idx">02 — New</p>
+  <h2>Opening film <span class="tag new">New</span></h2>
+  <p>The home page now opens with a 12-second film. The camera starts above the clouds with white doves and descends over Rome to St. Peter’s Square. It ends on a terrace facing the dome, where <b>Sir Prof. Dr. Gabriele Pao-Pei Andreoli</b> holds the IASC medal and says: <i>“Hello, and welcome to the World Changers Summit.”</i></p>
+  <div class="two">
+    <figure><img src="img/film-start.jpg" alt="" /><figcaption>Opening frame: doves above the clouds of Rome</figcaption></figure>
+    <figure><img src="img/film-end.jpg" alt="" /><figcaption>Closing frame: the welcome with the IASC medal</figcaption></figure>
+  </div>
+  <h3>How it behaves</h3>
+  <ul>
+    <li><b>Opening sequence.</b> The film fills the screen with a <b>Skip intro</b> button and a progress line. When it ends it holds on the welcome for a moment, then scrolls down to the website by itself.</li>
+    <li><b>Sound.</b> The film tries to play with sound. Most browsers block sound until the visitor interacts, so in that case it starts silently and the first click or tap turns the voice on. If the greeting has already passed, the film rewinds to it. A highlighted <b>“Tap for sound”</b> button is shown meanwhile.</li>
+    <li><b>Captions.</b> Place captions and an English subtitle of the greeting are shown, so the film works without sound too.</li>
+    <li><b>Repeat visits.</b> It plays once per visit. When visitors come back to the home page, they see the welcome frame with a play button.</li>
+    <li><b>Reduced motion.</b> Visitors who turn off animations in their device settings never get autoplay.</li>
+  </ul>
+  <div class="callout"><b>Please note:</b> the film was generated with AI (Higgsfield), from public photographs of the founder and a photograph of the IASC medal. The voice is synthetic, not Prof. Andreoli’s own. It is on the public preview link now. <b>We need Prof. Andreoli’s approval to keep it there and before it appears on wcsiasc.org.</b> We can replace the voice with a real recording at any time.</div>
+</section>
+
+<!-- 3 GLOBE -->
+<section class="chapter">
+  <p class="idx">03 — New</p>
+  <h2>Interactive globe with a real Earth <span class="tag new">New</span></h2>
+  <p>The centre of the site is a globe of every World Changers gathering. It now shows a <b>photographic Earth</b> made from NASA Blue Marble imagery, with drifting clouds, a thin atmosphere and stars. Host cities are marked on it. Lines from the Vatican trace how the movement travelled.</p>
+  <figure><img src="img/globe.jpg" alt="" /><figcaption>World Map page: 26 gatherings in 10 countries, with the list of places on the right</figcaption></figure>
+  <ul>
+    <li><b>Explore.</b> Drag to turn, zoom in and out, and filter by year (2023–2027).</li>
+    <li><b>Select a city.</b> This opens what happened there: events, dates, venues and links.</li>
+    <li><b>Play the journey.</b> The globe flies from gathering to gathering in chronological order.</li>
+    <li><b>Share a place.</b> Every place has its own link, for example …/world-map/#place=dubai.</li>
+    <li><b>The 2023 journey.</b> An animated map of the whole story, available from the home page.</li>
+  </ul>
+</section>
+
+<!-- 4 NUMBERS -->
+<section class="chapter">
+  <p class="idx">04 — New</p>
+  <h2>World Changers in numbers <span class="tag new">New</span></h2>
+  <p>The figures on the home page are now an animated board. When it scrolls into view, the numbers roll into place like an odometer. Each figure has a small picture of what it counts:</p>
+  <figure><img src="img/board.jpg" alt="" /><figcaption>Home page, numbers board</figcaption></figure>
+  <table>
+    <tr><th>Figure</th><th>Picture</th></tr>
+    <tr><td>26 gatherings</td><td>A calendar of squares filled in date order; the open square is the next event</td></tr>
+    <tr><td>10 countries</td><td>Country codes appearing one by one: VA, IT, AL, SA, CH, MK, AE, EG, FR, US</td></tr>
+    <tr><td>14 host cities</td><td>A route drawn west to east, from Spartanburg to Dubai</td></tr>
+    <tr><td>251 network members</td><td>Faces of speakers and “+245”</td></tr>
+    <tr><td>27 awards given</td><td>A row of IASC medals</td></tr>
+    <tr><td>1,409 photographs</td><td>A stack of photographs that fans out</td></tr>
+  </table>
+  <p class="meta">All figures are calculated from the site’s content, so they update by themselves when events, people or photos are added.</p>
+</section>
+
+<!-- 5 CATALOGUE -->
+<section class="chapter">
+  <p class="idx">05 — New</p>
+  <h2>Catalogue 2025 on the website <span class="tag new">New</span></h2>
+  <p>The 78-page “Presentation 2025” catalogue used to open in a WordPress flip-book plugin. It is now a page of the website itself (<b>/catalogue/</b>):</p>
+  <figure><img src="img/catalogue.jpg" alt="" /><figcaption>Catalogue reader: two-page spreads with a page-turn animation</figcaption></figure>
+  <ul>
+    <li><b>Reading.</b> Two-page spreads with a page-turn effect on computers, single pages on phones. Turn pages with the arrow keys, a swipe or a click. There is also full-screen mode and a grid of all 78 pages.</li>
+    <li><b>Contents.</b> A table of contents for each edition (1st to 8th), the awards and the new events. Each entry links to the matching event page on the website.</li>
+    <li><b>Text version.</b> The full text of every chapter is included, for search engines, translation and screen readers.</li>
+    <li><b>Page links.</b> Any page can be linked directly, for example …/catalogue/#p=45 (Davos 2025).</li>
+  </ul>
+</section>
+
+<!-- 6 PAGES -->
+<section class="chapter">
+  <p class="idx">06 — Improved</p>
+  <h2>Redesigned pages</h2>
+  <p>The whole site uses a new, calm editorial design: warm paper background, ink-black type, a single IASC green and generous space. <b>The original gold World Changers Summit logo is kept</b> and shown at the size used on the current site.</p>
+  <figure><img src="img/donate.jpg" alt="" /><figcaption>Donate page</figcaption></figure>
+  <table>
+    <tr><th>Page</th><th>What changed</th></tr>
+    <tr><td>Donate</td><td>New layout: photograph from the Sistine Chapel, “What your support makes possible”, three ways to give, and bank details with copy buttons. The original wording is kept.</td></tr>
+    <tr><td>History</td><td>The story now sits next to a founder card and key facts. Added photographs of the first summit (5 July 2023) and a year-by-year timeline with event posters.</td></tr>
+    <tr><td>About</td><td>Restored the “You give us courage” portraits with captions: Pope Francis, Father Cosma and Baba Mondi. Added the latest gatherings.</td></tr>
+    <tr><td>Events</td><td>Covers for the six summit series: Summit, Power Women’s, Economic, Biohacking, Ethical &amp; Innovation, Balkan.</td></tr>
+    <tr><td>Summit series</td><td>The Economic and Power Women’s pages list their events again.</td></tr>
+    <tr><td>Galleries</td><td>Abbreviated album names are written out, for example “World Changers Balkan Summit 2024”.</td></tr>
+    <tr><td>Search</td><td>Search across the whole site (people, events, venues, articles), opened with the magnifier icon or ⌘K.</td></tr>
+  </table>
+</section>
+
+<!-- 7 ACCESSIBILITY -->
+<section class="chapter">
+  <p class="idx">07 — New</p>
+  <h2>Accessibility: “Listen to this page” <span class="tag new">New</span></h2>
+  <p>For visitors with low vision, or anyone who prefers to listen, every page with text now has a <b>Listen</b> button in the bottom-left corner. It shows the reading time, for example “Listen · 3 min”.</p>
+  <ul>
+    <li><b>What it reads.</b> The page title, the introduction and the main text.</li>
+    <li><b>Following along.</b> The paragraph being read is highlighted and the page scrolls with it.</li>
+    <li><b>Controls.</b> Pause, resume, stop, and three speeds (1×, 1.25× and 0.85×). Double-clicking a paragraph while listening starts reading from there.</li>
+    <li><b>How it works.</b> It uses the speech voice built into the visitor’s own phone or computer, so it costs nothing and needs no outside service. Voice quality depends on the device; Apple devices sound best.</li>
+  </ul>
+  <h3>Other accessibility work</h3>
+  <ul>
+    <li><b>Contrast.</b> Text contrast meets WCAG AA. Buttons are at least 44 × 44 px on touch screens.</li>
+    <li><b>Keyboard and screen readers.</b> Menus, search, the catalogue and the film controls work with the keyboard. Images have descriptions, and the globe has a plain list of places for keyboard and screen-reader users.</li>
+    <li><b>Motion.</b> Animations respect the “reduce motion” setting of the device.</li>
+    <li><b>Film.</b> The film has on-screen captions and a subtitle of the spoken greeting.</li>
+  </ul>
+</section>
+
+<!-- 8 MOBILE -->
+<section>
+  <p class="idx rule">08 — Checked</p>
+  <h2>Mobile version</h2>
+  <p>All 415 pages were opened at phone width (390 px) and checked automatically for sideways scrolling, content running off the screen, text squeezed into narrow columns and text touching the screen edge. Problems found and fixed:</p>
+  <ul>
+    <li><b>Articles.</b> Text touched the edges of the screen; side margins are restored.</li>
+    <li><b>Long web links.</b> Links inside articles pushed the page wider; they now wrap.</li>
+    <li><b>Gallery title.</b> The “Ukraine Reconstruction Summit” title broke in the middle of a word. A hidden non-breaking space in the old title caused it.</li>
+    <li><b>Lists.</b> List items with a heading were squeezed into a narrow column.</li>
+    <li><b>Film.</b> On phones the film now fills the whole screen.</li>
+  </ul>
+  <p>After the fixes no page scrolls sideways on a phone.</p>
+</section>
+
+<!-- 9 MIGRATION -->
+<section class="chapter">
+  <p class="idx">09 — Complete</p>
+  <h2>Full content migration</h2>
+  <p>The current site was downloaded again on 20 November 2026 and compared page by page with the new one.</p>
+  <table>
+    <tr><th>Check</th><th>Result</th></tr>
+    <tr><td>Addresses (URLs)</td><td>All 413 content pages exist at the same address, so links from Google, social media and emails keep working. 31 addresses stay on the current site on purpose (forms, donor and member accounts, theme pages).</td></tr>
+    <tr><td>Text</td><td>4,030 of 4,045 sentences of main content are found on the new pages (99.6%). The rest are reworded headings; no content is lost.</td></tr>
+    <tr><td>Documents</td><td>Every agenda and final-report PDF linked from an event page is linked on the new site.</td></tr>
+    <tr><td>Images</td><td>2,321 images, converted to modern formats in two sizes each, so pages load much faster.</td></tr>
+    <tr><td>Links</td><td>0 broken internal links across 415 pages.</td></tr>
+    <tr><td>Redirects</td><td>/network/ and /ambassadors/ lead to the network list, and the old flip-book link leads to /catalogue/.</td></tr>
+  </table>
+  <p>Everything is connected: events link to venues, speakers, awards, galleries and press, and every person’s profile lists their events and awards.</p>
+</section>
+
+<!-- 10 DECISIONS -->
+<section class="chapter">
+  <p class="idx">10 — Action needed</p>
+  <h2>Decisions needed from the team</h2>
+  <table>
+    <tr><th>Topic</th><th>What we need</th></tr>
+    <tr><td>Opening film</td><td>Approval from Prof. Andreoli for the AI-generated film and synthetic voice, which are already on the public preview link. Optionally, a short real voice recording of the greeting.</td></tr>
+    <tr><td>Domain</td><td>A date to move wcsiasc.org to the new site.</td></tr>
+    <tr><td>Forms and payments</td><td>Event registration forms (8), online donations (GiveWP), membership and login, and the newsletter sign-up still run on the current WordPress. Before the switch they need a new home (form service, payment provider) or the old WordPress must stay online for them.</td></tr>
+    <tr><td>Large media</td><td>6 videos (about 166 MB) and 2 large agenda PDFs (68 MB and 17 MB) are still served from the current site. They should move to YouTube or Vimeo, or to file storage, before WordPress is switched off.</td></tr>
+    <tr><td>Social links</td><td>The real Facebook, LinkedIn and Instagram addresses. The current site links only to the home pages of those networks.</td></tr>
+    <tr><td>New events</td><td>The 2025 catalogue announces World Changers Climate in New York (25 Sept 2025), WCS Africa in Kampala (20 Nov 2026) and WCS Tech for Peace in Riyadh (2026). They are not in the event list. Should we add them?</td></tr>
+  </table>
+</section>
+
+<!-- 11 CONTENT TO CONFIRM -->
+<section>
+  <p class="idx rule">11 — Please confirm</p>
+  <h2>Content on the old site to confirm</h2>
+  <p>Content was migrated exactly as it is. These places look like copy-and-paste mistakes on the current site. We can correct them once the team confirms:</p>
+  <ol>
+    <li><b>St. Moritz Longevity Forum (Sept 2025):</b> the gallery, agenda and report buttons open Balkan Summit 2024 materials.</li>
+    <li><b>IASC and Elysian (May 2025):</b> the agenda is the Ethical &amp; Innovation Summit agenda.</li>
+    <li><b>Ethical &amp; Innovation Summit (Nov 2024):</b> the report is dated 22 October 2025.</li>
+    <li><b>REART (July 2026):</b> the gallery is from Vatican City Transcendence 2025.</li>
+    <li><b>Rome “Transcendence” (Oct 2025):</b> “Read more” links to the Davos site, and the agenda is the Davos 2025 agenda.</li>
+    <li><b>Ukrainian Reconstruction Summit:</b> the event card says 13–14 September 2025, but the text says 12–13 September.</li>
+    <li><b>Spirit of Quantum:</b> the event is on 21 October 2027, but the patron page says “22 October 2026”.</li>
+    <li><b>Home page testimonials:</b> “Nina Larinson” and “Mikky Peterson” look like template placeholder text.</li>
+  </ol>
+</section>
+
+<!-- 12 TECH -->
+<section style="break-inside: avoid">
+  <p class="idx rule">12 — For the technical team</p>
+  <h2>Technical notes</h2>
+  <ul>
+    <li><b>Platform.</b> A fast static website (Astro), hosted on Vercel and published automatically from GitHub (EugenAzxa/-WORLD-CHANGERS). No database or plugins to maintain.</li>
+    <li><b>Re-importing content.</b> Scripts re-import content from the current WordPress site, re-check every page against it and check all links. The Catalogue and the film each have a script to rebuild them.</li>
+    <li><b>Search engines.</b> Sitemap, canonical addresses and social-media previews are generated for every page.</li>
+    <li><b>Licences.</b> Earth imagery is from NASA Blue Marble (public domain, credited on the globe). The film was generated with Higgsfield (Seedance 2.5 and Seedream 5.0).</li>
+  </ul>
+  <p class="meta" style="margin-top:18pt">Preview: world-changers-pi.vercel.app · Report generated 20 November 2026</p>
+</section>
+
+</body>
+</html>
