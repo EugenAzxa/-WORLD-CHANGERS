@@ -134,7 +134,7 @@ const list = blocks.filter((b) => !skip.includes(b.type) && !(b.type === 'button
           </div>
         );
       case 'list':
-        return <ul class="checklist" id={anchor}>{b.items.map((t: string) => { const [h, ...rest] = t.split(':'); return rest.length ? <li><b>{h}:</b>{rest.join(':')}</li> : <li>{t}</li>; })}</ul>;
+        return <ul class="checklist" id={anchor}>{b.items.map((t: string) => { const [h, ...rest] = t.split(':'); return rest.length ? <li><div><b>{h}:</b>{rest.join(':')}</div></li> : <li><div>{t}</div></li>; })}</ul>;
       default:
         return null;
     }

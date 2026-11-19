@@ -28,7 +28,7 @@ const htmlFile = (url) => {
 // ---------- helpers ----------
 const images = new Set(); // every image URL we reference -> downloaded later
 const videos = new Set();
-const decode = (s) => cheerio.load(`<i>${s ?? ''}</i>`)('i').text();
+const decode = (s) => cheerio.load(`<i>${s ?? ''}</i>`)('i').text().replace(/[\u00a0\u200b]+/g, ' ').replace(/ {2,}/g, ' ').trim(); // titles: no non-breaking spaces
 const clean = (s) => (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
 
 function absUrl(u) {

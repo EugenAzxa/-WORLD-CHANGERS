@@ -90,7 +90,7 @@
 
   --wrap: 1320px;
   --gutter: clamp(16px, 3.4vw, 40px);
-  --header-h: 68px;
+  --header-h: 80px;
   --section-y: clamp(64px, 9vw, 128px);
 }
 

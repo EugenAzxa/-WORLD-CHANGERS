@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageHero from '../components/PageHero.astro';
 import { pages, SITE, link } from '../lib/data';
-const why = pages.donate.blocks.find((b: any) => b.type === 'list')?.items || [];
+// "Why donate" points from the old page, split into heading + text
+const why = (pages.donate.blocks.find((b: any) => b.type === 'list')?.items || []).map((t: string) => {
+  const [h, ...r] = t.split(':');
+  return r.length ? { h: h.trim(), t: r.join(':').trim() } : { h: '', t: t.trim() };
+});
 const BANK = [
   ['Account name', 'FONDACIONI IASC M22005452G'],
   ['Beneficiary bank', 'Raiffeisen Bank Sha'],
@@ -10,51 +13,122 @@ const BANK = [
   ['IBAN', 'AL72 2021 1006 0000 0000 0169 2889'],
 ];
 ---
-<Layout title="Donate" description="Support World Changers Summits — every donation helps bring together visionaries, innovators and leaders committed to a better world.">
-  <PageHero title="Make a difference today" eyebrow="Support the mission" lead="At the World Changer Summit, we believe in the power of collective action to drive meaningful change and create a better future for all. Your support is crucial in helping us bring together visionaries, innovators, and leaders who are committed to making a positive impact on our world." crumbs={[{ href: '/donate/', label: 'Donate' }]} />
-  <section class="section" style="padding-top:0"><div class="wrap">
-    <div class="section-head" style="margin-bottom:0;border:0;padding:0"><p class="idx"><b>Why donate</b></p><div></div></div>
-    <ul class="checklist">{why.map((t: string) => { const [h, ...r] = t.split(':'); return <li><b>{h}:</b>{r.join(':')}</li>; })}</ul>
-  </div></section>
-  <section class="section bg-2"><div class="wrap">
-    <div class="section-head"><p class="idx"><b>Ways to give</b></p><div><h2 class="h2">Your gift matters</h2><p class="lead">Every donation, no matter the amount, is a vital contribution to our mission. Your support will be used effectively to enhance the summit experience, facilitate groundbreaking discussions, and drive real-world impact.</p></div></div>
-    <div class="grid grid-3 stack-sm">
-      <div class="give">
-        <span class="ic">01</span><h3 class="h3">Online</h3>
-        <p class="muted">Use our secure donation page.</p>
-        <a class="btn btn-primary" href={link('/donations/givewp-donation-form/')} target="_blank" rel="noopener">Donate online <span class="arr">↗</span></a>
+<Layout title="Donate" description="Support World Changers Summits — every donation helps bring together visionaries, innovators and leaders committed to a better world." image="/media/2024-08/eventteam.webp">
+  <!-- hero: words + photograph -->
+  <section class="give-hero">
+    <div class="wrap give-hero-grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/donate/">Donate</a></nav>
+        <p class="eyebrow" style="margin-top:24px;color:var(--color-fg)">Support the mission</p>
+        <h1 class="h1">Make a difference today</h1>
+        <p class="lead">At the World Changer Summit, we believe in the power of collective action to drive meaningful change and create a better future for all. Your support is crucial in helping us bring together visionaries, innovators, and leaders who are committed to making a positive impact on our world.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#ways">Ways to give <span class="arr" aria-hidden="true">↓</span></a>
+          <a class="btn btn-secondary" href={`mailto:${SITE.email}?subject=Supporting%20World%20Changers`}>Write to us</a>
+        </div>
       </div>
-      <div class="give">
-        <span class="ic">02</span><h3 class="h3">Bank transfer</h3>
-        <dl class="bank">
-          {BANK.map(([k, v]) => <div><dt>{k}</dt><dd><span>{v}</span><button type="button" class="copy" data-copy={v.replace(/\s/g, k === 'IBAN' ? '' : ' ')} aria-label={`Copy ${k}`}>Copy</button></dd></div>)}
-        </dl>
-      </div>
-      <div class="give">
-        <span class="ic">03</span><h3 class="h3">Other ways</h3>
-        <p class="muted">Contact us for more information on other ways to give, sponsorship and patronage.</p>
-        <a class="btn btn-secondary" href={`mailto:${SITE.email}?subject=Supporting%20World%20Changers`}>{SITE.email}</a>
-        <a class="btn btn-secondary" href="/spirit-of-quantum/" style="margin-top:10px">Spirit of Quantum patron</a>
+      <figure class="give-photo">
+        <img src="/media/2024-08/eventteam.webp" alt="World Changers participants gathered in the Sistine Chapel" width="1024" height="768" />
+        <figcaption class="meta">World Changers in the Sistine Chapel, Vatican City</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- why -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><p class="idx"><b>01</b> — Why donate</p><div><h2 class="h2">What your support makes possible</h2></div></div>
+      <ol class="why">
+        {why.map((w: any, i: number) => (
+          <li>
+            <span class="why-n">{String(i + 1).padStart(2, '0')}</span>
+            {w.h && <h3 class="h3">{w.h}</h3>}
+            <p>{w.t}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ways -->
+  <section class="section bg-2" id="ways">
+    <div class="wrap">
+      <div class="section-head"><p class="idx"><b>02</b> — Ways to give</p><div><h2 class="h2">Your gift matters</h2><p class="lead">Every donation, no matter the amount, is a vital contribution to our mission. Your support will be used effectively to enhance the summit experience, facilitate groundbreaking discussions, and drive real-world impact.</p></div></div>
+      <div class="ways">
+        <div class="way">
+          <p class="meta">Online</p>
+          <h3 class="h3">Secure donation page</h3>
+          <p class="muted">Card and online payment through our donation form.</p>
+          <a class="btn btn-primary" href={link('/donations/givewp-donation-form/')} target="_blank" rel="noopener">Donate online <span class="arr" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="way way-bank">
+          <p class="meta">Bank transfer</p>
+          <h3 class="h3">Fondacioni IASC</h3>
+          <dl class="bank">
+            {BANK.map(([k, v]) => <div><dt>{k}</dt><dd><span>{v}</span><button type="button" class="copy" data-copy={v.replace(/\s/g, k === 'IBAN' ? '' : ' ')} aria-label={`Copy ${k}`}>Copy</button></dd></div>)}
+          </dl>
+        </div>
+        <div class="way">
+          <p class="meta">Other ways</p>
+          <h3 class="h3">Sponsorship &amp; patronage</h3>
+          <p class="muted">Contact us for more information on other ways to give.</p>
+          <a class="btn btn-secondary" href={`mailto:${SITE.email}?subject=Supporting%20World%20Changers`}>{SITE.email}</a>
+          <a class="text-link" href="/spirit-of-quantum/">Spirit of Quantum patron programme <span class="arr" aria-hidden="true">→</span></a>
+        </div>
       </div>
     </div>
-    <div class="two-col" style="margin-top:64px">
-      <div><p class="eyebrow">Thank you for your generosity</p><p class="lead">We are deeply grateful for your support. Your generosity is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact. Thank you for being a part of this journey.</p></div>
-      <div><p class="eyebrow">Donate today</p><p class="lead">Be a catalyst for change by making a donation to the World Changer Summit. Together, we can make a significant difference and shape a brighter future for everyone. Thank you for your generosity and commitment to our cause.</p></div>
+  </section>
+
+  <!-- thanks -->
+  <section class="section">
+    <div class="wrap thanks">
+      <p class="eyebrow">Thank you for your generosity</p>
+      <blockquote class="thanks-quote">We are deeply grateful for your support. Your generosity is a driving force behind the success of the World Changer Summit and fuels our commitment to creating a positive and lasting impact. Thank you for being a part of this journey.</blockquote>
+      <p class="lead">Be a catalyst for change by making a donation to the World Changer Summit. Together, we can make a significant difference and shape a brighter future for everyone. Thank you for your generosity and commitment to our cause.</p>
     </div>
-  </div></section>
+  </section>
 </Layout>
+
 <style>
-  .give { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; padding-top: var(--space-5); border-top: 1px solid var(--color-line-strong); }
-  .give .ic { font: 500 var(--size-12)/1 var(--font-meta); letter-spacing: 0.08em; color: var(--color-fg-muted); }
-  .give .btn { width: 100%; }
+  .give-hero { padding: clamp(32px, 5vw, 72px) 0 clamp(48px, 6vw, 96px); }
+  .give-hero-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 80px); align-items: end; }
+  .give-hero .h1 { margin-top: 12px; }
+  .give-hero .lead { margin-top: 24px; max-width: 52ch; }
+  .give-hero .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .give-photo { margin: 0; }
+  .give-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--media-bg); }
+  .give-photo figcaption { margin-top: 10px; }
+
+  .why { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 clamp(24px, 4vw, 56px); }
+  .why li { display: flex; flex-direction: column; gap: 12px; padding: 24px 0; border-top: 1px solid var(--color-line-strong); }
+  .why-n { font: 500 var(--size-13)/1 var(--font-meta); color: var(--color-accent); }
+  .why h3 { margin: 0; }
+  .why p { margin: 0; color: var(--color-fg-soft); max-width: 52ch; }
+
+  .ways { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); }
+  .way { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 24px; background: var(--color-bg); border-top: 2px solid var(--color-fg); }
+  .way .h3 { margin: 0; }
+  .way .muted { margin: 0; }
+  .way .btn { margin-top: auto; width: 100%; }
+  .way .text-link { margin-top: 4px; }
   .bank { margin: 0; display: grid; width: 100%; border-top: 1px solid var(--color-line); }
   .bank div { padding: 10px 0; border-bottom: 1px solid var(--color-line); }
   .bank dt { font: 500 11px/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); }
   .bank dd { margin: 4px 0 0; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-weight: 500; font-size: var(--size-15); word-break: break-word; }
+  .bank .copy { flex-shrink: 0; min-height: 36px; padding: 0 10px; border: 1px solid var(--color-line); font: 500 11px/1 var(--font-meta); letter-spacing: 0.06em; text-transform: uppercase; }
+  .bank .copy:hover { border-color: var(--color-fg); }
+
+  .thanks { max-width: 920px; text-align: center; }
+  .thanks-quote { margin: 16px auto 24px; font: 400 clamp(26px, 3.2vw, 40px)/1.25 var(--font-display); letter-spacing: -0.01em; }
+  .thanks .lead { margin: 0 auto; max-width: 60ch; }
+
+  @media (max-width: 900px) {
+    .give-hero-grid, .why, .ways { grid-template-columns: 1fr; }
+  }
 </style>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(b.dataset.copy!); b.textContent = 'Copied ✓'; setTimeout(() => (b.textContent = 'Copy'), 1600); } catch {}
+    try { await navigator.clipboard.writeText(b.dataset.copy!); b.textContent = 'Copied'; setTimeout(() => (b.textContent = 'Copy'), 1600); } catch {}
   }));
 </script>

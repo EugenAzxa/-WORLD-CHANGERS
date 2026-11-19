@@ -1,23 +1,72 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import { pages, rewriteHtml, events, places } from '../lib/data';
+import { pages, rewriteHtml, events, places, stats } from '../lib/data';
 const html = pages.history.blocks.map((b: any) => b.html || '').join('');
 const years = [...new Set(events.map((e) => e.year))].sort();
 const byYear = years.map((y) => ({ y, items: events.filter((e) => e.year === y).sort((a, b) => a.start.localeCompare(b.start)) }));
+const first = [...events].sort((a, b) => a.start.localeCompare(b.start))[0];
+const facts = [
+  ['First summit', `${first?.dateRange ?? 'July 5, 2023'} · Pontifical Academy of Sciences, Vatican City`],
+  ['Gatherings', `${stats.events} in ${stats.countries} countries, ${stats.cities} host cities`],
+  ['Network', `${stats.people} speakers, guests and partners`],
+  ['Honours', `${stats.awards} IASC awards presented`],
+];
+// photographs from the first World Changers Summit, 5 July 2023
+const photos = [
+  { src: '/media/2024-09/img_3800.webp', cap: 'Session at the Pontifical Academy of Sciences' },
+  { src: '/media/2024-09/img_3290.webp', cap: 'The founder presents the IASC medal' },
+  { src: '/media/2024-09/img_3367.webp', cap: 'IASC medals for the first honourees' },
+];
 ---
 <Layout title="History" description="The World Changer Summit, founded by Sir Professor Gabriele Pao-Pei Andreoli, began with a vision to unite brilliant minds in a quest for transformative change.">
   <PageHero title="From the Vatican to the world" eyebrow="Our history" lead="Founded by Sir Professor Gabriele Pao-Pei Andreoli, World Changers began at the Pontifical Academy of Sciences — and became a global network." crumbs={[{ href: '/history/', label: 'History' }]} />
-  <section class="section" style="padding-top:0"><div class="wrap"><div class="prose dropcap" set:html={rewriteHtml(html)} /></div></section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap hist">
+      <div class="prose dropcap" set:html={rewriteHtml(html)} />
+      <aside class="hist-aside">
+        <figure class="founder">
+          <img src="/media/2023-09/gabriele1-sm.webp" alt="Sir Prof. Dr. Gabriele Pao-Pei Andreoli" loading="lazy" />
+          <figcaption>
+            <span class="h4">Sir Prof. Dr. Gabriele Pao-Pei Andreoli</span>
+            <span class="meta">Founder · President of IASC</span>
+            <a class="text-link" href="/network/gabriele-pao-pei-andreoli/">Profile <span class="arr" aria-hidden="true">→</span></a>
+          </figcaption>
+        </figure>
+        <dl class="facts">
+          {facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head"><p class="idx"><b>July 5, 2023</b></p><div><h2 class="h2">Where it began</h2><div class="head-actions"><a class="text-link" href="/wcs-2023-gallery/">All photographs of the first summit <span class="arr">→</span></a></div></div></div>
+      <div class="hist-photos">
+        {photos.map((p, i) => (
+          <figure class:list={[{ wide: i === 0 }]}>
+            <img src={p.src} alt={p.cap} loading="lazy" />
+            <figcaption class="meta">{p.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section bg-2"><div class="wrap">
-    <div class="section-head"><p class="idx"><b>Timeline</b></p><div><h2 class="h2">Year by year</h2><div class="head-actions"><a class="text-link" href="/world-map/">Play it on the atlas <span class="arr">→</span></a></div></div></div>
+    <div class="section-head"><p class="idx"><b>Timeline</b></p><div><h2 class="h2">Year by year</h2><div class="head-actions"><a class="text-link" href="/?intro=1">Watch the journey <span class="arr">↺</span></a><a class="text-link" href="/world-map/">Open the atlas <span class="arr">→</span></a></div></div></div>
     <div class="timeline">
       {byYear.map(({ y, items }) => (
         <div class="tl-year">
           <h3 class="accent">{y}</h3>
           <ol class="tl-list">
             {items.map((e) => (
-              <li><a href={e.url}><span class="meta">{e.dateRange}</span><b>{e.title}</b><span class="muted">{e.place ? `${places[e.place].name} · ${places[e.place].code}` : e.venue}</span></a></li>
+              <li><a href={e.url}>
+                <span class="tl-thumb">{e.posterSm && <img src={e.posterSm} alt="" loading="lazy" />}</span>
+                <span class="tl-body"><span class="meta">{e.dateRange}</span><b>{e.title}</b><span class="muted">{e.place ? `${places[e.place].name} · ${places[e.place].code}` : e.venue}</span></span>
+              </a></li>
             ))}
           </ol>
         </div>
@@ -26,11 +75,41 @@ const byYear = years.map((y) => ({ y, items: events.filter((e) => e.year === y).
   </div></section>
 </Layout>
 <style>
+  .hist { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .hist-aside { position: sticky; top: calc(var(--header-h) + 24px); display: grid; gap: 24px; }
+  .founder { margin: 0; background: var(--color-bg-alt); }
+  .founder img { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1060; object-fit: cover; object-position: top; }
+  .founder figcaption { display: grid; gap: 6px; padding: 16px 20px 20px; }
+  .founder .text-link { justify-self: start; margin-top: 6px; }
+  .facts { margin: 0; border-top: 1px solid var(--color-line-strong); }
+  .facts div { padding: 14px 0; border-bottom: 1px solid var(--color-line); }
+  .facts dt { font: 500 11px/1.4 var(--font-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .facts dd { margin: 4px 0 0; font: 400 var(--size-20)/1.3 var(--font-display); }
+
+  .hist-photos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; align-items: start; }
+  .hist-photos figure { margin: 0; }
+  .hist-photos img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--media-bg); }
+  .hist-photos figcaption { margin-top: 8px; }
+
   .tl-list { list-style: none; margin: 0; padding: 0; }
   .tl-list li + li { border-top: 1px solid var(--color-line); }
-  .tl-list a { display: grid; grid-template-columns: 180px 1fr auto; gap: var(--space-4); align-items: baseline; padding: var(--space-4) 0; }
-  .tl-list b { font: 400 var(--size-24)/1.2 var(--font-display); font-weight: 400; transition: color var(--dur-fast); }
+  .tl-list a { display: grid; grid-template-columns: 64px 1fr; gap: var(--space-4); align-items: center; padding: var(--space-4) 0; }
+  .tl-thumb { display: block; width: 64px; aspect-ratio: 4 / 5; background: var(--media-bg); overflow: hidden; }
+  .tl-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .tl-body { display: grid; grid-template-columns: 180px 1fr auto; gap: var(--space-4); align-items: baseline; }
+  .tl-list b { font: 400 var(--size-24)/1.2 var(--font-display); transition: color var(--dur-fast); }
   .tl-list a:hover b { color: var(--color-accent); }
   .tl-list .muted { font-size: var(--size-13); }
-  @media (max-width: 700px) { .tl-list a { grid-template-columns: 1fr; gap: 4px; } }
+  @media (max-width: 900px) {
+    .hist { grid-template-columns: 1fr; }
+    .hist-aside { position: static; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+    .hist-photos { grid-template-columns: 1fr 1fr; }
+    .hist-photos .wide { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .hist-aside { grid-template-columns: 1fr; }
+    .tl-list a { grid-template-columns: 52px 1fr; align-items: start; }
+    .tl-thumb { width: 52px; }
+    .tl-body { grid-template-columns: 1fr; gap: 4px; }
+  }
 </style>

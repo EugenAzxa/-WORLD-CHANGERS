@@ -37,7 +37,7 @@ const niceTitle = pageTitle === pageTitle.toUpperCase() ? pageTitle.charAt(0) + 
         </div>
       </header>
       {item.image && <div class="wrap" style="max-width:1100px"><img class="post-cover" src={media(item.image)} alt="" /></div>}
-      <div class="wrap wrap-narrow section-tight"><div class="prose" set:html={rewriteHtml(item.html)} /></div>
+      <div class="section-tight"><div class="wrap wrap-narrow"><div class="prose" set:html={rewriteHtml(item.html)} /></div></div>
     </article>
     {related.length > 0 && (
       <section class="section bg-2"><div class="wrap">
