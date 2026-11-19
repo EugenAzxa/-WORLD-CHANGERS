@@ -23,7 +23,7 @@ export const SITE = {
   email: 'world@iascoop.org',
   orgUrl: 'https://iascoop.org/',
   magazine: 'https://iascmag.org/',
-  catalogue: `${LEGACY}/3d-flip-book/catalogue/`,
+  catalogue: '/catalogue/',
   tagline: 'Uniting visionary experts and inspiring voices to shape the future of our world.',
 };
 
@@ -98,6 +98,7 @@ export function link(href?: string | null): string | undefined {
   const norm = clean.endsWith('/') ? clean : clean + '/';
   if (knownRoutes.has(norm)) return norm;
   if (norm === '/events/') return '/events-cat/';
+  if (norm.startsWith('/3d-flip-book/')) return '/catalogue/';
   return LEGACY + href; // page only exists on the old site (forms, login…)
 }
 export function rewriteHtml(html?: string): string {
@@ -243,7 +244,7 @@ export const GENERIC_PAGES = ['spirit-of-quantum', 'world-changers-economic-summ
 [
   '/', '/our-mission/', '/history/', '/about-us/', '/board-of-directors/', '/our-team/', '/contacts/', '/donate/',
   '/events-cat/', '/upcoming-events/', '/completed-events/', '/locations/', '/venue/', '/network-list/', '/speakers/', '/guests/',
-  '/gallery/', '/blog/', '/awards/', '/world-map/', '/category/press-release/', '/category/blog/', '/category/you-give-us-courage/',
+  '/gallery/', '/blog/', '/awards/', '/world-map/', '/catalogue/', '/category/press-release/', '/category/blog/', '/category/you-give-us-courage/',
 ].forEach((r) => knownRoutes.add(r));
 GENERIC_PAGES.forEach((s) => knownRoutes.add(`/${s}/`));
 events.forEach((e) => knownRoutes.add(e.url));

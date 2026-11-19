@@ -1,8 +1,7 @@
 ---
 // Opening sequence for the home page: the World Changers journey drawn on a flat
 // world map — from the Vatican (2023) outwards, gathering by gathering.
-// Shown once per browser session, skippable, never shown with reduced motion.
-// Replay with /?intro=1
+// Played on request: /?intro=1 (linked from the atlas section). Skippable.
 import { globeData } from '../lib/globe-data';
 import { stats, places as allPlaces } from '../lib/data';
 
@@ -28,10 +27,8 @@ const data = {
 <script is:inline>
   (function () {
     try {
-      var force = /[?&]intro=1/.test(location.search);
-      var seen = sessionStorage.getItem('wcs-intro');
-      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (force || (!seen && !reduce)) document.documentElement.classList.add('intro-on');
+      // the welcome film now opens the home page; the map journey plays on request (/?intro=1)
+      if (/[?&]intro=1/.test(location.search)) document.documentElement.classList.add('intro-on');
     } catch (e) {}
   })();
 </script>
